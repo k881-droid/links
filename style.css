@@ -47,16 +47,22 @@ body{
     color: white;
 }
 
-div{
+.string-wrapper{
+    position: absolute;
+    margin-block-start: calc(var(--morespacing)*4);
+}
+
+.string{
 border-bottom: 3px solid rgb(255, 0, 0);
-width: 45%;
+width: calc(var(--spacing)*8);
 transform: rotate(45deg);
-transform-origin: left;
+transform-origin: center;
 }
 
 h1{
     font-size: var(--spacing);
     font-family: 'Velvelyne-Book';
     text-transform: lowercase;
+    margin-block-end: calc(var(--spacing)/2);
 }
 
