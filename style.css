@@ -145,6 +145,16 @@ white-space: normal;
     margin-inline-start: calc(var(--spacing)); 
 }
 
+.link-unit:nth-child(even) .square {
+    /* Adding spacing to the right pushes the visual center to the left */
+    margin-inline-start: calc(var(--spacing)*2);
+}
+
+.link-unit:nth-child(odd) .square {
+    /* Adding spacing to the right pushes the visual center to the left */
+    margin-inline-start: calc(var(--spacing)*2.5);
+}
+
 h1{
     font-size: var(--spacing);
     font-family: 'Velvelyne-Book';
