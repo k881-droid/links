@@ -47,6 +47,13 @@ body{
     color: white;
 }
 
+div{
+border-bottom: 3px solid rgb(255, 0, 0);
+width: 45%;
+transform: rotate(45deg);
+transform-origin: left;
+}
+
 h1{
     font-size: var(--spacing);
     font-family: 'Velvelyne-Book';
