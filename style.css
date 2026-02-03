@@ -47,16 +47,28 @@ body{
     color: white;
 }
 
-.string-wrapper{
+/* .string-wrapper{
     position: absolute;
     margin-block-start: calc(var(--morespacing)*4);
-}
+} */
 
 .string{
-border-bottom: 3px solid rgb(255, 0, 0);
-width: calc(var(--spacing)*8);
-transform: rotate(45deg);
+border-bottom: calc(var(--spacing)/10) solid var(--red-dull);
+width: calc(var(--spacing)*6);
+transform: rotate(50deg);
 transform-origin: center;
+margin-block-start: calc(var(--morespacing));
+position: relative;
+z-index: -1;
+}
+
+.square{
+width: calc(var(--morespacing)/4);
+height: calc(var(--morespacing)/4);
+background: var(--red-bright);
+margin-inline-end: auto;
+margin-inline-start: calc(var(--morespacing)*2.4);
+margin-block-start: calc(var(--morespacing));
 }
 
 h1{
