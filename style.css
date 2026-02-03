@@ -39,7 +39,7 @@
     --morespacing: 4rem;
     font-family: "Archivo Narrow", sans-serif;
     font-size: 1.5rem;
-  --hover-scale: 12;
+  --hover-scale: 8;
   --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing) / 2);
   --text-width: calc(var(--spacing) * 12);
