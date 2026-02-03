@@ -39,7 +39,7 @@
     --morespacing: 4rem;
     font-family: "Archivo Narrow", sans-serif;
     font-size: 1.5rem;
-  --hover-scale: 8;
+  --hover-scale: 6;
   --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing) / 2);
   --text-width: calc(var(--spacing) * 12);
@@ -50,12 +50,8 @@ body{
     padding: var(--spacing);
     background-color: var(--black);
     color: white;
+    overflow-x: hidden;
 }
-
-/* .string-wrapper{
-    position: absolute;
-    margin-block-start: calc(var(--morespacing)*4);
-} */
 
 .timeline-wrapper {
     display: flex;
@@ -104,10 +100,24 @@ z-index: 10;
 
 /* dont forget attributions: https://css-tricks.com/the-shapes-of-css/ */
 
-.square-text {
+.square-content {
 opacity: 0;
 pointer-events: none;
 text-align: center;
+
+/* Layout: Stack image and text vertically */
+display: flex;
+flex-direction: column; 
+align-items: center;
+justify-content: center;
+gap: 1rem; /* Space between image and text */
+
+/* Sizing & Transforms (Same as before) */
+width: calc(100% * var(--hover-scale));
+height: calc(100% * var(--hover-scale)); /* Force full height to center vertically */
+flex-shrink: 0;
+padding: var(--text-pad);
+box-sizing: border-box;
     
 font-size: calc(var(--spacing) / 2); 
 line-height: 1.2; 
@@ -130,7 +140,7 @@ white-space: normal;
     background-color: var(--red-dull);
 }
 
-.square:hover .square-text {
+.square:hover .square-content {
     opacity: 1;
     /* FIX 4: Counter-scale
        Shrink text back down by 1/12th so it looks normal size */
@@ -153,15 +163,6 @@ white-space: normal;
 .link-unit:nth-child(odd) .square {
     /* Adding spacing to the right pushes the visual center to the left */
       margin-inline-start: calc(var(--morespacing)*3);
-}
-
-.link-unit:nth-child(even) .square:hover {
-    margin-inline-end: auto;
-}
-
-/* When hovering an ODD unit square, reset its start margin to re-center it */
-.link-unit:nth-child(odd) .square:hover {
-    margin-inline-start: auto;
 }
 
 h1{
