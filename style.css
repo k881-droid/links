@@ -1,0 +1,13 @@
+:root{
+    --black: #1f1f1f;
+    --red-bright: #f10b0b;
+    --red-dull: #c10d0d;
+    --spacing: 2rem;
+    --morespacing: 4rem;
+    font-family: "Archivo Narrow", sans-serif;
+}
+
+body{
+    padding: var(--spacing);
+}
+
