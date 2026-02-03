@@ -155,6 +155,15 @@ white-space: normal;
       margin-inline-start: calc(var(--morespacing)*3);
 }
 
+.link-unit:nth-child(even) .square:hover {
+    margin-inline-end: auto;
+}
+
+/* When hovering an ODD unit square, reset its start margin to re-center it */
+.link-unit:nth-child(odd) .square:hover {
+    margin-inline-start: auto;
+}
+
 h1{
     font-size: var(--spacing);
     font-family: 'Velvelyne-Book';
