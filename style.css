@@ -69,6 +69,11 @@ background: var(--red-bright);
 margin-inline-end: auto;
 margin-inline-start: calc(var(--morespacing)*2.4);
 margin-block-start: calc(var(--morespacing));
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.square:hover{
+    transform: scale(8); 
 }
 
 h1{
@@ -77,4 +82,5 @@ h1{
     text-transform: lowercase;
     margin-block-end: calc(var(--spacing)/2);
 }
+
 
