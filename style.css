@@ -39,6 +39,11 @@
     --morespacing: 4rem;
     font-family: "Archivo Narrow", sans-serif;
     font-size: 1.5rem;
+  --hover-scale: 12;
+  --square-size: calc(var(--morespacing) / 4);
+  --text-pad: calc(var(--spacing) / 2);
+  --text-width: calc(var(--spacing) * 12);
+  --text-width-max: calc(100vw - (var(--spacing) * 2));
 }
 
 body{
@@ -66,22 +71,56 @@ z-index: -1;
 /* dont forget attributions: https://linuxhint.com/draw-diagonal-line-using-css/  */
 
 .square{
-width: calc(var(--morespacing)/4);
-height: calc(var(--morespacing)/4);
+width: var(--square-size);
+height: var(--square-size);
 background: var(--red-bright);
 margin-inline: auto;
-/* margin-inline-start: calc(var(--morespacing)*2.4); */
-margin-block-start: calc(var(--morespacing));
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+margin-block-start: var(--morespacing);
+    
+display: flex;
+align-items: center;
+justify-content: center;
+    
+transform-origin: center;
+transition: transform 0.3s ease, background-color 0.3s ease;
+    
+position: relative; 
+z-index: 10;
 }
 
 /* dont forget attributions: https://css-tricks.com/the-shapes-of-css/ */
 
-.square:hover{
-    transform: scale(12); 
+.square-text {
+opacity: 0;
+pointer-events: none;
+text-align: center;
+    
+font-size: calc(var(--spacing) / 2); 
+line-height: 1.2; 
+    
+   
+width: calc(100% * var(--hover-scale));
+flex-shrink: 0;
+    
+
+padding: var(--text-pad);
+box-sizing: border-box; 
+    
+
+white-space: normal;
+
+}
+
+.square:hover {
+    transform: scale(var(--hover-scale)); 
     background-color: var(--red-dull);
-    display: flex;
-    justify-content: center;
+}
+
+.square:hover .square-text {
+    opacity: 1;
+    /* FIX 4: Counter-scale
+       Shrink text back down by 1/12th so it looks normal size */
+    transform: scale(calc(1 / var(--hover-scale)));
 }
 
 h1{
