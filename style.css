@@ -40,7 +40,7 @@
     font-family: "Archivo Narrow", sans-serif;
     font-size: 1.5rem;
   --hover-scale: 12;
-  --square-size: calc(var(--morespacing) / 4);
+  --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing) / 2);
   --text-width: calc(var(--spacing) * 12);
   --text-width-max: calc(100vw - (var(--spacing) * 2));
@@ -72,11 +72,11 @@ body{
 
 .string{
 border-bottom: calc(var(--spacing)/10) solid var(--red-dull);
-width: calc(var(--spacing)*5);
+width: calc(var(--spacing)*10);
 transform: translateY(calc(var(--spacing)*-0.2)) rotate(78deg);
 transform-origin: center;
 margin-block-start: calc(var(--morespacing)*2);
-margin-inline-start:calc(var(--spacing)*-1);
+margin-inline: auto;
 position: relative;
 z-index: -1;
 }
@@ -147,12 +147,12 @@ white-space: normal;
 
 .link-unit:nth-child(even) .square {
     /* Adding spacing to the right pushes the visual center to the left */
-    margin-inline-start: calc(var(--spacing)*2);
+    margin-inline-end: calc(var(--morespacing)*3);
 }
 
 .link-unit:nth-child(odd) .square {
     /* Adding spacing to the right pushes the visual center to the left */
-    margin-inline-start: calc(var(--spacing)*2.5);
+      margin-inline-start: calc(var(--morespacing)*3);
 }
 
 h1{
