@@ -57,6 +57,19 @@ body{
     margin-block-start: calc(var(--morespacing)*4);
 } */
 
+timeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This forces the string and squares to align in the center */
+    width: 100%;
+}
+
+.link-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .string{
 border-bottom: calc(var(--spacing)/10) solid var(--red-dull);
 width: calc(var(--spacing)*6);
@@ -121,6 +134,14 @@ white-space: normal;
     /* FIX 4: Counter-scale
        Shrink text back down by 1/12th so it looks normal size */
     transform: scale(calc(1 / var(--hover-scale)));
+}
+
+.link-unit:nth-child(even) .string {
+    /* Flip the rotation to go the other way (-60deg) */
+    transform: translateY(calc(var(--spacing)*-0.2)) rotate(-60deg);
+    
+    /* Flip the offset so it connects to the other side of the box */
+    margin-inline-start: calc(var(--spacing)); 
 }
 
 h1{
