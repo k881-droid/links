@@ -57,7 +57,7 @@ body{
     margin-block-start: calc(var(--morespacing)*4);
 } */
 
-timeline-wrapper {
+.timeline-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center; /* This forces the string and squares to align in the center */
@@ -75,7 +75,7 @@ border-bottom: calc(var(--spacing)/10) solid var(--red-dull);
 width: calc(var(--spacing)*5);
 transform: translateY(calc(var(--spacing)*-0.2)) rotate(78deg);
 transform-origin: center;
-margin-block-start: calc(var(--morespacing));
+margin-block-start: calc(var(--morespacing)*2);
 margin-inline-start:calc(var(--spacing)*-1);
 position: relative;
 z-index: -1;
@@ -88,13 +88,14 @@ width: var(--square-size);
 height: var(--square-size);
 background: var(--red-bright);
 margin-inline: auto;
-margin-block-start: var(--morespacing);
+margin-block-start: calc(var(--morespacing)*2);
     
 display: flex;
 align-items: center;
 justify-content: center;
     
 transform-origin: center;
+transform: rotate(45deg);
 transition: transform 0.3s ease, background-color 0.3s ease;
     
 position: relative; 
