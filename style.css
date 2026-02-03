@@ -1,3 +1,36 @@
+@font-face {
+    font-family: 'PicNic';
+    src: url('fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
+        url('fonts/PicNic/PicNic-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Velvelyne-Bold';
+    src: url('fonts/Velvelyne-main/woff/Velvelyne-Bold.woff') format('woff'),
+        url('fonts/Velvelyne-main/woff2/Velvelyne-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Velvelyne-Light';
+    src: url('fonts/Velvelyne-main/woff/Velvelyne-Light.woff') format('woff'),
+        url('fonts/Velvelyne-main/woff2/Velvelyne-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Velvelyne-Regular';
+    src: url('fonts/Velvelyne-main/woff/Velvelyne-Regular.woff') format('woff'),
+        url('fonts/Velvelyne-main/woff2/Velvelyne-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Velvelyne-Book';
+    src: url('fonts/Velvelyne-main/woff/Velvelyne-Book.woff') format('woff'),
+        url('fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
+}
+
 :root{
     --black: #1f1f1f;
     --red-bright: #f10b0b;
@@ -5,9 +38,18 @@
     --spacing: 2rem;
     --morespacing: 4rem;
     font-family: "Archivo Narrow", sans-serif;
+    font-size: 1.5rem;
 }
 
 body{
     padding: var(--spacing);
+    background-color: var(--black);
+    color: white;
+}
+
+h1{
+    font-size: var(--spacing);
+    font-family: 'Velvelyne-Book';
+    text-transform: lowercase;
 }
 
