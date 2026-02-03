@@ -55,25 +55,33 @@ body{
 .string{
 border-bottom: calc(var(--spacing)/10) solid var(--red-dull);
 width: calc(var(--spacing)*6);
-transform: rotate(50deg);
+transform: translateY(calc(var(--spacing)*-0.2)) rotate(60deg);
 transform-origin: center;
 margin-block-start: calc(var(--morespacing));
+margin-inline-start:calc(var(--spacing)*-1);
 position: relative;
 z-index: -1;
 }
+
+/* dont forget attributions: https://linuxhint.com/draw-diagonal-line-using-css/  */
 
 .square{
 width: calc(var(--morespacing)/4);
 height: calc(var(--morespacing)/4);
 background: var(--red-bright);
-margin-inline-end: auto;
-margin-inline-start: calc(var(--morespacing)*2.4);
+margin-inline: auto;
+/* margin-inline-start: calc(var(--morespacing)*2.4); */
 margin-block-start: calc(var(--morespacing));
 transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* dont forget attributions: https://css-tricks.com/the-shapes-of-css/ */
+
 .square:hover{
-    transform: scale(8); 
+    transform: scale(12); 
+    background-color: var(--red-dull);
+    display: flex;
+    justify-content: center;
 }
 
 h1{
