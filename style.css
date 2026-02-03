@@ -178,5 +178,24 @@ h1{
     
 }
 
+@media (width > 1000px) {
+  :root{ 
+    font-size: 100%;
+  }
 
+  header{
+    display: grid;
+    flex-direction: column;
+  }
+  
+  h1{
+    font-size: calc(var(--morespacing)*1.5);
+    text-align: center;
+  }
 
+  h2{
+    font-size: calc(var(--spacing)/1.2);
+    font-weight: 400;
+    text-align: left;
+  }
+}
