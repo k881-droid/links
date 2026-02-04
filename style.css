@@ -42,6 +42,10 @@
     --hover-scale: 6;
     --square-size: calc(var(--morespacing)/2);
     --text-pad: calc(var(--spacing) / 2);
+    --border-width-mobile: 0.2rem;
+    --border-width-desktop: 0.4rem;
+    --border-radius-mobile: 1rem;
+
 }
 
 body{
@@ -49,8 +53,8 @@ body{
     background-color: var(--black);
     color: white;
     overflow-x: hidden;
-    border: 0.2rem solid var(--red-dull);
-    border-radius: 1rem;
+    border: var(--border-width-mobile) solid var(--red-dull);
+    border-radius: var( --border-radius-mobile);
 }
 
 /* --- GRID CONTAINER --- */
@@ -78,33 +82,33 @@ body{
 
 /* TOP START */
 .player:first-child {
-  border-top-width: 0.2rem;
-  border-right-width: 0.2rem;
-  border-top-right-radius: 1rem;
+  border-top-width: var(--border-width-mobile);
+  border-right-width: var(--border-width-mobile);
+  border-top-right-radius: var( --border-radius-mobile);
 }
 
 /* RIGHT-SIDE TURNS */
 .player:nth-child(even) {
-  border-left-width: 0.2rem;
-  border-top-width: 0.2rem;
-  border-top-left-radius: 1rem;
+  border-left-width:var(--border-width-mobile);
+  border-top-width: var(--border-width-mobile);
+  border-top-left-radius: var( --border-radius-mobile);
 }
 
 /* LEFT-SIDE TURNS */
 .player:nth-child(odd) {
-  border-top-width: 0.2rem;
-  border-right-width: 0.2rem;
-  border-top-right-radius: 1rem;
+  border-top-width: var(--border-width-mobile);
+  border-right-width: var(--border-width-mobile);
+  border-top-right-radius: var( --border-radius-mobile);
 }
 
 /* Bottom end - this is temporary and will change as more blocks are added. */
 .player:nth-child(4) {
-  border-bottom-width: 0.2rem;
+  border-bottom-width: var(--border-width-mobile);
 }
 
 .square{
 width: var(--square-size);
-border-radius: 0.2rem;
+border-radius: var(--border-width-mobile);
 height: var(--square-size);
 background: var(--red-bright);
 margin-block-start: calc(var(--morespacing)*3);
@@ -217,8 +221,8 @@ html{
   }
 
   body{
-    border: 0.4rem solid var(--red-dull);
-    border-radius: 1rem;
+    border: var(--border-width-desktop) solid var(--red-dull);
+    border-radius: var( --border-radius-mobile);
     padding: calc(var(--morespacing));
     padding-inline: calc(var(--morespacing)*2);
     padding-block-end: calc(var(--morespacing)*3);
@@ -240,18 +244,18 @@ html{
 
    header li:first-child {
       flex: 1; 
-      border: 0.35rem solid var(--red-dull);
+      border: var(--border-width-desktop) solid var(--red-dull);
       padding: var(--spacing);
-      border-radius: 1rem;
+      border-radius: var( --border-radius-mobile);
       text-align: left;
   }
 
   header li:nth-child(2) {
       flex: 1;
       text-align: right;
-      border: 0.35rem solid var(--red-dull);
+      border: var(--border-width-desktop) solid var(--red-dull);
       padding: var(--spacing);
-      border-radius: 1rem;
+      border-radius:var( --border-radius-mobile);
   }
 
   ul{
@@ -265,36 +269,34 @@ html{
 /* 1. TOP START */
   .player:first-child {
     /* Change these numbers to adjust thickness */
-    border-top-width: 0.4rem;   
-    border-right-width: 0.4rem; 
-    
-    border-top-right-radius: 1rem;
+    border-top-width: var(--border-width-desktop);   
+    border-right-width: var(--border-width-desktop); 
+    border-top-right-radius: var( --border-radius-mobile);
   }
 
   /* 2. RIGHT-SIDE TURNS */
   .player:nth-child(even) {
     /* Change these numbers */
-    border-left-width: 0.4rem;
-    border-top-width: 0.4rem;
+    border-left-width: var(--border-width-desktop);
+    border-top-width: var(--border-width-desktop);
     
-    border-top-left-radius: 1rem;
+    border-top-left-radius: var( --border-radius-mobile);
   }
 
   /* 3. LEFT-SIDE TURNS */
   .player:nth-child(odd) {
     /* Change these numbers */
-    border-top-width: 0.4rem;
-    border-right-width: 0.4rem;
+    border-top-width:var(--border-width-desktop);
+    border-right-width: var(--border-width-desktop);
     
-    border-top-right-radius: 1rem;
+    border-top-right-radius: var( --border-radius-mobile);
   }
 
   /* 4. BOTTOM END */
   .player:nth-child(4) {
-    border-bottom-width: 0.4rem;
+    border-bottom-width: var(--border-width-desktop);
   }
 
-}
 
   h1{
     font-size: calc(var(--morespacing)*2);
@@ -307,6 +309,6 @@ html{
   html{
     padding: var(--spacing);
   }
-
 }
 
+/* Final note: I tried to incporporate js so we could use 'tap' to see the block styles on mobile, but was unable to implement it fully with current styling. Hence you cannot see the block styles on mobile for now, but I will adjust it in the next milestone.  */
