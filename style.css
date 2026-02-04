@@ -190,7 +190,6 @@ h1{
 
   header ul {
     list-style: none;
-    padding: 0;
     margin: 0;
     
     /* 1. Activate Flexbox */
@@ -198,20 +197,35 @@ h1{
     
     /* 2. Add space between the two columns */
     /* Using your existing variable keeps spacing consistent */
-    gap: var(--spacing); 
+    gap: calc(var(--morespacing)); 
     
     /* Optional: Aligns items to the top if one has more text than the other */
     align-items: flex-start; 
 }
 
-header li {
-    /* 3. The Magic Command */
-    /* "flex: 1" tells the browser: "All items with this class 
-       should grow to take up equal amounts of space." */
-    flex: 1; 
-}
+header li:first-child {
+      flex: 1; 
+      border: 0.35rem solid var(--red-dull);
+      padding: var(--spacing);
+      border-radius: 1rem;
+
+  }
+
+  /* 2. THE SMALL BLOCK (Names) */
+  /* "flex: 1" means take up 1 share of the space (25%) */
+  header li:nth-child(2) {
+      flex: 1;
+      text-align: right;
+      border: 0.35rem solid var(--red-dull);
+      padding: var(--spacing);
+      border-radius: 1rem;
+  }
+
+  ul{
+    font-size: calc(var(--spacing))
+  }
   h1{
-    font-size: calc(var(--morespacing)*1.5);
-    text-align: center;
+    font-size: calc(var(--morespacing)*2);
+    color: var(--red-dull);
   }
 }
