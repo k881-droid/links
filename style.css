@@ -39,11 +39,9 @@
     --morespacing: 4rem;
     font-family: "Archivo Narrow", sans-serif;
     font-size: 1.5rem;
-  --hover-scale: 6;
-  --square-size: calc(var(--morespacing)/2);
-  --text-pad: calc(var(--spacing) / 2);
-  --text-width: calc(var(--spacing) * 12);
-  --text-width-max: calc(100vw - (var(--spacing) * 2));
+    --hover-scale: 6;
+    --square-size: calc(var(--morespacing)/2);
+    --text-pad: calc(var(--spacing) / 2);
 }
 
 body{
@@ -73,35 +71,32 @@ body{
   align-items: center;
   padding: 0;
   
-  /* Reset all borders and radius */
   border: 0 solid var(--red-dull);
   border-radius: 0;
 }
 
-/* --- 1-COLUMN SNAKE LOGIC --- */
-
-/* 1. TOP START (Item 1) */
-/* Path: Start Top -> Turn Right */
+/* TOP START */
 .player:first-child {
   border-top-width: 0.3rem;
   border-right-width: 0.3rem;
   border-top-right-radius: 1rem;
 }
 
-/* 2. RIGHT-SIDE TURNS (Spacers 2, 6, 10...) */
-/* Path: Down Right Side -> Turn Left (across bottom) */
+/* RIGHT-SIDE TURNS */
 .player:nth-child(even) {
   border-left-width: 0.3rem;
   border-top-width: 0.3rem;
   border-top-left-radius: 1rem;
 }
 
+/* LEFT-SIDE TURNS */
 .player:nth-child(odd) {
   border-top-width: 0.3rem;
   border-right-width: 0.3rem;
   border-top-right-radius: 1rem;
 }
 
+/* Bottom end - this is temporary and will change as more blocks are added. */
 .player:nth-child(4) {
   border-bottom-width: 0.3rem;
 }
@@ -112,12 +107,20 @@ border-radius: 0.3rem;
 height: var(--square-size);
 background: var(--red-bright);
 margin-block-start: calc(var(--morespacing)*3);
+
+/* I wanted a square for my design because I am mimicking 'points' on a line. Initially I wanted a circle but I felt that was looking out of place with the feel of the blocks */
+/* I found how to make a square here: https://css-tricks.com/the-shapes-of-css/ */
+/* I think what is happening is, using a div container, we are simply adjusting its height and width manually to replicate the look of a square. Because the div is already a pre-made container we don't need to do much more. */
     
 display: flex;
 align-items: center;
 justify-content: center;
     
 transform-origin: center;
+
+/* I wanted to rotate my squares to make them look cooler, like a diamond shape. */
+/* I found out you can adjust where you rotate your shape from from here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin */
+/* The 'transform-origin' is the same thing as an anchor point in graphic design I think. So what is happening is that using this property we are basically adjusting the anchor point to where we want to rotate our object from. */
 transform: rotate(45deg);
 transition: transform 0.3s ease, background-color 0.3s ease;
     
@@ -125,23 +128,19 @@ position: relative;
 z-index: 10;
 }
 
-/* dont forget attributions: https://css-tricks.com/the-shapes-of-css/ */
-
 .square-content {
 opacity: 0;
-pointer-events: none;
 text-align: center;
 
-/* Layout: Stack image and text vertically */
 display: flex;
 flex-direction: column; 
 align-items: center;
 justify-content: center;
-gap: 1rem; /* Space between image and text */
+gap: 1rem; 
 
-/* Sizing & Transforms (Same as before) */
 width: calc(100% * var(--hover-scale));
-height: calc(100% * var(--hover-scale)); /* Force full height to center vertically */
+height: calc(100% * var(--hover-scale)); 
+
 flex-shrink: 0;
 padding: var(--text-pad);
 box-sizing: border-box;
@@ -169,11 +168,12 @@ white-space: normal;
 
 .square:hover .square-content {
     opacity: 1;
-    /* FIX 4: Counter-scale
-       Shrink text back down by 1/12th so it looks normal size */
     transform: scale(calc(1 / var(--hover-scale)));
 }
 
+/* When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help. */
+/* I found out the fix from Google Gemini. */
+/* Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
 
 h2{
     text-align: center;
@@ -202,14 +202,9 @@ h1{
     list-style: none;
     margin: 0;
     
-    /* 1. Activate Flexbox */
     display: flex;
-    
-    /* 2. Add space between the two columns */
-    /* Using your existing variable keeps spacing consistent */
     gap: calc(var(--morespacing)); 
     
-    /* Optional: Aligns items to the top if one has more text than the other */
     align-items: flex-start; 
 }
 
@@ -218,11 +213,8 @@ header li:first-child {
       border: 0.35rem solid var(--red-dull);
       padding: var(--spacing);
       border-radius: 1rem;
-
   }
 
-  /* 2. THE SMALL BLOCK (Names) */
-  /* "flex: 1" means take up 1 share of the space (25%) */
   header li:nth-child(2) {
       flex: 1;
       text-align: right;
@@ -239,18 +231,6 @@ header li:first-child {
     font-size: calc(var(--morespacing)*2);
     color: var(--red-dull);
   }
-
-  .string{
-    border-bottom: calc(var(--spacing)/6) solid var(--red-dull);
-    border-radius: 1rem;
-    width: calc(var(--spacing)*10);
-    transform: translateY(calc(var(--spacing)*-0.2)) rotate(78deg);
-    transform-origin: center;
-    margin-block-start: calc(var(--morespacing)*2);
-    margin-inline: auto;
-    position: relative;
-    z-index: -1;
-}
 
 }
 
