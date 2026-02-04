@@ -194,12 +194,13 @@ h1{
     border: 0.4rem solid var(--red-dull);
     border-radius: 1rem;
     padding: calc(var(--morespacing));
-    padding-inline: calc(var(--morespacing)*2)
+    padding-inline: calc(var(--morespacing)*2);
+    padding-block-end: calc(var(--morespacing)*3);
   }
 
   header{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: min-content min-content;
   }
 
   header ul {
@@ -230,6 +231,7 @@ h1{
   ul{
     font-size: calc(var(--spacing)/1.5);
     padding-block-end: calc(var(--morespacing)*2);
+    padding-block-start:var(--morespacing);
   }
 
   h1{
