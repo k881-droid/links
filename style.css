@@ -262,32 +262,39 @@ html{
 
   /* --- GRID ITEMS (PLAYERS) --- */
 
-/* TOP START */
-.player:first-child {
-  border-top-width: 0.6rem;
-  border-right-width: 0.2rem;
-  border-top-right-radius: 1rem;
-}
+/* 1. TOP START */
+  .player:first-child {
+    /* Change these numbers to adjust thickness */
+    border-top-width: 0.4rem;   
+    border-right-width: 0.4rem; 
+    
+    border-top-right-radius: 1rem;
+  }
 
-/* RIGHT-SIDE TURNS */
-.player:nth-child(even) {
-  border-left-width: 0.2rem;
-  border-top-width: 0.2rem;
-  border-top-left-radius: 1rem;
-}
+  /* 2. RIGHT-SIDE TURNS */
+  .player:nth-child(even) {
+    /* Change these numbers */
+    border-left-width: 0.4rem;
+    border-top-width: 0.4rem;
+    
+    border-top-left-radius: 1rem;
+  }
 
-/* LEFT-SIDE TURNS */
-.player:nth-child(odd) {
-  border-top-width: 0.2rem;
-  border-right-width: 0.2rem;
-  border-top-right-radius: 1rem;
-}
+  /* 3. LEFT-SIDE TURNS */
+  .player:nth-child(odd) {
+    /* Change these numbers */
+    border-top-width: 0.4rem;
+    border-right-width: 0.4rem;
+    
+    border-top-right-radius: 1rem;
+  }
 
-/* Bottom end - this is temporary and will change as more blocks are added. */
-.player:nth-child(4) {
-  border-bottom-width: 0.2rem;
-}
+  /* 4. BOTTOM END */
+  .player:nth-child(4) {
+    border-bottom-width: 0.4rem;
+  }
 
+}
 
   h1{
     font-size: calc(var(--morespacing)*2);
