@@ -190,6 +190,13 @@ h1{
     font-size: 100%;
   }
 
+  body{
+    border: 0.4rem solid var(--red-dull);
+    border-radius: 1rem;
+    padding: calc(var(--morespacing));
+    padding-inline: calc(var(--morespacing)*2)
+  }
+
   header{
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -227,11 +234,11 @@ h1{
 
   h1{
     font-size: calc(var(--morespacing)*2);
-    color: var(--red-dull);
+    color: var(--red-bright);
   }
 
   html{
-    padding-inline: calc(var(--morespacing)*2)
+    padding: var(--spacing);
   }
 
 }
