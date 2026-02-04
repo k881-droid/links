@@ -58,7 +58,6 @@ body{
   grid-auto-rows: minmax(6rem, 12rem); 
   
   border: none;
-  margin-block-start: var(--spacing);
   gap: 0; 
   width: 100%;
   margin-inline: auto;
@@ -183,9 +182,7 @@ h1{
     font-size: var(--spacing);
     font-family: 'Velvelyne-Book';
     text-transform: lowercase;
-    margin-block-end: calc(var(--spacing)/2);
     margin-inline: auto;
-    
 }
 
 @media (width > 1000px) {
@@ -206,9 +203,9 @@ h1{
     gap: calc(var(--morespacing)); 
     
     align-items: flex-start; 
-}
+  }
 
-header li:first-child {
+   header li:first-child {
       flex: 1; 
       border: 0.35rem solid var(--red-dull);
       padding: var(--spacing);
@@ -224,12 +221,17 @@ header li:first-child {
   }
 
   ul{
-    font-size: calc(var(--spacing))
+    font-size: calc(var(--spacing)/1.5);
+    padding-block-end: var(--morespacing);
   }
 
   h1{
     font-size: calc(var(--morespacing)*2);
     color: var(--red-dull);
+  }
+
+  html{
+    padding-inline: calc(var(--morespacing)*2)
   }
 
 }
