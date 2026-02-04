@@ -31,6 +31,16 @@
         url('fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'JetBrainsMono-Regular';
+  src: url('fonts/JetBrainsMono/JetBrainsMono-Variable.woff2') format('woff2'),
+       url('fonts/JetBrainsMono/JetBrainsMono-Variable.woff') format('woff'),
+       url('fonts/JetBrainsMono/JetBrainsMono-Variable.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
 :root{
     --black: #1f1f1f;
     --red-bright: #f10b0b;
@@ -75,7 +85,6 @@ body{
   justify-content: center;
   align-items: center;
   padding: 0;
-  
   border: 0 solid var(--red-dull);
   border-radius: 0;
 }
@@ -134,36 +143,25 @@ z-index: 10;
 }
 
 .square-content {
-opacity: 0;
-text-align: center;
+    opacity: 0;
+    text-align: center;
 
-display: flex;
-flex-direction: column; 
-align-items: center;
-justify-content: center;
-gap: 1rem; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; 
 
-width: calc(100% * var(--hover-scale));
-height: calc(100% * var(--hover-scale)); 
-
-flex-shrink: 0;
-padding: var(--text-pad);
-box-sizing: border-box;
+    width: calc(100% * var(--hover-scale));
+    height: calc(100% * var(--hover-scale)); 
+    box-sizing: border-box;
+    flex-shrink: 0;
     
-font-size: calc(var(--spacing) / 2); 
-line-height: 1.2; 
-    
-   
-width: calc(100% * var(--hover-scale));
-flex-shrink: 0;
-    
-
-padding: var(--text-pad);
-box-sizing: border-box; 
-    
-
-white-space: normal;
-
+    padding: var(--text-pad);
+    font-size: calc(var(--spacing) / 2); 
+    line-height: 1.2; 
+    white-space: normal;
+    color: var(--black)
 }
 
 .square:hover {
@@ -266,6 +264,9 @@ html{
 
   /* --- GRID ITEMS (PLAYERS) --- */
 
+  .grid{
+    grid-auto-rows: minmax(6rem, 20rem); 
+  }
 /* 1. TOP START */
   .player:first-child {
     /* Change these numbers to adjust thickness */
@@ -297,6 +298,52 @@ html{
     border-bottom-width: var(--border-width-desktop);
   }
 
+  .square{
+    width: var(--square-size);
+    border-radius: var(--border-width-mobile);
+    height: var(--square-size);
+    background: var(--red-bright);
+    margin-block-start: calc(var(--morespacing)*5);
+  }
+
+  .square-content {
+    opacity: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; 
+    width: calc(100% * var(--hover-scale));
+    height: calc(100% * var(--hover-scale)); 
+    box-sizing: border-box;
+    font-family: 'JetBrainsMono-Regular';
+    font-size: calc(var(--spacing) /4); 
+    line-height: 1.2; 
+    flex-shrink: 0;
+    padding: var(--text-pad);
+    white-space: normal;
+}
+
+.square:hover {
+    transform: scale(calc(var(--hover-scale)*2)); 
+    background-color: var(--red-dull);
+}
+
+.square:hover .square-content {
+    opacity: 1;
+    transform: scale(calc(1 / var(--hover-scale)));
+}
+
+.square-content.text-one{
+    padding: calc(var(--spacing));
+}
+
+.square:hover .square-content.link-one {
+    color: white;
+    text-decoration: underline;
+}
+
 
   h1{
     font-size: calc(var(--morespacing)*2);
@@ -312,3 +359,4 @@ html{
 }
 
 /* Final note: I tried to incporporate js so we could use 'tap' to see the block styles on mobile, but was unable to implement it fully with current styling. Hence you cannot see the block styles on mobile for now, but I will adjust it in the next milestone.  */
+
