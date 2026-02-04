@@ -49,6 +49,8 @@ body{
     background-color: var(--black);
     color: white;
     overflow-x: hidden;
+    border: 0.2rem solid var(--red-dull);
+    border-radius: 1rem;
 }
 
 /* --- GRID CONTAINER --- */
@@ -76,33 +78,33 @@ body{
 
 /* TOP START */
 .player:first-child {
-  border-top-width: 0.3rem;
-  border-right-width: 0.3rem;
+  border-top-width: 0.2rem;
+  border-right-width: 0.2rem;
   border-top-right-radius: 1rem;
 }
 
 /* RIGHT-SIDE TURNS */
 .player:nth-child(even) {
-  border-left-width: 0.3rem;
-  border-top-width: 0.3rem;
+  border-left-width: 0.2rem;
+  border-top-width: 0.2rem;
   border-top-left-radius: 1rem;
 }
 
 /* LEFT-SIDE TURNS */
 .player:nth-child(odd) {
-  border-top-width: 0.3rem;
-  border-right-width: 0.3rem;
+  border-top-width: 0.2rem;
+  border-right-width: 0.2rem;
   border-top-right-radius: 1rem;
 }
 
 /* Bottom end - this is temporary and will change as more blocks are added. */
 .player:nth-child(4) {
-  border-bottom-width: 0.3rem;
+  border-bottom-width: 0.2rem;
 }
 
 .square{
 width: var(--square-size);
-border-radius: 0.3rem;
+border-radius: 0.2rem;
 height: var(--square-size);
 background: var(--red-bright);
 margin-block-start: calc(var(--morespacing)*3);
@@ -170,20 +172,25 @@ white-space: normal;
     transform: scale(calc(1 / var(--hover-scale)));
 }
 
+html{
+    padding: calc(var(--spacing)/2);
+  }
+
 /* When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help. */
 /* I found out the fix from Google Gemini. */
 /* Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
 
-h2{
-    text-align: center;
-}
-
 h1{
-    font-size: var(--spacing);
+    font-size:calc(var(--spacing)*2);
     font-family: 'Velvelyne-Book';
     text-transform: lowercase;
     margin-inline: auto;
+    color: var(--red-bright);
+    text-align: center;
+    line-height: 3rem;
+    padding-block-end: var(--spacing);
 }
+
 
 @media (width > 1000px) {
   :root{ 
