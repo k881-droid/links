@@ -172,13 +172,29 @@ white-space: normal;
     transform: scale(calc(1 / var(--hover-scale)));
 }
 
-html{
-    padding: calc(var(--spacing)/2);
-  }
-
 /* When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help. */
 /* I found out the fix from Google Gemini. */
 /* Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
+
+span{
+    color: var(--red-bright);
+}
+
+ul{
+    padding-block-end: var(--spacing);
+    display: flex;
+    flex-direction: column; /* Stacks items on top of each other */
+    align-items: center;    /* Centers the items horizontally */
+    text-align: center;     /* Centers the text inside the items */
+    
+    /* Spacing */
+    gap: var(--spacing);    /* Adds space between the two blocks of text */
+    padding-bottom: var(--spacing); /* Adds space before the grid starts */
+}
+
+ul li:nth-child(2){
+    font-style: italic;
+}
 
 h1{
     font-size:calc(var(--spacing)*2);
@@ -191,6 +207,9 @@ h1{
     padding-block-end: var(--spacing);
 }
 
+html{
+    padding: calc(var(--spacing)/2);
+  }
 
 @media (width > 1000px) {
   :root{ 
@@ -213,10 +232,9 @@ h1{
   header ul {
     list-style: none;
     margin: 0;
-    
     display: flex;
+    flex-direction: row;
     gap: calc(var(--morespacing)); 
-    
     align-items: flex-start; 
   }
 
@@ -225,6 +243,7 @@ h1{
       border: 0.35rem solid var(--red-dull);
       padding: var(--spacing);
       border-radius: 1rem;
+      text-align: left;
   }
 
   header li:nth-child(2) {
@@ -237,13 +256,45 @@ h1{
 
   ul{
     font-size: calc(var(--spacing)/1.5);
-    padding-block-end: calc(var(--morespacing)*2);
-    padding-block-start:var(--morespacing);
+    padding-block: calc(var(--morespacing)*2);
+  
   }
+
+  /* --- GRID ITEMS (PLAYERS) --- */
+
+/* TOP START */
+.player:first-child {
+  border-top-width: 0.6rem;
+  border-right-width: 0.2rem;
+  border-top-right-radius: 1rem;
+}
+
+/* RIGHT-SIDE TURNS */
+.player:nth-child(even) {
+  border-left-width: 0.2rem;
+  border-top-width: 0.2rem;
+  border-top-left-radius: 1rem;
+}
+
+/* LEFT-SIDE TURNS */
+.player:nth-child(odd) {
+  border-top-width: 0.2rem;
+  border-right-width: 0.2rem;
+  border-top-right-radius: 1rem;
+}
+
+/* Bottom end - this is temporary and will change as more blocks are added. */
+.player:nth-child(4) {
+  border-bottom-width: 0.2rem;
+}
+
 
   h1{
     font-size: calc(var(--morespacing)*2);
     color: var(--red-bright);
+    text-decoration: underline;
+    text-decoration-thickness: 0.3rem;
+    padding-block-start: var(--spacing);
   }
 
   html{
