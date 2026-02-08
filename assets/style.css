@@ -42,7 +42,7 @@
 }
 
 :root{
-    --black: #1f1f1f;
+    --black: #feffdc;
     --red-bright: #f10b0b;
     --red-dull: #c10d0d;
     --spacing: 2rem;
@@ -61,14 +61,14 @@
 body{
     padding: var(--spacing);
     background-color: var(--black);
-    color: white;
+    color: black;
     overflow-x: hidden;
-    border: var(--border-width-mobile) solid var(--red-dull);
-    border-radius: var( --border-radius-mobile);
+    /* border: var(--border-width-mobile) solid var(--red-dull);
+    border-radius: var( --border-radius-mobile); */
 }
 
 /* --- GRID CONTAINER --- */
-.grid {
+/* .grid {
   display: grid;
   grid-template-columns: 1fr; 
   grid-auto-rows: minmax(6rem, 12rem); 
@@ -77,7 +77,7 @@ body{
   gap: 0; 
   width: 100%;
   margin-inline: auto;
-}
+} */
 
 #channel-blocks {
   gap: calc(var(--spacing)/2);
@@ -117,13 +117,15 @@ button{
 }
 
 #channel-blocks {
-  &.show-images {
-    li{
-      display:none;
+   &.show-images {
+    li {
+      opacity: 0.2;  
+      pointer-events: none;  
     }
     
-    li.image-block{
-      display:block;
+    li.image-block {
+      opacity: 1; 
+      pointer-events: auto;
     }
   }
 }
@@ -131,11 +133,12 @@ button{
 #channel-blocks {
   &.show-text {
     li{
-      display:none;
+      opacity: 0.2;  
+      pointer-events: none;  
     }
-    
     li.text-block{
-      display:block;
+       opacity: 1; 
+      pointer-events: auto;
     }
   }
 }
@@ -143,17 +146,19 @@ button{
 #channel-blocks {
   &.show-links {
     li{
-      display:none;
+          opacity: 0.2;  
+      pointer-events: none;  
     }
     
     li.link-block{
-      display:block;
+       opacity: 1; 
+      pointer-events: auto;
     }
   }
 }
 
 
-.player {
+/* .player {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,21 +173,19 @@ button{
   border-top-right-radius: var( --border-radius-mobile);
 }
 
-/* RIGHT-SIDE TURNS */
+
 .player:nth-child(even) {
   border-left-width:var(--border-width-mobile);
   border-top-width: var(--border-width-mobile);
   border-top-left-radius: var( --border-radius-mobile);
 }
 
-/* LEFT-SIDE TURNS */
 .player:nth-child(odd) {
   border-top-width: var(--border-width-mobile);
   border-right-width: var(--border-width-mobile);
   border-top-right-radius: var( --border-radius-mobile);
 }
 
-/* Bottom end - this is temporary and will change as more blocks are added. */
 .player:nth-child(4) {
   border-bottom-width: var(--border-width-mobile);
 }
@@ -194,9 +197,9 @@ height: var(--square-size);
 background: var(--red-bright);
 margin-block-start: calc(var(--morespacing)*3);
 
-/* I wanted a square for my design because I am mimicking 'points' on a line. Initially I wanted a circle but I felt that was looking out of place with the feel of the blocks */
-/* I found how to make a square here: https://css-tricks.com/the-shapes-of-css/ */
-/* I think what is happening is, using a div container, we are simply adjusting its height and width manually to replicate the look of a square. Because the div is already a pre-made container we don't need to do much more. */
+I wanted a square for my design because I am mimicking 'points' on a line. Initially I wanted a circle but I felt that was looking out of place with the feel of the blocks
+I found how to make a square here: https://css-tricks.com/the-shapes-of-css/
+I think what is happening is, using a div container, we are simply adjusting its height and width manually to replicate the look of a square. Because the div is already a pre-made container we don't need to do much more.
     
 display: flex;
 align-items: center;
@@ -204,9 +207,9 @@ justify-content: center;
     
 transform-origin: center;
 
-/* I wanted to rotate my squares to make them look cooler, like a diamond shape. */
-/* I found out you can adjust where you rotate your shape from from here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin */
-/* The 'transform-origin' is the same thing as an anchor point in graphic design I think. So what is happening is that using this property we are basically adjusting the anchor point to where we want to rotate our object from. */
+I wanted to rotate my squares to make them look cooler, like a diamond shape.
+I found out you can adjust where you rotate your shape from from here: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform-origin
+The 'transform-origin' is the same thing as an anchor point in graphic design I think. So what is happening is that using this property we are basically adjusting the anchor point to where we want to rotate our object from.
 transform: rotate(45deg);
 transition: transform 0.3s ease, background-color 0.3s ease;
     
@@ -246,9 +249,9 @@ z-index: 10;
     transform: scale(calc(1 / var(--hover-scale)));
 }
 
-/* When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help. */
-/* I found out the fix from Google Gemini. */
-/* Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
+When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help.
+I found out the fix from Google Gemini.
+Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
 
 span{
     color: var(--red-bright);
@@ -290,8 +293,8 @@ html{
   }
 
   body{
-    border: var(--border-width-desktop) solid var(--red-dull);
-    border-radius: var( --border-radius-mobile);
+    /* border: var(--border-width-desktop) solid var(--red-dull);
+    border-radius: var( --border-radius-mobile); */
     padding: calc(var(--morespacing));
     padding-inline: calc(var(--morespacing)*2);
     padding-block-end: calc(var(--morespacing)*3);
@@ -339,33 +342,28 @@ html{
     grid-auto-rows: minmax(6rem, 20rem); 
   } */
    
-/* 1. TOP START */
+/* 
   .player:first-child {
-    /* Change these numbers to adjust thickness */
     border-top-width: var(--border-width-desktop);   
     border-right-width: var(--border-width-desktop); 
     border-top-right-radius: var( --border-radius-mobile);
   }
 
-  /* 2. RIGHT-SIDE TURNS */
   .player:nth-child(even) {
-    /* Change these numbers */
+
     border-left-width: var(--border-width-desktop);
     border-top-width: var(--border-width-desktop);
     
     border-top-left-radius: var( --border-radius-mobile);
   }
 
-  /* 3. LEFT-SIDE TURNS */
   .player:nth-child(odd) {
-    /* Change these numbers */
     border-top-width:var(--border-width-desktop);
     border-right-width: var(--border-width-desktop);
     
     border-top-right-radius: var( --border-radius-mobile);
   }
 
-  /* 4. BOTTOM END */
   .player:nth-child(4) {
     border-bottom-width: var(--border-width-desktop);
   }
@@ -414,28 +412,43 @@ html{
 .square:hover .square-content.link-one {
     color: white;
     text-decoration: underline;
-}
+} */
 
 
 #channel-blocks {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing);
+  gap: 0; 
   width: 100%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
+  /* border: var(--border-width-mobile) solid black; */
 }
 
 #channel-blocks li {
-    padding: calc(var(--spacing)/8);
-    font-size: calc(var(--spacing) / 2);
+  font-size: calc(var(--spacing) / 2);
+  aspect-ratio: 1 / 1;  
+  overflow: hidden; 
+  padding: 0;  
+  border: none; 
+  border-right: var(--border-width-mobile) solid black;
+  border-bottom: var(--border-width-mobile) solid black;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#channel-blocks img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* ← Fill the square without stretching */
+  border-radius: 0;  /* ← Remove rounded corners */
 }
 
 h1{
-    font-size: calc(var(--morespacing)*2);
-    color: var(--red-bright);
-    text-decoration: underline;
-    text-decoration-thickness: 0.3rem;
-    padding-block-start: var(--spacing);
+  font-size: calc(var(--morespacing)*2);
+  color: var(--red-bright);
+  padding-block-start: var(--spacing);
   }
 
 html{
