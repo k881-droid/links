@@ -157,6 +157,228 @@ button{
   }
 }
 
+span{
+    color: var(--red-bright);
+}
+
+ul{
+    padding-block-end: var(--spacing);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;    
+
+    gap: var(--spacing);    
+    padding-bottom: var(--spacing);
+}
+
+ul li:nth-child(2){
+    font-style: italic;
+}
+
+h1{
+    font-size:calc(var(--spacing)*2);
+    font-family: 'Velvelyne-Book';
+    text-transform: lowercase;
+    margin-inline: auto;
+    color: var(--red-bright);
+    text-align: center;
+    line-height: 3rem;
+    padding-block-end: var(--spacing);
+}
+
+html{
+    padding: calc(var(--spacing)/2);
+  }
+
+@media (width > 1200px) {
+  :root{ 
+    font-size: 100%;
+  }
+
+  body{
+    /* border: var(--border-width-desktop) solid var(--red-dull);
+    border-radius: var( --border-radius-mobile); */
+    /* padding: calc(var(--morespacing));
+    padding-inline: calc(var(--morespacing)*2);
+    padding-block-end: calc(var(--morespacing)*3); */
+    padding:0;
+  }
+
+  header{
+    display: grid;
+    grid-template-rows: min-content min-content;
+  }
+
+  header ul {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--morespacing)); 
+    align-items: flex-start; 
+  }
+
+   header li:first-child {
+      flex: 1; 
+      border: var(--border-width-desktop) solid var(--red-dull);
+      padding: var(--spacing);
+      border-radius: var( --border-radius-mobile);
+      text-align: left;
+  }
+
+  header li:nth-child(2) {
+      flex: 1;
+      text-align: right;
+      border: var(--border-width-desktop) solid var(--red-dull);
+      padding: var(--spacing);
+      border-radius:var( --border-radius-mobile);
+  }
+
+  ul{
+    font-size: calc(var(--spacing)/1.5);
+    padding-block: calc(var(--morespacing)*2);
+  
+  }
+  
+
+#channel-blocks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0; 
+  width: 100%;
+  box-sizing: border-box;
+  border: var(--border-width-mobile) solid black;
+  margin-block-end: 0;
+}
+
+#channel-blocks li {
+  font-size: calc(var(--spacing) / 2);
+  aspect-ratio: 1 / 1;  
+  overflow: hidden; 
+  padding: 0;  
+  border: none; 
+  border-right: var(--border-width-mobile) solid black;
+  border-bottom: var(--border-width-mobile) solid black;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#channel-blocks h2,
+#channel-blocks h3,
+#channel-blocks p,
+#channel-blocks figcaption,
+#channel-blocks em,
+#channel-blocks a,
+#channel-blocks figure {
+    display: none;
+}
+
+#channel-blocks img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+h1{
+  font-size: calc(var(--morespacing)*2);
+  color: var(--red-bright);
+  padding-block-start: var(--spacing);
+  }
+
+html{
+  padding: 0;
+  }
+}
+
+
+
+/* Final note: I tried to incporporate js so we could use 'tap' to see the block styles on mobile, but was unable to implement it fully with current styling. Hence you cannot see the block styles on mobile for now, but I will adjust it in the next milestone.  */
+
+/* --- GRID ITEMS (PLAYERS) --- */
+
+  /* .grid{
+    grid-auto-rows: minmax(6rem, 20rem); 
+  } */
+   
+/* 
+  .player:first-child {
+    border-top-width: var(--border-width-desktop);   
+    border-right-width: var(--border-width-desktop); 
+    border-top-right-radius: var( --border-radius-mobile);
+  }
+
+  .player:nth-child(even) {
+
+    border-left-width: var(--border-width-desktop);
+    border-top-width: var(--border-width-desktop);
+    
+    border-top-left-radius: var( --border-radius-mobile);
+  }
+
+  .player:nth-child(odd) {
+    border-top-width:var(--border-width-desktop);
+    border-right-width: var(--border-width-desktop);
+    
+    border-top-right-radius: var( --border-radius-mobile);
+  }
+
+  .player:nth-child(4) {
+    border-bottom-width: var(--border-width-desktop);
+  }
+
+  .square{
+    width: var(--square-size);
+    border-radius: var(--border-width-mobile);
+    height: var(--square-size);
+    background: var(--red-bright);
+    margin-block-start: calc(var(--morespacing)*5);
+  }
+
+  .square-content {
+    opacity: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; 
+    width: calc(100% * var(--hover-scale));
+    height: calc(100% * var(--hover-scale)); 
+    box-sizing: border-box;
+    font-family: 'JetBrainsMono-Regular';
+    font-size: calc(var(--spacing) /4); 
+    line-height: 1.2; 
+    flex-shrink: 0;
+    padding: var(--text-pad);
+    white-space: normal;
+}
+
+.square:hover {
+    transform: scale(calc(var(--hover-scale)*2)); 
+    background-color: var(--red-dull);
+}
+
+.square:hover .square-content {
+    opacity: 1;
+    transform: scale(calc(1 / var(--hover-scale)));
+}
+
+.square-content.text-one{
+    padding: calc(var(--spacing));
+}
+
+.square:hover .square-content.link-one {
+    color: white;
+    text-decoration: underline;
+} */
+
+
+_______
+
 
 /* .player {
   display: flex;
@@ -252,211 +474,3 @@ z-index: 10;
 When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help.
 I found out the fix from Google Gemini.
 Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
-
-span{
-    color: var(--red-bright);
-}
-
-ul{
-    padding-block-end: var(--spacing);
-    display: flex;
-    flex-direction: column; 
-    align-items: center;    
-    text-align: center;    
-
-    gap: var(--spacing);    
-    padding-bottom: var(--spacing);
-}
-
-ul li:nth-child(2){
-    font-style: italic;
-}
-
-h1{
-    font-size:calc(var(--spacing)*2);
-    font-family: 'Velvelyne-Book';
-    text-transform: lowercase;
-    margin-inline: auto;
-    color: var(--red-bright);
-    text-align: center;
-    line-height: 3rem;
-    padding-block-end: var(--spacing);
-}
-
-html{
-    padding: calc(var(--spacing)/2);
-  }
-
-@media (width > 1200px) {
-  :root{ 
-    font-size: 100%;
-  }
-
-  body{
-    /* border: var(--border-width-desktop) solid var(--red-dull);
-    border-radius: var( --border-radius-mobile); */
-    padding: calc(var(--morespacing));
-    padding-inline: calc(var(--morespacing)*2);
-    padding-block-end: calc(var(--morespacing)*3);
-  }
-
-  header{
-    display: grid;
-    grid-template-rows: min-content min-content;
-  }
-
-  header ul {
-    list-style: none;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    gap: calc(var(--morespacing)); 
-    align-items: flex-start; 
-  }
-
-   header li:first-child {
-      flex: 1; 
-      border: var(--border-width-desktop) solid var(--red-dull);
-      padding: var(--spacing);
-      border-radius: var( --border-radius-mobile);
-      text-align: left;
-  }
-
-  header li:nth-child(2) {
-      flex: 1;
-      text-align: right;
-      border: var(--border-width-desktop) solid var(--red-dull);
-      padding: var(--spacing);
-      border-radius:var( --border-radius-mobile);
-  }
-
-  ul{
-    font-size: calc(var(--spacing)/1.5);
-    padding-block: calc(var(--morespacing)*2);
-  
-  }
-
-  /* --- GRID ITEMS (PLAYERS) --- */
-
-  /* .grid{
-    grid-auto-rows: minmax(6rem, 20rem); 
-  } */
-   
-/* 
-  .player:first-child {
-    border-top-width: var(--border-width-desktop);   
-    border-right-width: var(--border-width-desktop); 
-    border-top-right-radius: var( --border-radius-mobile);
-  }
-
-  .player:nth-child(even) {
-
-    border-left-width: var(--border-width-desktop);
-    border-top-width: var(--border-width-desktop);
-    
-    border-top-left-radius: var( --border-radius-mobile);
-  }
-
-  .player:nth-child(odd) {
-    border-top-width:var(--border-width-desktop);
-    border-right-width: var(--border-width-desktop);
-    
-    border-top-right-radius: var( --border-radius-mobile);
-  }
-
-  .player:nth-child(4) {
-    border-bottom-width: var(--border-width-desktop);
-  }
-
-  .square{
-    width: var(--square-size);
-    border-radius: var(--border-width-mobile);
-    height: var(--square-size);
-    background: var(--red-bright);
-    margin-block-start: calc(var(--morespacing)*5);
-  }
-
-  .square-content {
-    opacity: 0;
-    text-align: center;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    gap: 1rem; 
-    width: calc(100% * var(--hover-scale));
-    height: calc(100% * var(--hover-scale)); 
-    box-sizing: border-box;
-    font-family: 'JetBrainsMono-Regular';
-    font-size: calc(var(--spacing) /4); 
-    line-height: 1.2; 
-    flex-shrink: 0;
-    padding: var(--text-pad);
-    white-space: normal;
-}
-
-.square:hover {
-    transform: scale(calc(var(--hover-scale)*2)); 
-    background-color: var(--red-dull);
-}
-
-.square:hover .square-content {
-    opacity: 1;
-    transform: scale(calc(1 / var(--hover-scale)));
-}
-
-.square-content.text-one{
-    padding: calc(var(--spacing));
-}
-
-.square:hover .square-content.link-one {
-    color: white;
-    text-decoration: underline;
-} */
-
-
-#channel-blocks {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0; 
-  width: 100%;
-  box-sizing: border-box;
-  /* border: var(--border-width-mobile) solid black; */
-}
-
-#channel-blocks li {
-  font-size: calc(var(--spacing) / 2);
-  aspect-ratio: 1 / 1;  
-  overflow: hidden; 
-  padding: 0;  
-  border: none; 
-  border-right: var(--border-width-mobile) solid black;
-  border-bottom: var(--border-width-mobile) solid black;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#channel-blocks img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* ← Fill the square without stretching */
-  border-radius: 0;  /* ← Remove rounded corners */
-}
-
-h1{
-  font-size: calc(var(--morespacing)*2);
-  color: var(--red-bright);
-  padding-block-start: var(--spacing);
-  }
-
-html{
-  padding: var(--spacing);
-  }
-}
-
-
-
-/* Final note: I tried to incporporate js so we could use 'tap' to see the block styles on mobile, but was unable to implement it fully with current styling. Hence you cannot see the block styles on mobile for now, but I will adjust it in the next milestone.  */
-
