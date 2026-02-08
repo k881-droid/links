@@ -67,18 +67,6 @@ body{
     border-radius: var( --border-radius-mobile); */
 }
 
-/* --- GRID CONTAINER --- */
-/* .grid {
-  display: grid;
-  grid-template-columns: 1fr; 
-  grid-auto-rows: minmax(6rem, 12rem); 
-  
-  border: none;
-  gap: 0; 
-  width: 100%;
-  margin-inline: auto;
-} */
-
 #channel-blocks {
   gap: calc(var(--spacing)/2);
   list-style: none;
@@ -208,6 +196,7 @@ html{
   header{
     display: grid;
     grid-template-rows: min-content min-content;
+    
   }
 
   header ul {
@@ -474,3 +463,17 @@ z-index: 10;
 When I was creating this hover effect on my square, because the square is very small, once it grows, the text also becomes huge with it. So I asked Google Gemini for help.
 I found out the fix from Google Gemini.
 Basically, in order to make the text 'appear' back to normal size, we have to shrink it by the same amount we grew it in the first place. My hover scale that we grew it by was 12, so here, we are dividing it by that again. Now the text appears back to normal size. */
+
+____
+
+/* --- GRID CONTAINER --- */
+/* .grid {
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-auto-rows: minmax(6rem, 12rem); 
+  
+  border: none;
+  gap: 0; 
+  width: 100%;
+  margin-inline: auto;
+} */
