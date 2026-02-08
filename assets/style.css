@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'PicNic';
-    src: url('fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
-        url('fonts/PicNic/PicNic-Regular.woff') format('woff');
+    src: url('../fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
+        url('../fonts/PicNic/PicNic-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -9,33 +9,33 @@
 
 @font-face {
     font-family: 'Velvelyne-Bold';
-    src: url('fonts/Velvelyne-main/woff/Velvelyne-Bold.woff') format('woff'),
-        url('fonts/Velvelyne-main/woff2/Velvelyne-Bold.woff2') format('woff2');
+    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Bold.woff') format('woff'),
+        url('../fonts/Velvelyne-main/woff2/Velvelyne-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Velvelyne-Light';
-    src: url('fonts/Velvelyne-main/woff/Velvelyne-Light.woff') format('woff'),
-        url('fonts/Velvelyne-main/woff2/Velvelyne-Light.woff2') format('woff2');
+    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Light.woff') format('woff'),
+        url('../fonts/Velvelyne-main/woff2/Velvelyne-Light.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Velvelyne-Regular';
-    src: url('fonts/Velvelyne-main/woff/Velvelyne-Regular.woff') format('woff'),
-        url('fonts/Velvelyne-main/woff2/Velvelyne-Regular.woff2') format('woff2');
+    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Regular.woff') format('woff'),
+        url('../fonts/Velvelyne-main/woff2/Velvelyne-Regular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Velvelyne-Book';
-    src: url('fonts/Velvelyne-main/woff/Velvelyne-Book.woff') format('woff'),
-        url('fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
+    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Book.woff') format('woff'),
+        url('../fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'JetBrainsMono-Regular';
-  src: url('fonts/JetBrainsMono/JetBrainsMono-Variable.woff2') format('woff2'),
-       url('fonts/JetBrainsMono/JetBrainsMono-Variable.woff') format('woff'),
-       url('fonts/JetBrainsMono/JetBrainsMono-Variable.ttf') format('truetype');
+  src: url('../fonts/JetBrainsMono/JetBrainsMono-Variable.woff2') format('woff2'),
+       url('../fonts/JetBrainsMono/JetBrainsMono-Variable.woff') format('woff'),
+       url('../fonts/JetBrainsMono/JetBrainsMono-Variable.ttf') format('truetype');
   font-weight: 400;
   font-display: swap;
   font-style: normal;
@@ -79,7 +79,80 @@ body{
   margin-inline: auto;
 }
 
-/* --- GRID ITEMS (PLAYERS) --- */
+#channel-blocks {
+  gap: calc(var(--spacing)/2);
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing) 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#channel-blocks li {
+    padding: calc(var(--spacing)/8);
+    background: rgba(255, 255, 255, 0.05);
+    border: var(--border-width-mobile) solid var(--red-dull);
+    border-radius: var(--border-radius-mobile);
+}
+
+#channel-blocks img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-width-mobile);
+}
+
+#channel-blocks a {
+    color: var(--red-bright);
+    text-decoration: none;
+}
+
+#channel-blocks a:hover {
+    text-decoration: underline;
+}
+
+button{
+  padding: calc(0.5 * var(--spacing));
+  background: var(--red-bright);
+  color: white;
+}
+
+#channel-blocks {
+  &.show-images {
+    li{
+      display:none;
+    }
+    
+    li.image-block{
+      display:block;
+    }
+  }
+}
+
+#channel-blocks {
+  &.show-text {
+    li{
+      display:none;
+    }
+    
+    li.text-block{
+      display:block;
+    }
+  }
+}
+
+#channel-blocks {
+  &.show-links {
+    li{
+      display:none;
+    }
+    
+    li.link-block{
+      display:block;
+    }
+  }
+}
+
+
 .player {
   display: flex;
   justify-content: center;
@@ -89,7 +162,6 @@ body{
   border-radius: 0;
 }
 
-/* TOP START */
 .player:first-child {
   border-top-width: var(--border-width-mobile);
   border-right-width: var(--border-width-mobile);
@@ -185,13 +257,12 @@ span{
 ul{
     padding-block-end: var(--spacing);
     display: flex;
-    flex-direction: column; /* Stacks items on top of each other */
-    align-items: center;    /* Centers the items horizontally */
-    text-align: center;     /* Centers the text inside the items */
-    
-    /* Spacing */
-    gap: var(--spacing);    /* Adds space between the two blocks of text */
-    padding-bottom: var(--spacing); /* Adds space before the grid starts */
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;    
+
+    gap: var(--spacing);    
+    padding-bottom: var(--spacing);
 }
 
 ul li:nth-child(2){
@@ -213,7 +284,7 @@ html{
     padding: calc(var(--spacing)/2);
   }
 
-@media (width > 1000px) {
+@media (width > 1200px) {
   :root{ 
     font-size: 100%;
   }
@@ -264,9 +335,10 @@ html{
 
   /* --- GRID ITEMS (PLAYERS) --- */
 
-  .grid{
+  /* .grid{
     grid-auto-rows: minmax(6rem, 20rem); 
-  }
+  } */
+   
 /* 1. TOP START */
   .player:first-child {
     /* Change these numbers to adjust thickness */
@@ -345,7 +417,20 @@ html{
 }
 
 
-  h1{
+#channel-blocks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing);
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+#channel-blocks li {
+    padding: calc(var(--spacing)/8);
+    font-size: calc(var(--spacing) / 2);
+}
+
+h1{
     font-size: calc(var(--morespacing)*2);
     color: var(--red-bright);
     text-decoration: underline;
@@ -353,10 +438,12 @@ html{
     padding-block-start: var(--spacing);
   }
 
-  html{
-    padding: var(--spacing);
+html{
+  padding: var(--spacing);
   }
 }
+
+
 
 /* Final note: I tried to incporporate js so we could use 'tap' to see the block styles on mobile, but was unable to implement it fully with current styling. Hence you cannot see the block styles on mobile for now, but I will adjust it in the next milestone.  */
 

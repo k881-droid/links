@@ -2,29 +2,40 @@
     <head>
         <title>Kinza's Links</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link href="reset.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet">
+        <link href="assets/reset.css" rel="stylesheet">
+        <link href="assets/style.css" rel="stylesheet">
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Special+Elite&display=swap');
         </style>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
-
+        <script defer src="assets/arena.js"></script>
+        <script defer src="assets/script.js"></script>
 
     </head>
     <body>
         <header>
-            <h1>Red String Theory</h1>
+            <h1 id="title"></h1>
 
                 <ul>
-                    <li>The red string theory explains the myth of people connected by a red string, and how they always find their way back to one another. The depiction is closely referenced in art and design, and this collection aims to explore that.</li>
+                    <li id="channel-description"></li>
                     <li>A product of collaboration between <span>Riya Shreshtha</span> and <span>Kinza Ghanchi</span></li>
+                    <li id="channel-count"></li>
+                    <li id="last-updated"></li>
+                    <li id="channel-users"></li>
                 </ul>
         </header>
 
-            <div class="grid">
-                <div class="player">
+            <div id="controls"></div>
+                <button id="show-all">Show All</button>
+                <button id="show-images">Show Images</button>
+                <button id="show-text">Show Text</button>
+                <button id="show-links">Show Links</button>
+
+            <ul id="channel-blocks"></ul>
+
+                <!-- <div class="player">
                     <div class="square">
                          <div class="square-content text-one">The Chinese characters for “soul mate” literally means “to remember, to know, and to master oneself.”</div>
                     </div>
@@ -52,9 +63,7 @@
                             <img src="images/pins.jpg" alt="Description of image" class="square-img">
                           </div>
                     </div>
-                </div>
-              
-             </div>
+                </div> -->
            
             <!-- <div class="timeline-wrapper">
 
