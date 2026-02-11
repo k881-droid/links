@@ -10,36 +10,24 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
-    
-    // NEW: Redraw lines after filter change
-    setTimeout(drawLines, 100);
 })
 
 showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
-    
-    // NEW: Redraw lines after filter change
-    setTimeout(drawLines, 100);
 })
 
 showTextButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.add('show-text')
     channelBlocks.classList.remove('show-links')
-    
-    // NEW: Redraw lines after filter change
-    setTimeout(drawLines, 100);
 })
 
 showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.add('show-links')
-    
-    // NEW: Redraw lines after filter change
-    setTimeout(drawLines, 100);
 })
 
 function drawLines() {
@@ -49,7 +37,6 @@ function drawLines() {
     svg.innerHTML = '';
 
     // 2. Set SVG height to match the whole page
-    // We use Math.max to be safe across browsers
     const fullHeight = Math.max(
         document.body.scrollHeight, 
         document.documentElement.scrollHeight
@@ -62,22 +49,14 @@ function drawLines() {
     // 4. Loop through each type separately
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
-        
-        // --- NEW: Filter out hidden blocks ---
-        // We convert the NodeList to an Array so we can use .filter()
-        const visibleBlocks = Array.from(blocks).filter(block => {
-            // Check if the block is hidden by CSS (opacity: 0)
-            const style = window.getComputedStyle(block);
-            return style.opacity !== '0' && style.display !== 'none';
-        });
 
         // We need at least 2 blocks to make a line
-        if (visibleBlocks.length < 2) return;
+        if (blocks.length < 2) return;
 
-        // Connect the VISIBLE blocks one by one
-        for (let i = 0; i < visibleBlocks.length - 1; i++) {
-            const start = visibleBlocks[i];
-            const end = visibleBlocks[i + 1];
+        // Connect them one by one
+        for (let i = 0; i < blocks.length - 1; i++) {
+            const start = blocks[i];
+            const end = blocks[i + 1];
 
             // Get coordinates
             const startRect = start.getBoundingClientRect();
@@ -99,14 +78,11 @@ function drawLines() {
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
             
-            // Add styling (Red color)
-            line.setAttribute('stroke', 'var(--red-bright)');
-            line.setAttribute('stroke-width', '2');
-            
             svg.appendChild(line);
         }
     });
 }
+
 // Redraw lines if window is resized
 window.addEventListener('resize', drawLines);
 
@@ -135,3 +111,27 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
   window.addEventListener('resize', drawLines);
 });
 
+
+// For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the string through each categorization. E.g., if i click images, a red string goes through the images and so on.
+
+// I did not know how to do this, so I enquired with Google Gemini.Array
+
+// From what I understand, I am explaining all the new codes in this one section. 
+
+// we first use an svg element to draw the lines. We set it to be absolute and cover the whole page, but we also set pointer-events to none so that it doesn't interfere with clicking on the blocks.
+
+// Then we have a function drawLines that does the following:
+// 1. It clears any existing lines from the svg.
+// 2. It calculates the full height of the page and sets the svg height accordingly.
+// 3. It defines the block types (images, text, links) and loops through each type.
+// 4. For each type, it finds all the blocks of that type and filters out any that are not visible (e.g., due to filtering).
+// 5. If there are at least 2 visible blocks, it loops through them in pairs and calculates their center coordinates.
+// 6. It creates an SVG line element connecting the centers of the two blocks, styles it with a red stroke, and appends it to the svg.
+
+// Finally, we call drawLines after fetching and rendering the blocks, and also set it to be called whenever an image loads or the window resizes, to ensure the lines stay connected properly.    
+
+// Also, the complicated part after getBoundingClientRect is basically used to measure the anchor Pts because i specifically wanted the centers of each block. so for instance, it will start at the left, and then move half width, and that is the center. The following list of lines are the coordinates for each lines. 
+
+// there is also some syntax with a +1 to tell it to connect the first and second, then the second and third and so on.
+
+// lastly the settiMEOUT is just to make sure the layout has settled before drawing the lines.

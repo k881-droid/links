@@ -102,8 +102,8 @@ body{
   /* check if this code has been taught- Prevents stretching to match neighbor's height */
 
   overflow: hidden; 
-  word-break: break-word; 
-  hyphens: auto;
+  /* word-break: break-word; 
+  hyphens: auto; */
 
   /* check if this code has been taught */
 
@@ -315,7 +315,7 @@ h1{
   }
 
 html{
-  padding: 0;
+  padding: var(--spacing);
   }
 }
 
