@@ -5,58 +5,80 @@ let showLinksButton = document.querySelector('#show-links')
 
 let channelBlocks = document.querySelector('#channel-blocks')
 
+// --- 1. UPDATED BUTTON LISTENERS (Now with Redraw trigger) ---
 
 showAllButton.addEventListener('click', () => { 
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
+    
+    // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
 })
 
 showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
+    
+    // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
 })
 
 showTextButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.add('show-text')
     channelBlocks.classList.remove('show-links')
+    
+    // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
 })
 
 showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.add('show-links')
+    
+    // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
 })
+
+
+// --- 2. UPDATED DRAW LINES FUNCTION (Now checks visibility) ---
 
 function drawLines() {
     const svg = document.getElementById('connection-lines');
     
-    // 1. Clear previous lines
+    // Clear previous lines
     svg.innerHTML = '';
 
-    // 2. Set SVG height to match the whole page
+    // Set SVG height to match the whole page
     const fullHeight = Math.max(
         document.body.scrollHeight, 
         document.documentElement.scrollHeight
     );
     svg.style.height = fullHeight + 'px';
 
-    // 3. Define the groups to connect
+    // Define the groups to connect
     const blockTypes = ['.image-block', '.text-block', '.link-block'];
 
-    // 4. Loop through each type separately
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
 
-        // We need at least 2 blocks to make a line
-        if (blocks.length < 2) return;
+        // *** THIS IS THE NEW PART ***
+        // Filter out blocks that are hidden (opacity: 0)
+        const visibleBlocks = Array.from(blocks).filter(block => {
+            const style = window.getComputedStyle(block);
+            return style.opacity !== '0' && style.display !== 'none';
+        });
 
-        // Connect them one by one
-        for (let i = 0; i < blocks.length - 1; i++) {
-            const start = blocks[i];
-            const end = blocks[i + 1];
+        // We need at least 2 visible blocks to make a line
+        if (visibleBlocks.length < 2) return;
+
+        // Connect the VISIBLE blocks one by one
+        for (let i = 0; i < visibleBlocks.length - 1; i++) {
+            const start = visibleBlocks[i];
+            const end = visibleBlocks[i + 1];
 
             // Get coordinates
             const startRect = start.getBoundingClientRect();
@@ -78,6 +100,10 @@ function drawLines() {
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
             
+            // Add stroke color so they are visible
+            line.setAttribute('stroke', 'var(--red-bright)');
+            line.setAttribute('stroke-width', '2');
+
             svg.appendChild(line);
         }
     });
@@ -89,14 +115,12 @@ window.addEventListener('resize', drawLines);
 // Get the channel contents
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
   
-  // 1. Loop through the data and build the HTML blocks
+  // Loop through the data and build the HTML blocks
   json.data.forEach((blockData) => {
     renderBlock(blockData); 
   });
 
-  // 2. NEW: Draw the lines after blocks are placed
-  
-  // Wait 1 second for layout to settle
+  // Draw the lines after blocks are placed
   setTimeout(() => {
       drawLines();
   }, 1000); 
@@ -106,12 +130,7 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
   images.forEach(img => {
       img.addEventListener('load', drawLines);
   });
-  
-  // Redraw if window resizes
-  window.addEventListener('resize', drawLines);
 });
-
-
 // For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the string through each categorization. E.g., if i click images, a red string goes through the images and so on.
 
 // I did not know how to do this, so I enquired with Google Gemini.Array
