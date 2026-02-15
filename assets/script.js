@@ -133,7 +133,7 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 });
 // For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the string through each categorization. E.g., if i click images, a red string goes through the images and so on.
 
-// I did not know how to do this, so I enquired with Google Gemini.Array
+// I did not know how to do this, so I enquired with Google Gemini.
 
 // From what I understand, I am explaining all the new codes in this one section. 
 
@@ -154,3 +154,4 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 // there is also some syntax with a +1 to tell it to connect the first and second, then the second and third and so on.
 
 // lastly the settiMEOUT is just to make sure the layout has settled before drawing the lines.
+

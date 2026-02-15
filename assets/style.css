@@ -41,13 +41,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'anthony-master-regular';
+  src: url('../fonts/anthony-master/Anthony.woff2') format('woff2'),
+       url('../fonts/anthony-master/Anthony.woff') format('woff'),
+       url('../fonts/anthony-master/Anthony.otf') format('opentype');
+}
+
+
 :root{
   --black: #feffdc;
   --red-bright: #f10b0b;
   --red-dull: #c10d0d;
   --spacing: 2rem;
   --morespacing: 4rem;
-  font-family: "Archivo Narrow", sans-serif;
+  font-family: 'JetBrainsMono-Regular', monospace;
   font-size: 1.5rem;
   --hover-scale: 6;
   --square-size: calc(var(--morespacing)/2);
@@ -55,6 +63,7 @@
   --border-width-mobile: 0.2rem;
   --border-width-desktop: 0.4rem;
   --border-radius-mobile: 1rem;
+  --body-font: calc(var(--spacing)/2.5);
 
 }
 
@@ -65,17 +74,9 @@ body{
   overflow-x: hidden;
   /* border: var(--border-width-mobile) solid var(--red-dull);
   border-radius: var( --border-radius-mobile); */
+  font-size: var(--body-font);
+  letter-spacing: 10%;;
 }
-
-/* #channel-blocks h2,
-#channel-blocks h3,
-#channel-blocks p,
-#channel-blocks figcaption,
-#channel-blocks em,
-#channel-blocks a,
-#channel-blocks figure {
-    display: none;
-} */
 
 #channel-blocks {
   display: grid;
@@ -94,20 +95,11 @@ body{
 #channel-blocks li {
   padding: calc(var(--spacing)/8);
   background: rgba(255, 255, 255, 0.05);
-  /* border: var(--border-width-mobile) solid var(--red-dull);
-  border-radius: var(--border-radius-mobile); */
   height: auto; 
   align-self: start; 
-  
-  /* check if this code has been taught- Prevents stretching to match neighbor's height */
-
   overflow: hidden; 
-  /* word-break: break-word; 
-  hyphens: auto; */
-
-  /* check if this code has been taught */
-
   font-size: calc(var(--spacing)/4);
+  font-family: 'JetBrainsMono-Regular', monospace;
 }
 
 #channel-blocks img {
@@ -188,13 +180,9 @@ ul{
   padding-bottom: var(--spacing);
 }
 
-ul li:nth-child(2){
-  font-style: italic;
-}
-
 h1{
   font-size:calc(var(--spacing)*2);
-  font-family: 'Velvelyne-Book';
+  font-family: 'anthony-master-regular', serif;
   text-transform: lowercase;
   margin-inline: auto;
   color: var(--red-bright);
