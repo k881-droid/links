@@ -93,33 +93,56 @@ body{
 }
 
 .block-media {
-    position: relative;
-    display: inline-block; /* <--- THIS IS THE FIX */
-    /* width: 100%;  <--- DELETE THIS LINE */
-    height: auto;
-    vertical-align: top; /* Prevents tiny gaps below the image */
+  position: relative;
+  display: inline-block; 
+  height: auto;
 }
 
-/* 2. The Overlay sits ON TOP of the image */
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--red-bright);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--red-bright);
     
-    /* VISIBLE STATE (Default) */
-    opacity: 0.3; /* Adjust this number (0.1 to 1.0) to make it darker/lighter */
-    z-index: 2;
+  /* VISIBLE STATE */
+  opacity: 0.3; 
+  z-index: 2;
     
-    /* INTERACTION */
-    pointer-events: none; /* Allows you to click links/images underneath the red tint */
+  /* INTERACTION */
+  pointer-events: none; 
 }
 
-/* 3. THE HOVER STATE: When you hover the LIST ITEM, hide the overlay */
+
+.block-info {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+    
+  z-index: 20;
+    
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+/* Force text inside to be white */
+.block-info span {
+  background-color: var(--red-bright);
+  color: white;
+  box-sizing: border-box;
+  display: inline-block;   /* Makes it behave like a solid box */
+  width: fit-content;      /* Hugs the text tightly */
+  padding: var(--spacing); /* Adds vertical padding, no horizontal padding */
+}
+
+/* --- THE INTERACTION --- */
+
+/* When hovering the WRAPPER, hide the red tint */
 .block-media:hover .overlay {
-    opacity: 0;
     opacity: 0;
 }
 
