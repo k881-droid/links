@@ -87,6 +87,7 @@ body{
   max-width: 100%;
 }
 
+/* IMAGES START*/
 .block-media {
   position: relative;
   display: inline-block; 
@@ -100,6 +101,8 @@ body{
   width: 100%;
   height: 100%;
   background-color: var(--red-bright);
+
+  display: none;
     
   /* VISIBLE STATE */
   opacity: 0.3; 
@@ -109,7 +112,6 @@ body{
   pointer-events: none; 
 }
 
-/* 1. The Container */
 .block-info {
   position: absolute; 
   inset-block-start: 0;  
@@ -126,6 +128,8 @@ body{
 
   padding: var(--text-pad); 
   box-sizing: border-box; 
+
+  display:none;
 }
 
 .block-info span {
@@ -170,12 +174,28 @@ body{
     opacity: 1;
 }
 
+/* IMAGES END*/
+
+/*TEXT BLOCK START*/
+
+.text-block-content {
+  font-size: var(--body-font);
+  color: var(--red-bright);
+  font-family: anthony-master-regular, serif;
+  background-color: var(--offwhite);
+  z-index: 100;
+  position: relative;
+  padding: var(--text-pad);
+  box-sizing: border-box;
+  text-wrap: wrap;
+
+}
+
 #channel-blocks li {
   padding: calc(var(--spacing)/8);
   height: auto; 
   align-self: start; 
   overflow: hidden; 
-  font-size: calc(var(--spacing)/4);
   font-family: 'JetBrainsMono-Regular', monospace;
 }
 
@@ -286,7 +306,7 @@ h1{
 }
 
 html{
-  padding: calc(var(--spacing)/2);
+  padding: calc(var(--spacing)/4);
 }
 
 @media (width > 1200px) {

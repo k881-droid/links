@@ -96,9 +96,14 @@ let renderBlock = (blockData) => {
     // …up to you!
     let textItem =
       `
-      <li class="text-block">
-        <h2>${blockData.title}</h2>
-        <p>${blockData.content.html}</p>
+     <li class="text-block">
+                <div class="text-block-content">
+                    <p>${blockData.content.plain}</p>
+                      <div class="block-info">
+                        <span class="block-type">Text</span>
+                      <h2 class="block-title">${blockData.title}</h2>
+                      </div>
+                </div>
       </li>
     `
 
