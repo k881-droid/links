@@ -93,23 +93,36 @@ body{
 }
 
 .block-media {
-    position: relative; /* Crucial! Defines the boundaries for the overlay */
-    width: 100%;
+    position: relative;
+    display: inline-block; /* <--- THIS IS THE FIX */
+    /* width: 100%;  <--- DELETE THIS LINE */
     height: auto;
+    vertical-align: top; /* Prevents tiny gaps below the image */
 }
 
 /* 2. The Overlay sits ON TOP of the image */
 .overlay {
-    position: absolute; /* Relative to .block-media, NOT the window */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--red-bright); 
-    opacity: 0.3; /* You need this! Otherwise it is a solid block that hides the image */
+    background-color: var(--red-bright);
+    
+    /* VISIBLE STATE (Default) */
+    opacity: 0.3; /* Adjust this number (0.1 to 1.0) to make it darker/lighter */
     z-index: 2;
-    pointer-events: none; /* Lets you click through the red color to the image/link below */
+    
+    /* INTERACTION */
+    pointer-events: none; /* Allows you to click links/images underneath the red tint */
 }
+
+/* 3. THE HOVER STATE: When you hover the LIST ITEM, hide the overlay */
+.block-media:hover .overlay {
+    opacity: 0;
+    opacity: 0;
+}
+
 #channel-blocks li {
   padding: calc(var(--spacing)/8);
   height: auto; 
