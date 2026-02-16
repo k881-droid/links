@@ -79,7 +79,7 @@ body{
 #channel-blocks {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
-  gap: calc(var(--spacing)/4); 
+  gap: calc(var(--spacing)); 
   list-style: none;
   padding: 0;
   margin: var(--spacing) 0;
