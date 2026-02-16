@@ -181,14 +181,14 @@ body{
 .text-block-content {
   font-size: var(--body-font);
   color: var(--red-bright);
-  font-family: anthony-master-regular, serif;
+  font-family: 'JetBrainsMono-Regular', monospace;
+  font-weight: 600;
   background-color: var(--offwhite);
   z-index: 100;
   position: relative;
-  padding: var(--text-pad);
+  padding: calc(var(--text-pad)/2);
   box-sizing: border-box;
   text-wrap: wrap;
-
 }
 
 #channel-blocks li {
