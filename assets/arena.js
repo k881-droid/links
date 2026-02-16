@@ -36,7 +36,9 @@ let renderBlock = (blockData) => {
     let linkItem =
       `
 			<li class="link-block">
-				<p><em>Link</em></p>
+        <div class="block-info">
+          <span class="block-type">Link</span>
+        </div>
 				<figure>
 					<picture>
 						<source media="(width < 500px)" srcset="${blockData.image.small.src_2x}">
@@ -58,7 +60,7 @@ let renderBlock = (blockData) => {
       }
 					</figcaption>
 				</figure>
-				<p><a href="${blockData.source.url}">See the original ↗</a></p>
+				<p><a href="${blockData.source.url}">Click</a></p>
 			</li>
 			`
 
