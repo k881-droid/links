@@ -140,7 +140,8 @@ let renderBlock = (blockData) => {
 
       let pdfItem =
         `
-        <li class="pdf-block"> <div class="block-media"> <a href="${blockData.attachment.url}" target="_blank">
+        <li class="pdf-block"> 
+        <div class="block-media"> <a href="${blockData.attachment.url}" target="_blank">
                     <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
                 </a>
                 <div class="overlay"></div>
