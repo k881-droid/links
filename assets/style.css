@@ -227,10 +227,19 @@ display: none;
   text-decoration: underline;
 }
 
+#controls {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: calc(var(--spacing) / 2); 
+  
+  margin-bottom: var(--spacing); 
+}
+
 button{
   padding: calc(0.5 * var(--spacing));
-  background: var(--red-bright);
-  color: white;
+  border: var(--border-width-mobile) solid var(--red-bright);
+  color: var(--red-bright)
 }
 
 #channel-blocks {
@@ -325,7 +334,8 @@ h1{
   color: var(--red-bright);
   text-align: center;
   line-height: 3rem;
-  padding-block-end: var(--spacing);
+  padding-block-end: var(--morespacing);
+  padding-block-start: var(--spacing);
 }
 
 #connection-lines {
