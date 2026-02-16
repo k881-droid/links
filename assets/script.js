@@ -2,7 +2,8 @@ let showAllButton = document.querySelector('#show-all')
 let showImagesButton = document.querySelector('#show-images')
 let showTextButton = document.querySelector('#show-text')
 let showLinksButton = document.querySelector('#show-links')
-
+let showAudioButton = document.querySelector('#show-audio')
+let showPDFsButton = document.querySelector('#show-pdfs')
 let channelBlocks = document.querySelector('#channel-blocks')
 
 // --- 1. UPDATED BUTTON LISTENERS (Now with Redraw trigger) ---
@@ -11,6 +12,8 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.remove('show-pdfs')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -20,6 +23,8 @@ showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.remove('show-pdfs')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -29,6 +34,8 @@ showTextButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.add('show-text')
     channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.remove('show-pdfs')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -38,6 +45,30 @@ showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.add('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.remove('show-pdfs')
+    
+    // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
+})
+
+showAudioButton.addEventListener('click', () => {
+    channelBlocks.classList.remove('show-images')
+    channelBlocks.classList.remove('show-text')
+    channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.add('show-audio')
+    channelBlocks.classList.remove('show-pdfs')
+
+     // Wait for CSS fade, then redraw
+    setTimeout(drawLines, 200);
+})
+
+showPDFsButton.addEventListener('click', () => {
+    channelBlocks.classList.remove('show-images')
+    channelBlocks.classList.remove('show-text')
+    channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.add('show-pdfs')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -60,7 +91,7 @@ function drawLines() {
     svg.style.height = fullHeight + 'px';
 
     // Define the groups to connect
-    const blockTypes = ['.image-block', '.text-block', '.link-block'];
+    const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block'];
 
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);

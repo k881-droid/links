@@ -137,6 +137,22 @@ let renderBlock = (blockData) => {
     // Uploaded PDFs!
     else if (contentType.includes('pdf')) {
       // …up to you!
+
+      let pdfItem =
+        `
+        <li class="pdf-block"> <div class="block-media"> <a href="${blockData.attachment.url}" target="_blank">
+                    <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+                </a>
+                <div class="overlay"></div>
+                <div class="block-info">
+                    <span class="block-type">PDF</span>
+                    <h2 class="block-title">${blockData.title}</h2>
+                </div>
+            </div>
+        </li>
+    `
+    
+      channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
     }
 
     // Uploaded audio!
@@ -144,7 +160,7 @@ let renderBlock = (blockData) => {
       // …still up to you, but here’s an `audio` element:
       let audioItem =
         `
-				<li>
+				<li class="audio-block">
 					<p><em>Audio</em></p>
 					<audio controls src="${blockData.attachment.url}"></audio>
 				</li>
@@ -242,17 +258,5 @@ fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
   console.log(json) // See what we get back.
 
   renderUser(json) // Pass this to the same function, no nesting.
-})
-
-// And the data for the blocks:
-fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
-  console.log(json) // See what we get back.
-
-  // Loop through the nested `.data` array (list).
-  json.data.forEach((blockData) => {
-    // console.log(blockData) // The data for a single block.
-
-    renderBlock(blockData) // Pass the single block’s data to the render function.
-  })
 })
 

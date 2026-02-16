@@ -186,7 +186,7 @@ body{
   background-color: var(--offwhite);
   z-index: 100;
   position: relative;
-  padding: calc(var(--text-pad));
+  padding: calc(var(--text-pad)/4);
   box-sizing: border-box;
   text-wrap: wrap;
 }
@@ -254,7 +254,7 @@ button{
       pointer-events: none;  
     }
     li.text-block{
-       opacity: 1; 
+      opacity: 1; 
       pointer-events: auto;
     }
   }
@@ -263,12 +263,40 @@ button{
 #channel-blocks {
   &.show-links {
     li{
-          opacity: 0;  
+      opacity: 0;  
       pointer-events: none;  
     }
     
     li.link-block{
-       opacity: 1; 
+      opacity: 1; 
+      pointer-events: auto;
+    }
+  }
+}
+
+#channel-blocks {
+  &.show-audio {
+    li{
+      opacity: 0;  
+      pointer-events: none;  
+    }
+    
+    li.audio-block{
+      opacity: 1; 
+      pointer-events: auto;
+    }
+  }
+}
+
+#channel-blocks {
+   &.show-pdfs {
+    li {
+      opacity: 0;  
+      pointer-events: none;  
+    }
+    
+    li.pdf-block {
+      opacity: 1; 
       pointer-events: auto;
     }
   }
