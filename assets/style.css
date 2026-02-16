@@ -50,7 +50,7 @@
 
 
 :root{
-  --black: #feffdc;
+  --offwhite: #feffdc;
   --red-bright: #f10b0b;
   --red-dull: #c10d0d;
   --spacing: 2rem;
@@ -69,7 +69,7 @@
 
 body{
   padding: calc(var(--spacing)/8);
-  background-color: var(--black);
+  background-color: var(--offwhite);
   color: black;
   overflow-x: hidden;
   font-size: var(--body-font);
@@ -117,35 +117,53 @@ body{
   width: 100%;
   height: 100%;
   z-index: 10;
-    
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: end;
 
-  padding: 1rem; 
-  box-sizing: border-box; 
+  padding: var(--text-pad); 
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-rows: min-content 1fr; 
 }
 
 
 .block-info span {
+  justify-self: end;
+
   color: var(--red-bright);
   box-sizing: border-box;
   display: inline-block;   
   width: fit-content;      
-  padding: calc(var(--spacing)/4) calc(var(--spacing)/2); 
-  border : var(--border-width-mobile) solid var(--red-bright);
+  padding-block: calc(var(--spacing)/4);
+  padding-inline: calc(var(--spacing)/2); 
+  border: var(--border-width-mobile) solid var(--red-bright);
+}
+
+/* 3. The Title (Center Center) */
+.block-info h2, 
+.block-info .block-title {
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  color: var(--offwhite);
+  margin: 0;
+}
+
+.block-title {
+  opacity: 0; 
 }
 
 /* --- THE INTERACTION --- */
-
 
 .block-media:hover .overlay {
     opacity: 0;
 }
 
-.block-media:hover .block-info {
+.block-media:hover .block-info span {
     opacity: 0;
+}
+
+.block-media:hover .block-title {
+    opacity: 1;
 }
 
 #channel-blocks li {
