@@ -186,7 +186,7 @@ body{
   background-color: var(--offwhite);
   z-index: 100;
   position: relative;
-  padding: calc(var(--text-pad)/2);
+  padding: calc(var(--text-pad));
   box-sizing: border-box;
   text-wrap: wrap;
 }
@@ -238,7 +238,7 @@ button{
 #channel-blocks {
   &.show-text {
     li{
-      opacity: 0;  
+      opacity: 0;
       pointer-events: none;  
     }
     li.text-block{
