@@ -109,35 +109,6 @@ body{
   pointer-events: none; 
 }
 
-
-/* .block-info {
-  position: absolute; 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-
-  padding: var(--text-pad); 
-  box-sizing: border-box;
-
-  display: grid;
-  grid-template-rows: min-content 1fr; 
-}
-
-
-.block-info span {
-  justify-self: end;
-
-  color: var(--red-bright);
-  box-sizing: border-box;
-  display: inline-block;   
-  width: fit-content;      
-  padding-block: calc(var(--spacing)/4);
-  padding-inline: calc(var(--spacing)/2); 
-  border: var(--border-width-mobile) solid var(--red-bright);
-} */
-
 /* 1. The Container */
 .block-info {
   position: absolute; 
