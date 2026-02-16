@@ -60,9 +60,9 @@
   --hover-scale: 6;
   --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing) / 2);
-  --border-width-mobile: 0.2rem;
+  --border-width-mobile: 0.08rem;
   --border-width-desktop: 0.4rem;
-  --border-radius-mobile: 1rem;
+  --border-radius-mobile: 0.2rem;
   --body-font: calc(var(--spacing)/2.5);
 
 }
@@ -72,19 +72,14 @@ body{
   background-color: var(--black);
   color: black;
   overflow-x: hidden;
-  /* border: var(--border-width-mobile) solid var(--red-dull);
-  border-radius: var( --border-radius-mobile); */
   font-size: var(--body-font);
   letter-spacing: 10%;;
 }
 
 #channel-blocks {
   display: grid;
-
   grid-template-columns: repeat(2, 1fr); 
-  
   gap: calc(var(--spacing)/4); 
-  
   list-style: none;
   padding: 0;
   margin: var(--spacing) 0;
@@ -121,28 +116,35 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-    
-  z-index: 20;
+  z-index: 10;
     
   display: flex;
   flex-direction: column;
   justify-content: start;
+  align-items: end;
+
+  padding: 1rem; 
+  box-sizing: border-box; 
 }
 
-/* Force text inside to be white */
+
 .block-info span {
-  background-color: var(--red-bright);
-  color: white;
+  color: var(--red-bright);
   box-sizing: border-box;
-  display: inline-block;   /* Makes it behave like a solid box */
-  width: fit-content;      /* Hugs the text tightly */
-  padding: var(--spacing); /* Adds vertical padding, no horizontal padding */
+  display: inline-block;   
+  width: fit-content;      
+  padding: calc(var(--spacing)/4) calc(var(--spacing)/2); 
+  border : var(--border-width-mobile) solid var(--red-bright);
 }
 
 /* --- THE INTERACTION --- */
 
-/* When hovering the WRAPPER, hide the red tint */
+
 .block-media:hover .overlay {
+    opacity: 0;
+}
+
+.block-media:hover .block-info {
     opacity: 0;
 }
 
