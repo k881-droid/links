@@ -110,7 +110,7 @@ body{
 }
 
 
-.block-info {
+/* .block-info {
   position: absolute; 
   top: 0;
   left: 0;
@@ -136,13 +136,46 @@ body{
   padding-block: calc(var(--spacing)/4);
   padding-inline: calc(var(--spacing)/2); 
   border: var(--border-width-mobile) solid var(--red-bright);
+} */
+
+/* 1. The Container */
+.block-info {
+  position: absolute; 
+  inset-block-start: 0;  
+  inset-inline-start: 0; 
+  inline-size: 100%;     
+  block-size: 100%;      
+  
+  z-index: 10;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;     
+
+  padding: var(--text-pad); 
+  box-sizing: border-box; 
 }
 
-/* 3. The Title (Center Center) */
+.block-info span {
+  position: absolute;
+  inset-block-start: var(--text-pad); 
+  inset-inline-end: var(--text-pad);  
+
+  color: var(--red-bright);
+  box-sizing: border-box;
+  display: inline-block;   
+  width: fit-content;      
+  
+  
+  padding-block: calc(var(--spacing)/4);  
+  padding-inline: calc(var(--spacing)/2); 
+
+  border: var(--border-width-mobile) solid var(--red-bright);
+}
+
 .block-info h2, 
 .block-info .block-title {
-  align-self: center;
-  justify-self: center;
   text-align: center;
   color: var(--offwhite);
   margin: 0;

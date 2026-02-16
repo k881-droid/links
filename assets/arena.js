@@ -74,10 +74,17 @@ let renderBlock = (blockData) => {
     // …up to you!
     let imageItem =
       `
-      <li class="image-block">
-        <h2>${blockData.title}</h2>
-        <img src="${blockData.image.medium.src_2x}">
-      </li>
+        <li class="image-block">
+            <div class="square">
+                <div class="block-media">
+                    <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+                    <div class="overlay"></div>
+                <div class="block-info">
+                    <span class="block-type">Image</span>
+                    <h2 class="block-title">${blockData.title}</h2>
+                </div>
+            </div>
+        </li>
     `
 
     channelBlocks.insertAdjacentHTML('beforeend', imageItem)
