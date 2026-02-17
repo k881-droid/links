@@ -219,47 +219,74 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 // We learnt this in class - this is actually making the blocks visible, i.e. rendering each block. 
 
-// MODAL JS START //
+// --- MODAL JS START --- //
 
-  let modalDialog = document.querySelector('#channel-dialog')
-  let closeButton = document.querySelector('#close-dialog')
-  let dialogInner = document.querySelector('#dialog-inner')
+let modalDialog = document.querySelector('#channel-dialog');
+let dialogInner = document.querySelector('#dialog-inner');
+let blocks = document.querySelectorAll('#channel-blocks li');
 
-  let blocks = document.querySelectorAll('#channel-blocks li')
+blocks.forEach((block, index) => {
+    block.addEventListener('click', () => {
+        let data = allBlocks[index]; // Make sure allBlocks is defined in your fetch!
 
-  blocks.forEach((block, index) => {
-      
-  block.addEventListener('click', () => {
+        // 1. We inject the HTML with a new structure
+        dialogInner.innerHTML = `
+        <ul class="dialog-grid">
           
-          let data = allBlocks[index]
+          <li class="row-header">
+             <button class="close-x-btn">✕</button>
+             <h2 class="dialog-title-text">${data.title ? data.title : 'Untitled'}</h2>
+          </li>
 
-          dialogInner.innerHTML = 
-          
-          `
-              <img src="${data.image ? data.image.large.src_2x : ''}">
-              <h1>${data.title ? data.title : 'Untitled'}</h1>
-              <p>${data.description ? data.description.html : ''}</p>
-              ${data.embed ? data.embed.html : ''}
-              ${data.attachment ? `<a href="${data.attachment.url}" target="_blank">Download File</a>` : ''}
-              <p><a href="https://www.are.na/block/${data.id}" target="_blank">View on Are.na ↗</a></p>
-          `
-          modalDialog.showModal()
-      })
-  })
+          <li class="row-media">
+            ${data.image 
+              ? `<img src="${data.image.large.src_2x}" alt="${data.title}">` 
+              : `` 
+            }
+            ${data.embed 
+              ? `<div>${data.embed.html}</div>` 
+              : `` 
+            }
+          </li>
 
+          <li class="row-desc">
+            ${data.description 
+              ? `<div>${data.description.html}</div>` 
+              : `<p style="opacity:0.5">No description</p>` 
+            }
+          </li>
 
-  closeButton.addEventListener('click', () => {
-      modalDialog.close()
-  })
+          <li class="row-link">
+            <a href="https://www.are.na/block/${data.id}" target="_blank">
+                View on Are.na ↗
+            </a>
+            ${data.attachment 
+              ? `<br><br><a href="${data.attachment.url}" target="_blank">Download File ↘</a>` 
+              : `` 
+            }
+          </li>
 
+        </ul>
+        `;
 
-  modalDialog.addEventListener('click', (event) => {
-      if (event.target === modalDialog) {
-          modalDialog.close()
-      }
-  })
+        // 2. We activate the "X" button immediately after creating it
+        let internalCloseBtn = dialogInner.querySelector('.close-x-btn');
+        internalCloseBtn.addEventListener('click', () => {
+            modalDialog.close();
+        });
 
-  // MODAL JS END //
+        modalDialog.showModal();
+    });
+});
+
+// Close when clicking outside (Background)
+modalDialog.addEventListener('click', (event) => {
+    if (event.target === modalDialog) {
+        modalDialog.close();
+    }
+});
+
+// --- MODAL JS END --- //
 
   setTimeout(() => {
       drawLines();
