@@ -502,7 +502,6 @@ h1{
 
 .close-x-btn {
   background: transparent;
-  border: var(--border-width-mobile) solid var(--red-bright);
   color: var(--red-bright);
   inline-size: var(--spacing);
   block-size: var(--spacing);
@@ -521,22 +520,18 @@ h1{
 
 .dialog-title-text {
   margin: 0;
-  font-family: 'anthony-master-regular', serif;
   color: var(--red-bright);
   line-height: 1;
-  padding-top: 0.2rem; /* Visual alignment with X */
 }
 
-/* Images inside the grid */
+
 .row-media img, 
 .row-media video {
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
+  block-size: auto;
   display: block;
-  border: var(--border-width-mobile) solid var(--red-bright);
 }
 
-/* Links */
 .row-link a {
   color: var(--red-bright);
   text-decoration: none;
@@ -547,19 +542,19 @@ h1{
   color: var(--offwhite);
 }
 
-/* Vertical Line */
+/* Vertical Line for illusion*/
 dialog::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%; /* Center Horizontal */
-  width: var(--border-width-mobile); /* Same thickness as your SVG */
+  inset-block-start: 0;
+  inset-block-end: 0;
+  inset-inline-start: 50%; 
+  inline-size: var(--border-width-mobile); 
   background-color: var(--red-bright);
-  height: 200vh; /* Make it huge so it goes off screen */
-  transform: translate(-50%, -50%); /* Perfect center alignment */
-  z-index: -1; /* Put it behind the text */
-  pointer-events: none; /* Click through it */
+  block-size: calc(var(--morespacing)*100); /* making it huge purposely as I want it to go off screen */
+  transform: translate(-50%, -50%);
+  z-index: -1; 
+  pointer-events: none; 
 }
 
 
