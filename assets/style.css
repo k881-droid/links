@@ -242,7 +242,7 @@ audio {
 }
 
 button {
-  inline-size: 100%; /
+  inline-size: 100%;
   padding: calc(0.5 * var(--spacing));
   border: var(--border-width-mobile) solid var(--red-bright);
   color: var(--red-bright);

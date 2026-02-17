@@ -27,8 +27,7 @@ let renderBlock = (blockData) => {
 
   // To start, a shared `ul` where we’ll insert all our blocks
   let channelBlocks = document.querySelector('#channel-blocks')
-  let imageBlocks = document.querySelector('#image-blocks')
-  let textBlocks = document.querySelector('#text-blocks')
+
 
   // Links!
   if (blockData.type == 'Link') {
@@ -60,7 +59,7 @@ let renderBlock = (blockData) => {
       }
 					</figcaption>
 				</figure>
-				<p><a href="${blockData.source.url}">Click</a></p>
+				<p><a href="${blockData.source.url}"></a></p>
 			</li>
 			`
 
@@ -163,7 +162,7 @@ let renderBlock = (blockData) => {
       let audioItem =
         `
 				<li class="audio-block">
-					<p><em>Audio</em></p>
+					<p><em></em></p>
 					<audio controls src="${blockData.attachment.url}"></audio>
 				</li>
 				`
@@ -186,7 +185,7 @@ let renderBlock = (blockData) => {
       let linkedVideoItem =
         `
 				<li class="video-block">
-					<p><em>Linked Video</em></p>
+					<p><em></em></p>
 					${blockData.embed.html}
 				</li>
 				`
@@ -204,7 +203,7 @@ let renderBlock = (blockData) => {
       let linkedAudioItem =
         `
 				<li class="audio-block">
-					<p><em>Linked Audio</em></p>
+					<p><em></em></p>
 					${blockData.embed.html}
 				</li>
 				`
