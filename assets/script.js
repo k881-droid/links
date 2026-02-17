@@ -113,7 +113,7 @@ function drawLines() {
 
 // Previously, there was no svg.style.height = '0px'; line - by adding this, we are telling the svg to shrink first, forcing it to then recalculate the height of the page and then expand to that height.//
 
-// SELECTING BLOCKS AND DRAWING LINES //
+// SELECTING BLOCKS //
 
     const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block', '.video-block'];
 
@@ -124,29 +124,49 @@ function drawLines() {
 
         const visibleBlocks = Array.from(blocks).filter(block => {
 
-// Here we are converting that list of blocks into a proper Javascript Array (because there are certain built-in helper functions that JavaScript gives to Arrays but not to the list you get from document.querySelectorAll.) and then use we are using the .filter() tool to create a new, smaller list.
+// Here we are converting that list of blocks into a proper Javascript Array (because there are certain built-in helper functions that JavaScript gives to Arrays but not to the list you get from document.querySelectorAll.) and then use we are using the .filter() tool to create a new, smaller list (under the variable 'visbleBlocks').
 
             const style = window.getComputedStyle(block);
 
-// 'getComputedStyle' is a JS tool that sees the elements after all CSS styles have been applied. So we are setting a variable called 'style' that will basically be all the blocks will the applied CSS styles.
+// 'getComputedStyle' is a JS tool that sees the elements after all CSS styles have been applied. So we are setting a variable called 'style' that will see the block after all CSS has been applied to it.
 
             return style.opacity !== '0' && style.display !== 'none';
         });
+// And then here I think we are telling it how to filter the blocks - 'please give me the blocks that are not equal to opacity 0 and not equal to display none. In other words, please give me the blocks that are visible.
 
-        // We need at least 2 visible blocks to make a line
+// DRAWIING LINES // 
+
         if (visibleBlocks.length < 2) return;
 
-        // 6. Connect the dots
+// So basically, we can't just 'select' which blocks we want to connect with the lines, we also have to tell the JS WHERE on the block we want these lines to connect. To begin with, the JS uses our visibleBlocks variable (our filtered blocks) from before, and says - if there are less than 2 blocks, we don't want them. This is because, to draw a line, you obviously need 2 blocks (it has to be drawn from point A to point B).
+
         for (let i = 0; i < visibleBlocks.length - 1; i++) {
             const start = visibleBlocks[i];
             const end = visibleBlocks[i + 1];
 
-            // Get coordinates
+// This looks like complicated math, but it is actually not that complex once you understand the symbols. We are saying, let the starting block be 0 (in coding, lists start at 0, not 1. So 0 is the very first block.) 
+
+//Then this part - 'i < visibleBlocks.length - 1' is saying 'stop before you get to the very last block.'
+
+//For instance, if we had have 5 blocks, we can only draw 4 lines (1 to 2, 2 to 3, 3 to 4, 4 to 5).
+
+//If we tried to draw a line starting from block #5, there is no block #6 to connect to. The code would crash. So we stop one early.
+
+// I think the last part - 'i++' - is telling the JS to just increment by 1 (after you finish connecting block 0 to block 1, move i to 1. Then connect Block 1 to Block 2. And so on). 
+
+// Lastly we are just setting variables for the 'start' and 'end' blocks (our point As and point Bs). 
+
+// SETTING COORDINATES //
+
             const startRect = start.getBoundingClientRect();
             const endRect = end.getBoundingClientRect();
 
             const scrollX = window.scrollX;
             const scrollY = window.scrollY;
+
+// On top of setting the variables for the start and end blocks, we also have to set the variables for the start and end coordinates (going back to the thing where I said we have to tell the JS not just WHICH blocks, but also WHERE on these blocks). 'getBoundingClientRect' is another new JS tool that I learnt from Gemini. This helps us retrieve information about the size of an element and its position relative to the viewport (https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect). 
+
+// so we are setting variables for the starting coordinate and the end coordinate using getBoundingClientRect.
 
             // Calculate Centers
             const x1 = startRect.left + (startRect.width / 2) + scrollX;
