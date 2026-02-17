@@ -589,7 +589,7 @@ html{
     grid-area: sidebar;
     
     position: sticky;
-    inset-block-start: var(--text-pad);
+    inset-block-start: var(--spacing);
     
     display: flex;
     flex-direction: column;
@@ -597,6 +597,7 @@ html{
     
     max-block-size: 100vh;
     overflow-y: auto;  
+    overflow-x: hidden;
   }
 
   h1 {
@@ -677,6 +678,10 @@ html{
   }
 
   #channel-description, #channel-count, #last-updated, #channel-users{
+    padding: 0;
+  }
+
+  #channel-users li{
     padding: 0;
   }
 }
