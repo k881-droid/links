@@ -309,13 +309,13 @@ button {
 }
 
 #channel-blocks {
-   &.show-pdfs {
+  &.show-videos {
     li {
       opacity: 0;  
       pointer-events: none;  
     }
     
-    li.pdf-block {
+    li.video-block {
       opacity: 1; 
       pointer-events: auto;
     }

@@ -3,7 +3,7 @@ let showImagesButton = document.querySelector('#show-images')
 let showTextButton = document.querySelector('#show-text')
 let showLinksButton = document.querySelector('#show-links')
 let showAudioButton = document.querySelector('#show-audio')
-let showPDFsButton = document.querySelector('#show-pdfs')
+let showVideoButton = document.querySelector('#show-videos')
 let channelBlocks = document.querySelector('#channel-blocks')
 
 // --- 1. UPDATED BUTTON LISTENERS (Now with Redraw trigger) ---
@@ -13,7 +13,7 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
-    channelBlocks.classList.remove('show-pdfs')
+    channelBlocks.classList.remove('show-videos')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -24,8 +24,8 @@ showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
-    channelBlocks.classList.remove('show-pdfs')
-    
+    channelBlocks.classList.remove('show-videos')
+
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
 })
@@ -35,7 +35,7 @@ showTextButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-text')
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
-    channelBlocks.classList.remove('show-pdfs')
+    channelBlocks.classList.remove('show-videos')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -46,7 +46,7 @@ showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.add('show-links')
     channelBlocks.classList.remove('show-audio')
-    channelBlocks.classList.remove('show-pdfs')
+    channelBlocks.classList.remove('show-videos')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -57,18 +57,18 @@ showAudioButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.add('show-audio')
-    channelBlocks.classList.remove('show-pdfs')
+    channelBlocks.classList.remove('show-videos')
 
      // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
 })
 
-showPDFsButton.addEventListener('click', () => {
+showVideoButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-images')
     channelBlocks.classList.remove('show-text')
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
-    channelBlocks.classList.add('show-pdfs')
+    channelBlocks.classList.add('show-videos')
     
     // Wait for CSS fade, then redraw
     setTimeout(drawLines, 200);
@@ -91,7 +91,7 @@ function drawLines() {
     svg.style.height = fullHeight + 'px';
 
     // Define the groups to connect
-    const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block'];
+    const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.video-block'];
 
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
@@ -162,6 +162,7 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
       img.addEventListener('load', drawLines);
   });
 });
+
 // For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the string through each categorization. E.g., if i click images, a red string goes through the images and so on.
 
 // I did not know how to do this, so I enquired with Google Gemini.

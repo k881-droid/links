@@ -80,10 +80,10 @@ let renderBlock = (blockData) => {
             <div class="square">
                 <div class="block-media">
                     <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
-                    <div class="overlay"></div>
-                <div class="block-info">
-                    <span class="block-type">Image</span>
-                    <h2 class="block-title">${blockData.title}</h2>
+                      <div class="block-info">
+                        <span class="block-type">Image</span>
+                        <h2 class="block-title">${blockData.title}</h2>
+                    </div>
                 </div>
             </div>
         </li>
@@ -103,7 +103,7 @@ let renderBlock = (blockData) => {
                     <p>${blockData.content.plain}</p>
                       <div class="block-info">
                         <span class="block-type">Text</span>
-                      <h2 class="block-title">${blockData.title}</h2>
+                        <h2 class="block-title">${blockData.title}</h2>
                       </div>
                 </div>
       </li>
@@ -115,6 +115,7 @@ let renderBlock = (blockData) => {
 
   // Uploaded (not linked) media…
   else if (blockData.type == 'Attachment') {
+     console.log(blockData)
     let contentType = blockData.attachment.content_type // Save us some repetition.
 
     // Uploaded videos!
@@ -122,7 +123,7 @@ let renderBlock = (blockData) => {
       // …still up to you, but we’ll give you the `video` element:
       let videoItem =
         `
-				<li>
+				<li class="video-block">
 					<p><em>Video</em></p>
 					<video controls src="${blockData.attachment.url}"></video>
 				</li>
@@ -177,13 +178,14 @@ let renderBlock = (blockData) => {
   // Linked (embedded) media…
   else if (blockData.type == 'Embed') {
     let embedType = blockData.embed.type
+      console.log(blockData)
 
     // Linked video!
     if (embedType.includes('video')) {
       // …still up to you, but here’s an example `iframe` element:
       let linkedVideoItem =
         `
-				<li>
+				<li class="video-block">
 					<p><em>Linked Video</em></p>
 					${blockData.embed.html}
 				</li>
@@ -198,6 +200,16 @@ let renderBlock = (blockData) => {
     // Linked audio!
     else if (embedType.includes('rich')) {
       // …up to you!
+      
+      let linkedAudioItem =
+        `
+				<li class="audio-block">
+					<p><em>Linked Audio</em></p>
+					${blockData.embed.html}
+				</li>
+				`
+
+      channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
     }
   }
 }
