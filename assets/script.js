@@ -168,7 +168,8 @@ function drawLines() {
 
 // so we are setting variables for the starting coordinate and the end coordinate using getBoundingClientRect.
 
-            // Calculate Centers
+// And we are also setting 2 more variables to see the number of pixels by which the document is currently scrolled horizontally and vertically (because this will affect our line position as users scroll). This is done using another new JS tool, introduced to me by Gemini: the window.scrollX and window.scrollY tool (https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollX).
+
             const x1 = startRect.left + (startRect.width / 2) + scrollX;
             const y1 = startRect.top + (startRect.height / 2) + scrollY;
             const x2 = endRect.left + (endRect.width / 2) + scrollX;
