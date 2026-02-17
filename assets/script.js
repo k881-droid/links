@@ -175,14 +175,19 @@ function drawLines() {
             const x2 = endRect.left + (endRect.width / 2) + scrollX;
             const y2 = endRect.top + (endRect.height / 2) + scrollY;
 
-            // Create the line
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+// Finally, we set another layer of variables using our previous variables to form our final coordinates. 
+
+// For our x coordinate, we are telling the JS: Start at the left edge of the box, then move halfway across the width to find the horizontal center (the = scrollX is to keep the coordinates responsive with the scroll). 
+
+// For our y coordinate, we are telling it to start at the top edge, and then move halfway down to find the vertical center (again keeping in mind the vertical scroll).
+
+            const line = document.createElementNS('http://www.w3.org/2000/svg','line');
             line.setAttribute('x1', x1);
             line.setAttribute('y1', y1);
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
             
-          // Allow CSS to style it (Optional: add a class if you want, but ID selector works)
+
             line.classList.add('connection-line'); 
 
             svg.appendChild(line);
