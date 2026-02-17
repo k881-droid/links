@@ -214,7 +214,6 @@ let renderBlock = (blockData) => {
   }
 }
 
-
 // A function to display the owner/collaborator info:
 let renderUser = (userData) => {
   let channelUsers = document.querySelector('#channel-users') // Container.

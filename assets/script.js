@@ -187,36 +187,53 @@ function drawLines() {
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
             
+// At first I did not understand the 'createElementNS' thing because couldn't we just create the element ourselves? But I think this is what actually makes the 'line' responsive - It allows the computer to draw the line at the exact moment the user loads the page. 
+
+// Aside from that, I was not able to understand the link mentioned too in depth, but that is the 'Namespace' (the NS in createElementNS).
+
+// Lastly, the 'line' is just a tag of SVG - just like HTML has a dictionary of tags: <div>, <p>, <img>, SVG has its own dictionary of tags: <circle>, <rect>, <line>.
 
             line.classList.add('connection-line'); 
 
+// This is the same stuff we learnt in class - adding our class to style the line the way we want. 
+
             svg.appendChild(line);
+
+// 'appendChild' is another new JS tool I learnt through this code. What it means is to make something the child of something else. In this case, I think it is making our line style and attaching it to the SVG container on the page.
+
         }
     });
 }
         
 
-// Redraw lines if window is resized
 window.addEventListener('resize', drawLines);
 
-// Get the channel contents
+//This also ensures responsiveness - using addEventListener, we are saying - hey, watch for when the 'window' 'resizes.' And when it does, please execute the 'drawLines' function again. 
+
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
   
-  // Loop through the data and build the HTML blocks
+
   json.data.forEach((blockData) => {
     renderBlock(blockData); 
   });
 
-  // Draw the lines after blocks are placed
+// We learnt this in class - this is actually making the blocks visible, i.e. rendering each block. 
+
   setTimeout(() => {
       drawLines();
   }, 1000); 
 
-  // Also redraw whenever an image finishes loading
+// Yes, now for the code above that I said I would explain here. So the setTimeout function is basically a way to set a timer on another action (https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout). In this case, we are setting a timer on our drawLines function, or, in other words, how fast the lines are being drawn. 
+
+// Here, we have set it to 1000seconds, because we are waiting for everything to load. Above, we are setting it to 200seconds because its just some minor tweaking for when classes are changed. 
+
+// In short - Timer 1: Draw it fast (For user experience), Timer 2: Fix it if it broke (For correctness)
+
   const images = document.querySelectorAll('img');
   images.forEach(img => {
       img.addEventListener('load', drawLines);
   });
 });
 
+// Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again. 
 
