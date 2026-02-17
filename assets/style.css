@@ -64,6 +64,7 @@
   --border-width-desktop: 0.4rem;
   --body-font: calc(var(--spacing)/2.5);
   --string-opacity: 0.8;
+  --dimmer-opacity:0.5
 }
 
 body{
@@ -246,28 +247,20 @@ audio {
   z-index: 30;
   
   background-color: var(--offwhite); 
-  padding-block: calc(var(--spacing) / 2); 
+  padding-block: var(--text-pad); 
   
   margin-block-end: var(--spacing);
 }
 
 button {
   inline-size: 100%;
-  block-size: var(--morespacing); 
-  
-  /* Font size from your variables */
-  font-size: var(--body-font); 
-  font-family: 'JetBrainsMono-Regular', monospace;
-  
-  /* Remove padding so text centers perfectly in the fixed height */
-  padding: 0; 
-  
+  block-size: var(--spacing); 
   border: var(--border-width-mobile) solid var(--red-bright);
   color: var(--red-bright);
   background: transparent;
   cursor: pointer;
   
-  /* Flexbox to center text perfectly */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,7 +285,7 @@ dialog {
 
 dialog::backdrop {
   background-color: var(--red-dull);
-  opacity: 0.5;
+  opacity: var(--dimmer-opacity);
 }
 
 
@@ -303,11 +296,7 @@ dialog::backdrop {
   
   padding-inline: var(--spacing);
   padding-block: var(--spacing);
-  display: grid;
-  grid-template-columns: (2, min-content);
-  
-  gap: var(--spacing);
-  
+
   box-sizing: border-box; 
 }
 
@@ -329,8 +318,8 @@ dialog::backdrop {
 }
 
 #dialog-inner img {
-  max-inline-size: 100%; /* Never wider than the modal */
-  block-size: auto;     /* Keep the correct proportions */
+  max-inline-size: 100%; 
+  block-size: auto;     
   display: block;
 }
 
@@ -343,19 +332,11 @@ dialog::backdrop {
   border: var(--border-width-mobile) solid var(--red-bright);
 }
 
-#dialog-inner h1 {
-  font-family: 'anthony-master-regular', serif;
-  color: var(--red-bright);
-  font-size: calc(var(--spacing) * 1.5);
-  text-align: center;
-}
-
 #dialog-inner p {
   color: var(--offwhite);
   font-size: var(--body-font);
   max-inline-size: 60ch; 
 }
-
 
 /* FILTERS */
 
@@ -428,6 +409,8 @@ dialog::backdrop {
   }
 }
 
+/* GENERAL STYLES */
+
 ul{
   padding-block-end: var(--spacing);
   display: flex;
@@ -450,6 +433,8 @@ h1{
   padding-block-end: var(--morespacing);
   padding-block-start: var(--spacing);
 }
+
+/* CONNECTION LINES */
 
 #connection-lines {
   position: absolute;
