@@ -52,19 +52,17 @@
 :root{
   --offwhite: #feffdc;
   --red-bright: #f10b0b;
-  --red-dull: #c10d0d;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
   font-size: 1.5rem;
   --hover-scale: 6;
   --square-size: calc(var(--morespacing)/2);
-  --text-pad: calc(var(--spacing) / 2);
+  --text-pad: calc(var(--spacing)/2);
   --border-width-mobile: 0.08rem;
   --border-width-desktop: 0.4rem;
-  --border-radius-mobile: 0.2rem;
   --body-font: calc(var(--spacing)/2.5);
-
+  --string-opacity: 0.8;
 }
 
 body{
@@ -75,6 +73,8 @@ body{
   font-size: var(--body-font);
 }
 
+/* CHANNEL GRID */
+
 #channel-blocks {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
@@ -83,7 +83,7 @@ body{
   padding: 0;
   margin: var(--spacing) 0;
   box-sizing: border-box;
-  max-width: 100%;
+  max-inline-size: 100%;
 }
 
 /* IMAGES START*/
@@ -95,10 +95,10 @@ body{
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 100%;
   background-color: var(--red-bright);
 
   display: none;
@@ -159,7 +159,7 @@ body{
   opacity: 0; 
 }
 
-/* --- THE INTERACTION --- */
+/* INTERACTION */
 
 .block-media:hover .overlay {
     opacity: 0;
@@ -197,24 +197,25 @@ figcaption {
 display: none;
 }
 
-
 /*LINKS END*/
 
 audio {
 	block-size: revert;
 	inline-size: 100%;
 }
+
+/* META DATA STYLES */
+
 #channel-blocks li {
   padding: calc(var(--spacing)/8);
-  height: auto; 
+  block-size: auto; 
   align-self: start; 
   overflow: hidden; 
-  font-family: 'JetBrainsMono-Regular', monospace;
 }
 
 #channel-blocks img {
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
+  block-size: auto;
   display: block; 
   object-fit: cover;
 }
@@ -228,18 +229,20 @@ audio {
   text-decoration: underline;
 }
 
+/* BUTTONS */
+
 #controls {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: calc(var(--spacing) / 2);  /* Space between them */
+  grid-template-columns: 1fr 1fr; 
+  gap: calc(var(--spacing) / 2);  
   
-  width: 100%;
-  margin-bottom: var(--spacing);
+  inline-size: 100%;
+  margin-block-end: var(--spacing);
   box-sizing: border-box;
 }
 
 button {
-  width: 100%; /* Fill the grid cell */
+  inline-size: 100%; /
   padding: calc(0.5 * var(--spacing));
   border: var(--border-width-mobile) solid var(--red-bright);
   color: var(--red-bright);
@@ -248,11 +251,13 @@ button {
   cursor: pointer;
   
   /* Ensure they are the same height too */
-  height: 100%; 
+  block-size: 100%; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* FILTERS */
 
 #channel-blocks {
    &.show-images {
@@ -323,10 +328,6 @@ button {
   }
 }
 
-span{
-  color: var(--red-bright);
-}
-
 ul{
   padding-block-end: var(--spacing);
   display: flex;
@@ -335,7 +336,7 @@ ul{
   text-align: center;    
 
   gap: var(--spacing);    
-  padding-bottom: var(--spacing);
+  padding-block-end: var(--spacing);
 }
 
 h1{
@@ -352,10 +353,10 @@ h1{
 
 #connection-lines {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 100%;
   z-index: 10; 
   pointer-events: none; 
   overflow: visible;
@@ -363,8 +364,8 @@ h1{
 
 #connection-lines line {
   stroke: var(--red-bright); 
-  stroke-width: 2px;
-  opacity: 0.8; 
+  stroke-width: var(--border-width-mobile);
+  opacity: var(--string-opacity); 
 }
 
 html{
