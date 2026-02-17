@@ -273,11 +273,11 @@ button {
 #channel-blocks {
   &.show-text {
     li{
-      opacity: 0;
+      display: none;
       pointer-events: none;  
     }
     li.text-block{
-      opacity: 1; 
+      display: block;
       pointer-events: auto;
     }
   }
@@ -300,12 +300,12 @@ button {
 #channel-blocks {
   &.show-audio {
     li{
-      opacity: 0;  
+      display: none;
       pointer-events: none;  
     }
     
     li.audio-block{
-      opacity: 1; 
+      display: block; 
       pointer-events: auto;
     }
   }
@@ -314,12 +314,12 @@ button {
 #channel-blocks {
   &.show-videos {
     li {
-      opacity: 0;  
+      display: none;  
       pointer-events: none;  
     }
     
     li.video-block {
-      opacity: 1; 
+      display: block;
       pointer-events: auto;
     }
   }

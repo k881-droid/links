@@ -80,33 +80,36 @@ showVideoButton.addEventListener('click', () => {
 function drawLines() {
     const svg = document.getElementById('connection-lines');
     
-    // Clear previous lines
+    // 1. Clear previous lines
     svg.innerHTML = '';
 
-    // Set SVG height to match the whole page
+    // 2. CRITICAL FIX: Reset height to 0 so the page can shrink!
+    svg.style.height = '0px'; 
+
+    // 3. Measure the new height
     const fullHeight = Math.max(
         document.body.scrollHeight, 
         document.documentElement.scrollHeight
     );
     svg.style.height = fullHeight + 'px';
 
-    // Define the groups to connect
-    const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.video-block'];
+    // 4. Define who gets connected (Added Video and Audio here!)
+    const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block', '.video-block'];
 
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
 
-        // *** THIS IS THE NEW PART ***
-        // Filter out blocks that are hidden (opacity: 0)
+        // 5. Filter out hidden blocks
         const visibleBlocks = Array.from(blocks).filter(block => {
             const style = window.getComputedStyle(block);
+            // Check both Opacity AND Display (The "Leave the Room" check)
             return style.opacity !== '0' && style.display !== 'none';
         });
 
         // We need at least 2 visible blocks to make a line
         if (visibleBlocks.length < 2) return;
 
-        // Connect the VISIBLE blocks one by one
+        // 6. Connect the dots
         for (let i = 0; i < visibleBlocks.length - 1; i++) {
             const start = visibleBlocks[i];
             const end = visibleBlocks[i + 1];
@@ -130,12 +133,11 @@ function drawLines() {
             line.setAttribute('y1', y1);
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
-            
-            // Add stroke color so they are visible
-            line.setAttribute('stroke', 'var(--red-bright)');
-            line.setAttribute('stroke-width', '2');
+
+            line.classList.add('connection-line'); 
 
             svg.appendChild(line);
+            
         }
     });
 }
