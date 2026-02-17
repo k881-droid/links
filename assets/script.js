@@ -122,10 +122,14 @@ function drawLines() {
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
 
-        // 5. Filter out hidden blocks
         const visibleBlocks = Array.from(blocks).filter(block => {
+
+// Here we are converting that list of blocks into a proper Javascript Array (because there are certain built-in helper functions that JavaScript gives to Arrays but not to the list you get from document.querySelectorAll.) and then use we are using the .filter() tool to create a new, smaller list.
+
             const style = window.getComputedStyle(block);
-            // Check both Opacity AND Display (The "Leave the Room" check)
+
+// 'getComputedStyle' is a JS tool that sees the elements after all CSS styles have been applied. So we are setting a variable called 'style' that will basically be all the blocks will the applied CSS styles.
+
             return style.opacity !== '0' && style.display !== 'none';
         });
 
