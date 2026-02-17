@@ -183,7 +183,7 @@ body{
   color: var(--red-bright);
   font-family: 'JetBrainsMono-Regular', monospace;
   background-color: var(--offwhite);
-  z-index: 100;
+  z-index: 20;
   position: relative;
   padding: calc(var(--text-pad)/4);
   box-sizing: border-box;
@@ -234,25 +234,40 @@ audio {
 
 #controls {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
-  gap: calc(var(--spacing) / 2);  
+  grid-template-columns: repeat(3, 1fr); 
+  
+  gap: calc(var(--spacing) / 4);  
   
   inline-size: 100%;
-  margin-block-end: var(--spacing);
   box-sizing: border-box;
+
+  position: sticky; 
+  inset-block-start: 0; 
+  z-index: 30;
+  
+  background-color: var(--offwhite); 
+  padding-block: calc(var(--spacing) / 2); 
+  
+  margin-block-end: var(--spacing);
 }
 
 button {
   inline-size: 100%;
-  padding: calc(0.5 * var(--spacing));
+  block-size: var(--morespacing); 
+  
+  /* Font size from your variables */
+  font-size: var(--body-font); 
+  font-family: 'JetBrainsMono-Regular', monospace;
+  
+  /* Remove padding so text centers perfectly in the fixed height */
+  padding: 0; 
+  
   border: var(--border-width-mobile) solid var(--red-bright);
   color: var(--red-bright);
   background: transparent;
-  font-family: 'JetBrainsMono-Regular', monospace;
   cursor: pointer;
   
-  /* Ensure they are the same height too */
-  block-size: 100%; 
+  /* Flexbox to center text perfectly */
   display: flex;
   align-items: center;
   justify-content: center;
