@@ -681,9 +681,19 @@ html{
     padding: 0;
   }
 
+  #channel-description p:first-child{
+    padding-block-end: var(--spacing);
+  }
+
   #channel-users li{
     padding: 0;
   }
+
+  #channel-users{
+    display:none;
+  }
 }
+
+
 
 
