@@ -96,20 +96,28 @@ function drawLines() {
 // So in this case, we are using it to select the svg element we created in our HTML, which has the id of 'connection-lines.
 
     svg.innerHTML = '';
-    
+
 // Now coming to the part in the beginning of the code that I said I would explain later. In order to redraw the lines every time we add a class, we need to first clear the svg of any exisiting lines. So, to translate this - SVG is our svg element, and innerHTML is the contents of our HTML. '' is an empty string. So, in translation, we are saying, make the contents of my HTML empty. In other words, make it blank - and once it is blank, fresh lines / svgs can be redrawn.
 
     svg.style.height = '0px'; 
 
-    // 3. Measure the new height
     const fullHeight = Math.max(
         document.body.scrollHeight, 
         document.documentElement.scrollHeight
     );
     svg.style.height = fullHeight + 'px';
 
-    // 4. Define who gets connected (Added Video and Audio here!)
+// This is actually an error that Michael pointed out that I corrected now. Initially my height of the svg was set to the entire height of the page, but that was causing a lot of empty space at the bottom. This is because the svg was taking up the entire height of the page, even the part that was not visible. So, to correct this, I set the height to 0 first, and then I used JS to calculate the full height of the page and set it to that.
+
+// To explain in more detail: the variable 'fullHeight' is taking a maximum value from the document's body scroll height and html scroll height (This is because browsers are inconsistent. Some browsers store the total page height in the <body> tag, while others store it in the <html> tag. By checking both and taking the maximum (largest) value, we guarantee we get the correct full height regardless of which browser the user is on.) 
+
+// Previously, there was no svg.style.height = '0px'; line - by adding this, we are telling the svg to shrink first, forcing it to then recalculate the height of the page and then expand to that height.//
+
+// SELECTING BLOCKS AND DRAWING LINES //
+
     const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block', '.video-block'];
+
+// Here we are simply selecting all the blocks of each type (e.g. image, text, link, audio, video).
 
     blockTypes.forEach(selector => {
         const blocks = document.querySelectorAll(selector);
