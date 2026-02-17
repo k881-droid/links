@@ -202,7 +202,10 @@ display: none;
 
 /*LINKS END*/
 
-
+audio {
+	block-size: revert;
+	inline-size: 100%;
+}
 #channel-blocks li {
   padding: calc(var(--spacing)/8);
   height: auto; 
