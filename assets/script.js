@@ -6,7 +6,6 @@ let showAudioButton = document.querySelector('#show-audio')
 let showVideoButton = document.querySelector('#show-videos')
 let channelBlocks = document.querySelector('#channel-blocks')
 
-// --- 1. UPDATED BUTTON LISTENERS (Now with Redraw trigger) ---
 
 showAllButton.addEventListener('click', () => { 
     channelBlocks.classList.remove('show-images')
@@ -15,7 +14,8 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
     
-    // Wait for CSS fade, then redraw
+// Below is the setTimeout function, which I learnt from Google Gemini. I have explained the reasoning in greater detail later on in the code. I have set it after every time a class is added because this is a function that is necessary for our 'connection lines' to be redrawn over and over again, so each time we change our classes, we must employ it again(Again, I will explain the reasoning in Michael's desired format later on in the code).
+
     setTimeout(drawLines, 200);
 })
 
@@ -26,7 +26,7 @@ showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
 
-    // Wait for CSS fade, then redraw
+ 
     setTimeout(drawLines, 200);
 })
 
@@ -37,7 +37,7 @@ showTextButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
     
-    // Wait for CSS fade, then redraw
+    
     setTimeout(drawLines, 200);
 })
 
@@ -48,7 +48,7 @@ showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
     
-    // Wait for CSS fade, then redraw
+
     setTimeout(drawLines, 200);
 })
 
@@ -59,7 +59,7 @@ showAudioButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-audio')
     channelBlocks.classList.remove('show-videos')
 
-     // Wait for CSS fade, then redraw
+
     setTimeout(drawLines, 200);
 })
 
@@ -70,20 +70,35 @@ showVideoButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.add('show-videos')
     
-    // Wait for CSS fade, then redraw
+    
     setTimeout(drawLines, 200);
 })
 
+// For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the 'string' through each categorization. E.g., if i click images, a red string goes through the images. If i click text, a red string goes through the text and so on. I could not hard code this red line going through each section as I was concerned that would not be responsive (e.g. if the Are.na channel owner adds or reduces images, or when we are moving from mobile to desktop).
 
-// --- 2. UPDATED DRAW LINES FUNCTION (Now checks visibility) ---
+// Thus, I inquired Google Gemini on how to create such an effect in a more responsive manner.
+
+// I will now explain my understanding of this new code at each step of it.
+
+// HTML SVG ELEMENT //
+
+// First, I had to create an svg element in our HTML to draw the lines. From this I learnt something new - SVG is not simply a type of image, it is actually a text file masquerading as an image. It is a type of file that allows us to create shapes and lines that can be styled with CSS and manipulated with JavaScript. So, once that tag was created in my html file, the Js could then manipulate it to my liking (in this case, draw lines).
 
 function drawLines() {
     const svg = document.getElementById('connection-lines');
     
-    // 1. Clear previous lines
-    svg.innerHTML = '';
+// DRAW LINES FUNCTION //
 
-    // 2. CRITICAL FIX: Reset height to 0 so the page can shrink!
+// Next, we create a new JS function, titled 'drawLines.' We also use new JS syntax here - 'getElementById.' Because we had not explored this in class yet, I searched up what this JS property means:
+
+// The getElementById() returns an Element whose has an id ONLY. That seems to be the difference between this and query selector. (https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById).
+
+// So in this case, we are using it to select the svg element we created in our HTML, which has the id of 'connection-lines.
+
+    svg.innerHTML = '';
+    
+// Now coming to the part in the beginning of the code that I said I would explain later. In order to redraw the lines every time we add a class, we need to first clear the svg of any exisiting lines. So, to translate this - SVG is our svg element, and innerHTML is the contents of our HTML. '' is an empty string. So, in translation, we are saying, make the contents of my HTML empty. In other words, make it blank - and once it is blank, fresh lines / svgs can be redrawn.
+
     svg.style.height = '0px'; 
 
     // 3. Measure the new height
@@ -133,14 +148,15 @@ function drawLines() {
             line.setAttribute('y1', y1);
             line.setAttribute('x2', x2);
             line.setAttribute('y2', y2);
-
+            
+          // Allow CSS to style it (Optional: add a class if you want, but ID selector works)
             line.classList.add('connection-line'); 
 
             svg.appendChild(line);
-            
         }
     });
 }
+        
 
 // Redraw lines if window is resized
 window.addEventListener('resize', drawLines);
@@ -165,27 +181,4 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
   });
 });
 
-// For my categorization, I wanted to not only use buttons but I also wanted to use the concept of the string through each categorization. E.g., if i click images, a red string goes through the images and so on.
-
-// I did not know how to do this, so I enquired with Google Gemini.
-
-// From what I understand, I am explaining all the new codes in this one section. 
-
-// we first use an svg element to draw the lines. We set it to be absolute and cover the whole page, but we also set pointer-events to none so that it doesn't interfere with clicking on the blocks.
-
-// Then we have a function drawLines that does the following:
-// 1. It clears any existing lines from the svg.
-// 2. It calculates the full height of the page and sets the svg height accordingly.
-// 3. It defines the block types (images, text, links) and loops through each type.
-// 4. For each type, it finds all the blocks of that type and filters out any that are not visible (e.g., due to filtering).
-// 5. If there are at least 2 visible blocks, it loops through them in pairs and calculates their center coordinates.
-// 6. It creates an SVG line element connecting the centers of the two blocks, styles it with a red stroke, and appends it to the svg.
-
-// Finally, we call drawLines after fetching and rendering the blocks, and also set it to be called whenever an image loads or the window resizes, to ensure the lines stay connected properly.    
-
-// Also, the complicated part after getBoundingClientRect is basically used to measure the anchor Pts because i specifically wanted the centers of each block. so for instance, it will start at the left, and then move half width, and that is the center. The following list of lines are the coordinates for each lines. 
-
-// there is also some syntax with a +1 to tell it to connect the first and second, then the second and third and so on.
-
-// lastly the settiMEOUT is just to make sure the layout has settled before drawing the lines.
 
