@@ -219,6 +219,48 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 // We learnt this in class - this is actually making the blocks visible, i.e. rendering each block. 
 
+// MODAL JS START //
+
+  let modalDialog = document.querySelector('#channel-dialog')
+  let closeButton = document.querySelector('#close-dialog')
+  let dialogInner = document.querySelector('#dialog-inner')
+
+  let blocks = document.querySelectorAll('#channel-blocks li')
+
+  blocks.forEach((block, index) => {
+      
+  block.addEventListener('click', () => {
+          
+          let data = allBlocks[index]
+
+          dialogInner.innerHTML = 
+          
+          `
+              <img src="${data.image ? data.image.large.src_2x : ''}">
+              <h1>${data.title ? data.title : 'Untitled'}</h1>
+              <p>${data.description ? data.description.html : ''}</p>
+              ${data.embed ? data.embed.html : ''}
+              ${data.attachment ? `<a href="${data.attachment.url}" target="_blank">Download File</a>` : ''}
+              <p><a href="https://www.are.na/block/${data.id}" target="_blank">View on Are.na ↗</a></p>
+          `
+          modalDialog.showModal()
+      })
+  })
+
+
+  closeButton.addEventListener('click', () => {
+      modalDialog.close()
+  })
+
+
+  modalDialog.addEventListener('click', (event) => {
+      if (event.target === modalDialog) {
+          modalDialog.close()
+      }
+  })
+
+  // MODAL JS END //
+
   setTimeout(() => {
       drawLines();
   }, 1000); 

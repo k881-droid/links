@@ -1,6 +1,6 @@
 let channelSlug = 'red-string-theory' // The “slug” is just the end of the URL.
 let myUsername = 'kinza-ghanchi' // For linking to your profile.
-
+let allBlocks = [] 
 
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
@@ -24,6 +24,7 @@ console.log(channelData)
 
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
+  allBlocks.push(blockData)
 
   // To start, a shared `ul` where we’ll insert all our blocks
   let channelBlocks = document.querySelector('#channel-blocks')
