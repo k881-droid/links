@@ -71,7 +71,6 @@ body{
   padding: calc(var(--spacing)/8);
   background-color: var(--offwhite);
   color: black;
-  overflow-x: hidden;
   font-size: var(--body-font);
 }
 
@@ -449,7 +448,7 @@ h1{
 
 #connection-lines line {
   stroke: var(--red-bright); 
-  stroke-width: var(--border-width-mobile);
+  stroke-width: 0.1rem;
   opacity: var(--string-opacity); 
 }
 
@@ -565,7 +564,7 @@ html{
 @media (width > 1200px) {
 
   :root{ 
-    font-size: 100%;
+    font-size: 1.2rem;
   }
 
   body {
@@ -573,7 +572,6 @@ html{
     display: grid;
     
     grid-template-columns: min-content 1fr;
-    
     grid-template-rows: min-content 1fr; 
     
     grid-template-areas:
@@ -582,7 +580,7 @@ html{
       
     align-items: start; 
     gap: var(--morespacing);
-    padding: var(--morespacing);
+    padding: var(--spacing);
     box-sizing: border-box;
     min-block-size: 100vh;
   }
@@ -595,9 +593,10 @@ html{
     
     display: flex;
     flex-direction: column;
-    gap: var(--spacing);
+    gap: var(--morespacing);
     
-    overflow-y: auto;
+    max-block-size: 100vh;
+    overflow-y: auto;  
   }
 
   h1 {
@@ -605,8 +604,7 @@ html{
     text-align: left;
     margin: 0;
     padding: 0;
-    font-size: 8rem; 
-    line-height: 7rem;
+    font-size: 5rem; 
 
     padding-block-start: 0;
     padding-block-end: 0;
@@ -625,8 +623,7 @@ html{
     inline-size: 100%;
     box-sizing: border-box;
     text-align: left;
-  
-    border: var(--border-width-desktop) solid var(--red-dull);
+    color: var(--red-bright);
     padding: var(--text-pad);
     
     flex: unset;
@@ -677,6 +674,10 @@ html{
     align-items: center;
     justify-content: center;
     overflow: hidden;
+  }
+
+  #channel-description, #channel-count, #last-updated, #channel-users{
+    padding: 0;
   }
 }
 
