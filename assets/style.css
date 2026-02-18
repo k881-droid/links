@@ -437,7 +437,7 @@ dialog::backdrop {
   display: grid;
   padding: 0;
   margin: 0;
-  gap: var(--spacing); /* Adds breathing room between sections */
+  gap: var(--text-pad); /* Adds breathing room between sections */
   
   /* Simple 1-column layout for mobile */
   grid-template-columns: 1fr;
