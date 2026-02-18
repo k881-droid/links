@@ -265,6 +265,11 @@ button {
   justify-content: center;
 }
 
+button:hover {
+  background-color: var(--red-bright);
+  color: var(--offwhite);
+}
+
 /* FILTERS */
 
 #channel-blocks {
