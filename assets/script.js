@@ -268,7 +268,7 @@ blocks.forEach((block, index) => {
         </ul>
         `;
 
-        // 2. We activate the "X" button immediately after creating it
+
         let internalCloseBtn = dialogInner.querySelector('.close-x-btn');
         internalCloseBtn.addEventListener('click', () => {
             modalDialog.close();
@@ -278,7 +278,6 @@ blocks.forEach((block, index) => {
     });
 });
 
-// Close when clicking outside (Background)
 modalDialog.addEventListener('click', (event) => {
     if (event.target === modalDialog) {
         modalDialog.close();

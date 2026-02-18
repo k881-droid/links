@@ -386,9 +386,10 @@ dialog {
   position: fixed;
   inset: 0;
   margin: auto;
+  padding: var(--text-pad);
 
   inline-size: 85vw;  
-  max-block-size: 70vh;  
+  max-block-size: 85vh;  
   max-inline-size: 65ch; /*not a magic number, 60ch is avg reading line size */
   block-size: fit-content;
 
@@ -444,6 +445,7 @@ dialog::backdrop {
   display: flex;
   justify-content: space-between;
   gap: var(--spacing);
+  /* border: var(--border-width-desktop) solid var(--red-bright); */
 }
 
 /* Row 2: Media (Center & Fit Fix) */
@@ -460,11 +462,20 @@ dialog::backdrop {
 .row-desc {
   grid-area: desc;
   font-family: 'JetBrainsMono-Regular', monospace;
+  padding-block-start: var(--spacing);
+  color: var(--offwhite);
+  block-size: fit-content;
 }
 
 /* Row 4: Link */
 .row-link {
   grid-area: link;
+  padding: calc(var(--text-pad)*2);
+  block-size: fit-content; 
+  min-height: min-content; 
+
+  box-sizing: border-box; 
+  inline-size: 100%;
 }
 
 /* GRID ELEMENTS & CONTENT */
@@ -476,6 +487,7 @@ dialog::backdrop {
   max-inline-size: 100%;
   max-block-size: 50vh; 
   object-fit: contain;
+  padding-block-start: var(--text-pad);
 }
 
 #dialog-inner p {
@@ -487,11 +499,16 @@ dialog::backdrop {
 .row-link a {
   color: var(--red-bright);
   text-decoration: none;
+  border: var(--border-width-desktop) solid var(--red-bright);
+  padding: calc(var(--text-pad)/2);
+  background-color: var(--red-dull);
+
 }
 
 .row-link a:hover {
   background: var(--red-bright);
   color: var(--offwhite);
+  padding: calc(var(--text-pad)/2);
 }
 
 /* Close X Button (Top) */
@@ -634,7 +651,7 @@ html{
   #channel-blocks {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing);
+    gap: var(--morespacing);
     
     inline-size: 100%;
     margin: 0;
