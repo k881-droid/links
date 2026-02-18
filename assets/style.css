@@ -1,13 +1,13 @@
-@font-face {
+/* @font-face {
     font-family: 'PicNic';
     src: url('../fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
         url('../fonts/PicNic/PicNic-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
+} */
 
-@font-face {
+/* @font-face {
     font-family: 'Velvelyne-Bold';
     src: url('../fonts/Velvelyne-main/woff/Velvelyne-Bold.woff') format('woff'),
         url('../fonts/Velvelyne-main/woff2/Velvelyne-Bold.woff2') format('woff2');
@@ -29,7 +29,7 @@
     font-family: 'Velvelyne-Book';
     src: url('../fonts/Velvelyne-main/woff/Velvelyne-Book.woff') format('woff'),
         url('../fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
-}
+} */
 
 @font-face {
   font-family: 'JetBrainsMono-Regular';
@@ -57,8 +57,6 @@
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
   font-size: 1.5rem;
-  --hover-scale: 6;
-  --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing)/2);
   --border-width-mobile: 0.08rem;
   --border-width-desktop: 0.1rem;
@@ -70,7 +68,7 @@
 body{
   padding: calc(var(--spacing)/8);
   background-color: var(--offwhite);
-  color: black;
+  color: var(--red-bright);
   font-size: var(--body-font);
 }
 
@@ -228,6 +226,10 @@ audio {
 
 #channel-blocks:hover {
   cursor: pointer;
+}
+
+#channel-description p:first-child{
+  padding-block-end: var(--spacing);
 }
 
 /* BUTTONS */
@@ -395,17 +397,15 @@ dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  padding: 0; /* Remove padding here */
+  padding: 0;
 
   inline-size: 85vw;  
   
-  /* MOBILE FIX: Fix the height so we can scroll inside */
   block-size: 80vh; 
   max-inline-size: 65ch; 
 
   background-color: var(--red-dull);
   
-  /* Keep visible for the red line illusion */
   overflow: visible; 
   border: none;
 }
@@ -416,13 +416,12 @@ dialog::backdrop {
 }
 
 .dialog-content {
-  /* MOBILE FIX: Force the scrollbar to appear here */
   block-size: 100%; 
   overflow-y: auto; 
   overflow-x: hidden;
   
   box-sizing: border-box; 
-  padding: var(--text-pad); /* Padding moves inside */
+  padding: var(--text-pad); 
 }
 
 #close-dialog {
@@ -432,7 +431,6 @@ dialog::backdrop {
   color: var(--red-bright);
   padding: var(--text-pad);
   cursor: pointer;
-  font-family: 'JetBrainsMono-Regular', monospace;
 }
 
 #close-dialog:hover {
@@ -446,9 +444,8 @@ dialog::backdrop {
   display: grid;
   padding: 0;
   margin: 0;
-  gap: var(--text-pad); /* Adds breathing room between sections */
-  
-  /* Simple 1-column layout for mobile */
+  gap: var(--text-pad);
+
   grid-template-columns: 1fr;
   grid-template-areas: 
     "header"
@@ -463,7 +460,6 @@ dialog::backdrop {
   display: flex;
   justify-content: space-between;
   gap: var(--spacing);
-  /* border: var(--border-width-desktop) solid var(--red-bright); */
 }
 
 /* Row 2: Media (Center & Fit Fix) */
@@ -479,7 +475,6 @@ dialog::backdrop {
 /* Row 3: Description */
 .row-desc {
   grid-area: desc;
-  font-family: 'JetBrainsMono-Regular', monospace;
   padding-block-start: var(--spacing);
   color: var(--offwhite);
   block-size: fit-content;
@@ -573,6 +568,11 @@ html{
   padding: calc(var(--spacing)/4);
 }
 
+/*TEMPORARY*/
+#channel-users{
+  display:none;
+}
+
 @media (width > 800px) {
 
   :root{
@@ -617,10 +617,7 @@ html{
     text-align: left;
     margin: 0;
     padding: 0;
-    font-size: 5rem; 
-
-    padding-block-start: 0;
-    padding-block-end: 0;
+    font-size: calc(var(--spacing) * 2.5); 
   }
 
   header ul {
@@ -691,18 +688,6 @@ html{
 
   #channel-description, #channel-count, #last-updated, #channel-users{
     padding: 0;
-  }
-
-  #channel-description p:first-child{
-    padding-block-end: var(--spacing);
-  }
-
-  #channel-users li{
-    padding: 0;
-  }
-
-  #channel-users{
-    display:grid;
   }
 
   /* DESKTOP MODAL OVERRIDES */

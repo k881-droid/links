@@ -132,7 +132,7 @@ function drawLines() {
 
             return style.opacity !== '0' && style.display !== 'none';
         });
-// And then here I think we are telling it how to filter the blocks - 'please give me the blocks that are not equal to opacity 0 and not equal to display none. In other words, please give me the blocks that are visible.
+// And then here I think we are telling it how to filter the blocks - 'please give me the blocks that are not equal to opacity 0 and not equal to display none.' In other words, please give me the blocks that are visible.
 
 // DRAWIING LINES // 
 
@@ -292,7 +292,7 @@ modalDialog.addEventListener('click', (event) => {
 
 // Yes, now for the code above that I said I would explain here. So the setTimeout function is basically a way to set a timer on another action (https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout). In this case, we are setting a timer on our drawLines function, or, in other words, how fast the lines are being drawn. 
 
-// Here, we have set it to 1000seconds, because we are waiting for everything to load. Above, we are setting it to 200seconds because its just some minor tweaking for when classes are changed. 
+// Here, we have set it to 1000 seconds, because we are waiting for everything to load. Above, we are setting it to 200 seconds because its just some minor tweaking for when classes are changed. 
 
 // In short - Timer 1: Draw it fast (For user experience), Timer 2: Fix it if it broke (For correctness)
 
