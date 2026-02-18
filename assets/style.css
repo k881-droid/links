@@ -61,7 +61,7 @@
   --square-size: calc(var(--morespacing)/2);
   --text-pad: calc(var(--spacing)/2);
   --border-width-mobile: 0.08rem;
-  --border-width-desktop: 0.4rem;
+  --border-width-desktop: 0.1rem;
   --body-font: calc(var(--spacing)/2.5);
   --string-opacity: 0.8;
   --dimmer-opacity:0.5
@@ -254,7 +254,7 @@ audio {
 button {
   inline-size: 100%;
   block-size: var(--spacing); 
-  border: var(--border-width-mobile) solid var(--red-bright);
+  border: var(--border-width-desktop) solid var(--red-bright);
   color: var(--red-bright);
   background: transparent;
   cursor: pointer;
@@ -376,9 +376,11 @@ h1{
 
 #connection-lines line {
   stroke: var(--red-bright); 
-  stroke-width: 0.1rem;
+  stroke-width: var(--border-width-desktop);
   opacity: var(--string-opacity); 
 }
+
+/* DIALOG */
 
 dialog {
   position: fixed;
@@ -386,8 +388,9 @@ dialog {
   margin: auto;
 
   inline-size: 85vw;  
-  block-size: 75vh;  
-  max-inline-size: 65ch; 
+  max-block-size: 70vh;  
+  max-inline-size: 65ch; /*not a magic number, 60ch is avg reading line size */
+  block-size: fit-content;
 
   background-color: var(--red-dull);
   overflow: visible; 
@@ -401,15 +404,9 @@ dialog::backdrop {
 
 .dialog-content {
   block-size: 100%; 
-  overflow-y: auto; 
-  
-  /* CLEANUP: Combined padding-inline and padding-block */
-  padding: var(--spacing); 
-
   box-sizing: border-box; 
 }
 
-/* Close Text Button (Bottom) */
 #close-dialog {
   align-self: flex-end; 
   background: transparent;
@@ -445,7 +442,7 @@ dialog::backdrop {
 .row-header {
   grid-area: header;
   display: flex;
-  align-items: flex-start; 
+  justify-content: space-between;
   gap: var(--spacing);
 }
 
@@ -454,7 +451,6 @@ dialog::backdrop {
   grid-area: media;
   inline-size: 100%;
   
-  /* FIX: Centers content and prevents scrolling */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -473,17 +469,12 @@ dialog::backdrop {
 
 /* GRID ELEMENTS & CONTENT */
 
-/* CLEANUP: Combined Image & Video Defaults */
 #dialog-inner img,
 #dialog-inner video {
-  display: block;
-  margin-block-end: var(--spacing);
-  border: var(--border-width-mobile) solid var(--red-bright);
-  
-  /* FIX: Logic to fit image inside modal without scrolling */
+  display: block;  
   inline-size: auto;
   max-inline-size: 100%;
-  max-block-size: 50vh; /* Limits height to ~half the screen */
+  max-block-size: 50vh; 
   object-fit: contain;
 }
 

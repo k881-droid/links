@@ -227,15 +227,14 @@ let blocks = document.querySelectorAll('#channel-blocks li');
 
 blocks.forEach((block, index) => {
     block.addEventListener('click', () => {
-        let data = allBlocks[index]; // Make sure allBlocks is defined in your fetch!
+        let data = allBlocks[index]; 
 
-        // 1. We inject the HTML with a new structure
         dialogInner.innerHTML = `
         <ul class="dialog-grid">
           
           <li class="row-header">
              <button class="close-x-btn">✕</button>
-             <h2 class="dialog-title-text">${data.title ? data.title : 'Untitled'}</h2>
+             <h2 class="dialog-title-text">${data.type ? data.type : 'Untitled'}</h2>
           </li>
 
           <li class="row-media">
@@ -250,15 +249,15 @@ blocks.forEach((block, index) => {
           </li>
 
           <li class="row-desc">
-            ${data.description 
-              ? `<div>${data.description.html}</div>` 
+            ${data.title 
+              ? `<div>${data.title}</div>` 
               : `<p style="opacity:0.5">No description</p>` 
             }
           </li>
 
           <li class="row-link">
             <a href="https://www.are.na/block/${data.id}" target="_blank">
-                View on Are.na ↗
+                Untangle
             </a>
             ${data.attachment 
               ? `<br><br><a href="${data.attachment.url}" target="_blank">Download File ↘</a>` 
