@@ -15,8 +15,8 @@ console.log(channelData)
   // Then set their content/attributes to our data:
   channelTitle.innerHTML = channelData.title
   channelDescription.innerHTML = channelData.description.html
-  channelCount.innerHTML = `${channelData.counts.blocks} blocks`
-  lastUpdated.innerHTML = `Last updated: ${new Date(channelData.updated_at).toDateString()}`
+  channelCount.innerHTML = `${channelData.counts.blocks} blocks.`
+  lastUpdated.innerHTML = `<em>Last updated: ${new Date(channelData.updated_at).toDateString()}.</em>`
   // channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
@@ -28,7 +28,7 @@ let renderBlock = (blockData) => {
 
   // To start, a shared `ul` where we’ll insert all our blocks
   let channelBlocks = document.querySelector('#channel-blocks')
-
+  let textBlocks = document.querySelector('#text-blocks')
 
   // Links!
   if (blockData.type == 'Link') {
@@ -221,7 +221,7 @@ let renderUser = (userData) => {
   let userAddress =
     `
     <li>
-      <p><a href="https://are.na/${userData.slug}">${userData.name}</a></p>
+      <p><a href="https://are.na/${userData.slug}">A product of collaboration between:${userData.name}</a></p>
     </li>
     `
 

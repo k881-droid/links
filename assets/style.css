@@ -226,8 +226,8 @@ audio {
   text-decoration: none;
 }
 
-#channel-blocks a:hover {
-  text-decoration: underline;
+#channel-blocks:hover {
+  cursor: pointer;
 }
 
 /* BUTTONS */
@@ -352,6 +352,10 @@ ul{
 
   gap: var(--spacing);    
   padding-block-end: var(--spacing);
+}
+
+em{
+  font-style: italic;
 }
 
 h1{
@@ -569,10 +573,10 @@ html{
   padding: calc(var(--spacing)/4);
 }
 
-@media (width > 1200px) {
+@media (width > 800px) {
 
-  :root{ 
-    font-size: 1.2rem;
+  :root{
+    font-size: 1rem;
   }
 
   body {
@@ -698,25 +702,25 @@ html{
   }
 
   #channel-users{
-    display:none;
+    display:grid;
   }
 
   /* DESKTOP MODAL OVERRIDES */
   dialog {
-    /* Allow the modal to grow naturally on desktop */
     block-size: fit-content; 
-    /* Safety cap just in case it's taller than the screen */
     max-block-size: 90vh; 
   }
 
   .dialog-content {
-    /* DISABLE SCROLLING ON DESKTOP */
     overflow-y: visible; 
     block-size: auto;
   }
 }
 
+@media (width > 1200px) {
 
+  :root{ 
+    font-size: 1.2rem;
+  }
 
-
-
+}
