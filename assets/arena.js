@@ -16,7 +16,7 @@ console.log(channelData)
   channelTitle.innerHTML = channelData.title
   channelDescription.innerHTML = channelData.description.html
   channelCount.innerHTML = `${channelData.counts.blocks} blocks`
-  lastUpdated.innerHTML = new Date(channelData.updated_at).toDateString()
+  lastUpdated.innerHTML = `Last updated: ${new Date(channelData.updated_at).toDateString()}`
   // channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
