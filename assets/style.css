@@ -386,14 +386,15 @@ dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  padding: var(--text-pad);
+  padding: 0; /* Remove padding here, we will move it inside */
 
   inline-size: 85vw;  
-  max-block-size: 85vh;  
-  max-inline-size: 65ch; /*not a magic number, 60ch is avg reading line size */
-  block-size: fit-content;
+  block-size: 80vh; /* Fixed height is better for mobile scrolling */
+  max-inline-size: 65ch; 
 
   background-color: var(--red-dull);
+  
+  /* This keeps your red line working */
   overflow: visible; 
   border: none;
 }
@@ -406,6 +407,13 @@ dialog::backdrop {
 .dialog-content {
   block-size: 100%; 
   box-sizing: border-box; 
+  
+  /* This creates the internal scroll */
+  overflow-y: auto; 
+  overflow-x: hidden;
+  
+  /* We moved the padding here so the scrollbar sits nicely at the edge */
+  padding: var(--text-pad);
 }
 
 #close-dialog {
@@ -429,14 +437,15 @@ dialog::backdrop {
   display: grid;
   padding: 0;
   margin: 0;
-  gap: 0;
+  gap: var(--spacing); /* Adds breathing room between sections */
   
-  grid-template-columns: min-content 1fr;
+  /* Simple 1-column layout for mobile */
+  grid-template-columns: 1fr;
   grid-template-areas: 
-    "header header"
-    "media  media"
-    "desc   desc"
-    "link   link";
+    "header"
+    "media"
+    "desc"
+    "link";
 }
 
 /* Row 1: Header */
