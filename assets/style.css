@@ -140,7 +140,7 @@ body{
   color: var(--red-bright);
   box-sizing: border-box;
   display: inline-block;   
-  width: fit-content;      
+  inline-size: fit-content;      
   
   
   padding-block: calc(var(--spacing)/4);  
@@ -265,78 +265,6 @@ button {
   justify-content: center;
 }
 
-/* MODAL */
-
-dialog {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-
-  inline-size: 85vw;  
-  block-size: 70vh;  
-  max-inline-size: 65ch; 
-
-  background-color: var(--red-dull);
-  
-  overflow: visible; 
-}
-
-
-dialog::backdrop {
-  background-color: var(--red-dull);
-  opacity: var(--dimmer-opacity);
-}
-
-
-.dialog-content {
-  block-size: 100%; 
-
-  overflow-y: auto; 
-  
-  padding-inline: var(--spacing);
-  padding-block: var(--spacing);
-
-  box-sizing: border-box; 
-}
-
-#close-dialog {
-  align-self: flex-end; 
-  background: transparent;
-  border: var(--border-width-mobile) solid var(--red-bright);
-  color: var(--red-bright);
-  
-  padding: var(--text-pad); 
-  
-  cursor: pointer;
-  font-family: 'JetBrainsMono-Regular', monospace;
-}
-
-#close-dialog:hover {
-  background-color: var(--red-bright);
-  color: var(--offwhite);
-}
-
-#dialog-inner img {
-  max-inline-size: 100%; 
-  block-size: auto;     
-  display: block;
-}
-
-#dialog-inner img,
-#dialog-inner video {
-  inline-size: 100%;
-  block-size: auto;
-  display: block;
-  margin-block-end: var(--spacing);
-  border: var(--border-width-mobile) solid var(--red-bright);
-}
-
-#dialog-inner p {
-  color: var(--offwhite);
-  font-size: var(--body-font);
-  max-inline-size: 60ch; 
-}
-
 /* FILTERS */
 
 #channel-blocks {
@@ -452,53 +380,130 @@ h1{
   opacity: var(--string-opacity); 
 }
 
+dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+
+  inline-size: 85vw;  
+  block-size: 75vh;  
+  max-inline-size: 65ch; 
+
+  background-color: var(--red-dull);
+  overflow: visible; 
+  border: none;
+}
+
+dialog::backdrop {
+  background-color: var(--red-dull);
+  opacity: var(--dimmer-opacity);
+}
+
+.dialog-content {
+  block-size: 100%; 
+  overflow-y: auto; 
+  
+  /* CLEANUP: Combined padding-inline and padding-block */
+  padding: var(--spacing); 
+
+  box-sizing: border-box; 
+}
+
+/* Close Text Button (Bottom) */
+#close-dialog {
+  align-self: flex-end; 
+  background: transparent;
+  border: var(--border-width-mobile) solid var(--red-bright);
+  color: var(--red-bright);
+  padding: var(--text-pad);
+  cursor: pointer;
+  font-family: 'JetBrainsMono-Regular', monospace;
+}
+
+#close-dialog:hover {
+  background-color: var(--red-bright);
+  color: var(--offwhite);
+}
+
 /* DIALOG GRID LAYOUT */
 
 #dialog-inner .dialog-grid {
   display: grid;
-  inline-size: 100%;
   padding: 0;
   margin: 0;
-  gap: var(--text-pad);
+  gap: 0;
   
   grid-template-columns: min-content 1fr;
-  
   grid-template-areas: 
-    "header header"  /* Row 1 */
-    "media  media"   /* Row 2 */
-    "desc   desc"    /* Row 3 */
-    "link   link";   /* Row 4 */
+    "header header"
+    "media  media"
+    "desc   desc"
+    "link   link";
 }
 
+/* Row 1: Header */
 .row-header {
   grid-area: header;
   display: flex;
   align-items: flex-start; 
   gap: var(--spacing);
-  border-block-end: var(--border-width-mobile) solid var(--red-bright);
-  padding-block-end: var(--text-pad);
 }
 
+/* Row 2: Media (Center & Fit Fix) */
 .row-media {
   grid-area: media;
   inline-size: 100%;
+  
+  /* FIX: Centers content and prevents scrolling */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Row 3: Description */
 .row-desc {
   grid-area: desc;
   font-family: 'JetBrainsMono-Regular', monospace;
-  padding-block-start: var(--square-size);
 }
 
 /* Row 4: Link */
 .row-link {
   grid-area: link;
-  border-block-start: var(--border-width-mobile) solid var(--red-bright);
-  padding-block-start: var(--text-pad);
 }
 
-/* GRID ELEMENTS*/
+/* GRID ELEMENTS & CONTENT */
 
+/* CLEANUP: Combined Image & Video Defaults */
+#dialog-inner img,
+#dialog-inner video {
+  display: block;
+  margin-block-end: var(--spacing);
+  border: var(--border-width-mobile) solid var(--red-bright);
+  
+  /* FIX: Logic to fit image inside modal without scrolling */
+  inline-size: auto;
+  max-inline-size: 100%;
+  max-block-size: 50vh; /* Limits height to ~half the screen */
+  object-fit: contain;
+}
+
+#dialog-inner p {
+  color: var(--offwhite);
+  font-size: var(--body-font);
+  max-inline-size: 60ch; 
+}
+
+.row-link a {
+  color: var(--red-bright);
+  text-decoration: none;
+}
+
+.row-link a:hover {
+  background: var(--red-bright);
+  color: var(--offwhite);
+}
+
+/* Close X Button (Top) */
 .close-x-btn {
   background: transparent;
   color: var(--red-bright);
@@ -523,24 +528,6 @@ h1{
   line-height: 1;
 }
 
-
-.row-media img, 
-.row-media video {
-  inline-size: 100%;
-  block-size: auto;
-  display: block;
-}
-
-.row-link a {
-  color: var(--red-bright);
-  text-decoration: none;
-}
-
-.row-link a:hover {
-  background: var(--red-bright);
-  color: var(--offwhite);
-}
-
 /* Vertical Line for illusion*/
 dialog::before {
   content: "";
@@ -555,7 +542,6 @@ dialog::before {
   z-index: -1; 
   pointer-events: none; 
 }
-
 
 html{
   padding: calc(var(--spacing)/4);
