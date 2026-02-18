@@ -386,15 +386,17 @@ dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  padding: 0; /* Remove padding here, we will move it inside */
+  padding: 0; /* Remove padding here */
 
   inline-size: 85vw;  
-  block-size: 80vh; /* Fixed height is better for mobile scrolling */
+  
+  /* MOBILE FIX: Fix the height so we can scroll inside */
+  block-size: 80vh; 
   max-inline-size: 65ch; 
 
   background-color: var(--red-dull);
   
-  /* This keeps your red line working */
+  /* Keep visible for the red line illusion */
   overflow: visible; 
   border: none;
 }
@@ -405,15 +407,13 @@ dialog::backdrop {
 }
 
 .dialog-content {
+  /* MOBILE FIX: Force the scrollbar to appear here */
   block-size: 100%; 
-  box-sizing: border-box; 
-  
-  /* This creates the internal scroll */
   overflow-y: auto; 
   overflow-x: hidden;
   
-  /* We moved the padding here so the scrollbar sits nicely at the edge */
-  padding: var(--text-pad);
+  box-sizing: border-box; 
+  padding: var(--text-pad); /* Padding moves inside */
 }
 
 #close-dialog {
@@ -695,7 +695,22 @@ html{
   #channel-users{
     display:none;
   }
+
+  /* DESKTOP MODAL OVERRIDES */
+  dialog {
+    /* Allow the modal to grow naturally on desktop */
+    block-size: fit-content; 
+    /* Safety cap just in case it's taller than the screen */
+    max-block-size: 90vh; 
+  }
+
+  .dialog-content {
+    /* DISABLE SCROLLING ON DESKTOP */
+    overflow-y: visible; 
+    block-size: auto;
+  }
 }
+
 
 
 
