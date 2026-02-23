@@ -219,12 +219,11 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 // We learnt this in class - this is actually making the blocks visible, i.e. rendering each block. 
 
-// --- MODAL JS START --- //
-
 let modalDialog = document.querySelector('#channel-dialog');
 let channelBlocksContainer = document.querySelector('#channel-blocks');
 
-// 1. Grab all the specific "empty buckets" inside our modal
+// This is the same as our class example, we are targetting specific ids using our JS variables. The only new thing here (as compared to the class example) is that we are creating a new variable here which targets ALL the blocks).
+
 let dialogType = document.querySelector('#dialog-type');
 let dialogImg = document.querySelector('#dialog-img');
 let dialogEmbed = document.querySelector('#dialog-embed');
@@ -233,69 +232,93 @@ let dialogArenaLink = document.querySelector('#dialog-arena-link');
 let dialogDownloadLink = document.querySelector('#dialog-download-link');
 let dialogCloseBtn = document.querySelector('#dialog-close-btn');
 
+// I have made each element of the dialog a separate id, so it can be swapped out easily later.
+
 channelBlocksContainer.addEventListener('click', (event) => {
     let clickedBlock = event.target.closest('li');
     if (!clickedBlock) return;
+
+// I think, here, we are using event listener to listen for any clicks on the entire channel grid, and depending on wherever the click is, the closest list item will be triggered. That will cause the block which contains that list item to be triggered. So the modal with the metadata for that block will open.
 
     let allDOMBlocks = Array.from(channelBlocksContainer.children);
     let index = allDOMBlocks.indexOf(clickedBlock);
     let data = allBlocks[index]; 
 
-    // 2. Swap out the Type
-    dialogType.textContent = data.type ? data.type : 'Untitled';
+// channelBlocksContainer.children grabs all the <li> blocks currently sitting inside my grid container. But, initially the browser returns them all as an HTML collection - we cannot incorporate JS onto this. That is why we use 'Array.' As explained in class, array will convert that data from an HTML list to a jS array.
 
-    // 3. Swap out the Image (and hide it if there is no image)
+// Because we generated the HTML blocks in the exact same order as the data we got from Are.na, we can use their position in the list (their index) to match them up.
+
+// so I think, using the 'indexOf(clickedBlock)' tool, we are going to get that index number of the clicked block in return.
+
+// lastly, the 'data' variable seems to be using 'allBlocks' - this  was the very first variable we created in our arena.js file, and it includes the original array of Are.na data that has all the image URLs, titles, and text.
+
+// We are then plugging in the new index number we got from the previous line of code into this original array (e.g. allBlocks[2]).
+
+// Because the HTML blocks were built in the same order as the arena data, the HTML block at Index 2 matches the arena data at Index 2. We have successfully grabbed the correct data for the clicked block.
+
+
+// The next part of the code is just swapping out the content of our dialog with our arena metadata. 
+
+    dialogType.textContent = data.type ? data.type : 'Untitled';
+//Here we are swapping out the type (if there is no type the dialog will return 'Untitled').
+
     if (data.image) {
         dialogImg.src = data.image.large.src_2x;
         dialogImg.alt = data.title || 'Are.na block image';
-        dialogImg.style.display = 'block'; // Ensure it's visible
+        dialogImg.classList.remove('hidden'); // Ensure it's visible
     } else {
         dialogImg.src = '';
-        dialogImg.style.display = 'none'; // Hide the broken image icon
+        dialogImg.classList.add('hidden'); // Hide the broken image icon
     }
+// Swapping out the Image (and hiding it if there is no image) using the classlist tool we learnt in class.
 
-    // 4. Swap out the Embed (video/audio players)
     if (data.embed) {
         dialogEmbed.innerHTML = data.embed.html;
-        dialogEmbed.style.display = 'block';
+        dialogEmbed.classList.remove('hidden');
     } else {
         dialogEmbed.innerHTML = '';
-        dialogEmbed.style.display = 'none';
+        dialogEmbed.classList.add('hidden');
     }
+//Swapping out the Embed (video/audio players).
 
-    // 5. Swap out the Title/Description
     if (data.title) {
         dialogTitle.innerHTML = `<div>${data.title}</div>`;
     } else {
-        dialogTitle.innerHTML = `<p style="opacity:0.5">No description</p>`;
+        dialogTitle.innerHTML = `<p class="empty-state">No description</p>`;
     }
+//Swapping out the Title/Description.
 
-    // 6. Swap out the Links
+
     dialogArenaLink.href = `https://www.are.na/block/${data.id}`;
-    
-    // Show the download link ONLY if there is an attachment
+//Swapping out the link.
+
     if (data.attachment) {
         dialogDownloadLink.href = data.attachment.url;
-        dialogDownloadLink.style.display = 'inline';
+        dialogDownloadLink.classList.remove('hidden');
     } else {
-        dialogDownloadLink.style.display = 'none';
+        dialogDownloadLink.classList.add('hidden');
     }
+// Showing the download link ONLY if there is an attachment.
 
-    // 7. Open the modal!
+
     modalDialog.showModal();
+// Open the modal!
+
 });
 
-// Close button logic
+
 dialogCloseBtn.addEventListener('click', () => {
     modalDialog.close();
 });
+// Close when clicking the close button.
 
-// Close when clicking the backdrop
 modalDialog.addEventListener('click', (event) => {
     if (event.target === modalDialog) {
         modalDialog.close();
     }
 });
+// Close when clicking the backdrop.
+
 
 // --- MODAL JS END --- //
 
