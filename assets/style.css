@@ -52,7 +52,7 @@
 :root{
   --offwhite: #feffdc;
   --red-bright: #f10b0b;
-  --red-dull:#730707;
+  --red-dull:#5e0606;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
@@ -186,7 +186,7 @@ audio {
   margin-block-end: var(--spacing);
 }
 
-button {
+button, .action-btn{
   all: unset; 
   position: relative;
   display: flex;
@@ -201,7 +201,7 @@ button {
 }
 
 /* Horizontal Lines (Block-axis / Top & Bottom) */
-button::before {
+button::before, .action-btn::before{
   content: "";
   position: absolute;
   
@@ -216,7 +216,7 @@ button::before {
 }
 
 /* Vertical Lines (Inline-axis / Left & Right) */
-button::after {
+button::after, .action-btn::after{
   content: "";
   position: absolute;
   
@@ -230,12 +230,12 @@ button::after {
 }
 
 /* HOVER STATE */
-button:hover {
+button:hover, .action-btn:hover{
   color: var(--red-bright);
 }
 
-button:hover::before,
-button:hover::after {
+button:hover::before, .action-btn:hover::before,
+button:hover::after, .action-btn:hover::after {
   inset: 0;
 }
 
@@ -434,6 +434,10 @@ dialog {
   font-size: var(--text-pad);
   inline-size: auto; 
   block-size: auto;
+}
+
+.action-btn{
+  padding: var(--text-pad);
 }
 
 .hidden {
