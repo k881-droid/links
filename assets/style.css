@@ -187,9 +187,8 @@ audio {
 }
 
 button {
-  inline-size: 100%;
   block-size: var(--spacing); 
-  border: var(--border-width-desktop) solid var(--red-bright);
+  /* border: var(--border-width-desktop) solid var(--red-bright); */
   color: var(--red-bright);
   background: transparent;
   cursor: pointer;
@@ -342,14 +341,49 @@ dialog {
   position: fixed; 
   inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
   margin: auto; 
-  background-color: yellow;
-  inline-size: 90vw; 
+  inline-size: 92vw; 
   max-block-size: 60vh;
 }
 
 #dialog-img{
   inline-size: 100%;
-  block-size: 30vh;
+  block-size: auto; 
+  max-block-size: 40vh; 
+  object-fit: contain;
+}
+
+.dialog-grid{
+  display: flex;
+  flex-direction: column;
+  padding: var(--text-pad);
+  margin: 0;
+  list-style: none;
+  background-color:blue;
+}
+
+.row-header{
+  display: flex;
+  justify-content: space-between;
+  inline-size: 100%; 
+  align-items: center; 
+  box-sizing: border-box;
+}
+
+.row-media{
+  background-color:pink;
+}
+
+.row-desc{
+  background-color: black;
+}
+
+.row-link{
+  background-color: green;
+}
+
+.close-x-btn{
+  padding: calc(var(--text-pad)/2);
+  font-size: var(--text-pad);
 }
 
 .hidden {
@@ -359,6 +393,8 @@ dialog {
 .empty-state {
     opacity: 0.5;
 }
+
+/* MODAL STYLES END*/
 
 html{
   padding: calc(var(--spacing)/4);
