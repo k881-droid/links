@@ -90,6 +90,7 @@ body{
   position: relative;
   display: inline-block; 
   height: auto;
+  inline-size: 100%;
 }
 
 .overlay {
@@ -571,6 +572,18 @@ html{
 /*TEMPORARY*/
 #channel-users{
   display:none;
+}
+
+/* AUDIO PLACEHOLDER */
+.audio-placeholder {
+  background-color: var(--red-bright);
+  inline-size: 100%; 
+  aspect-ratio: 1 / 1; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red-bright); 
+  font-size: calc(var(--spacing) * 4);
 }
 
 @media (width > 800px) {

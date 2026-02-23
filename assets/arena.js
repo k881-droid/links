@@ -120,16 +120,22 @@ let renderBlock = (blockData) => {
 
     // Uploaded videos!
     if (contentType.includes('video')) {
-      // …still up to you, but we’ll give you the `video` element:
       let videoItem =
         `
-				<li class="video-block">
-					<p><em>Video</em></p>
-					<video controls src="${blockData.attachment.url}"></video>
-				</li>
-				`
-
+        <li class="video-block">
+          <div class="square">
+              <div class="block-media">
+                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+                  <div class="block-info">
+                      <span class="block-type">Video File</span>
+                      <h2 class="block-title">${blockData.title}</h2>
+                  </div>
+              </div>
+          </div>
+        </li>
+        `
       channelBlocks.insertAdjacentHTML('beforeend', videoItem)
+  
 
       // More on `video`, like the `autoplay` attribute:
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video
@@ -159,17 +165,24 @@ let renderBlock = (blockData) => {
 
     // Uploaded audio!
     else if (contentType.includes('audio')) {
-      // …still up to you, but here’s an `audio` element:
       let audioItem =
         `
-				<li class="audio-block">
-					<p><em></em></p>
-					<audio controls src="${blockData.attachment.url}"></audio>
-				</li>
-				`
-
+        <li class="audio-block">
+          <div class="square">
+              <div class="block-media">
+                  ${blockData.image 
+                    ? `<img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">`
+                    : `<div class="square-img audio-placeholder">' ' </div>`
+                  }
+                  <div class="block-info">
+                      <span class="block-type">Audio File</span>
+                      <h2 class="block-title">${blockData.title}</h2>
+                  </div>
+              </div>
+          </div>
+        </li>
+        `
       channelBlocks.insertAdjacentHTML('beforeend', audioItem)
-
       // More on`audio`:
       // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
     }
