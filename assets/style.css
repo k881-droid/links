@@ -56,7 +56,7 @@
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   --text-pad: calc(var(--spacing)/2);
   --border-width-mobile: 0.08rem;
   --border-width-desktop: 0.1rem;
@@ -343,13 +343,15 @@ dialog {
   inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
   margin: auto; 
   background-color: yellow;
+  inline-size: 90vw; 
+  max-block-size: 60vh;
 }
 
 #dialog-img{
   inline-size: 100%;
-  block-size: 50vh;
-  padding: auto;
+  block-size: 30vh;
 }
+
 .hidden {
     display: none !important;
 }
