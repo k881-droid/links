@@ -340,6 +340,11 @@ h1{
   padding-block-start: var(--spacing);
 }
 
+audio {
+	block-size: revert;
+	inline-size: 100%;
+}
+
 /* CONNECTION LINES */
 
 /* SVG CONTAINER */
@@ -402,6 +407,7 @@ dialog {
   border-block-start: var(--border-width-mobile) solid var(--red-bright);
   border-block-end: var(--border-width-mobile) solid var(--red-bright);
   padding-block: var(--text-pad);
+  
 }
 
 .dialog-grid{
@@ -432,13 +438,21 @@ dialog {
   color: var(--offwhite);
 }
   
-
-.row-link{
-  
+iframe{
+  border-block-start: var(--border-width-mobile) solid var(--red-bright);
+  border-block-end: var(--border-width-mobile) solid var(--red-bright);
+  padding-block: var(--text-pad);
 }
 
 #dialog-title{
   color: var(--off-white);
+}
+
+#dialog-embed iframe[src*="tiktok"] {
+  inline-size: 100%; 
+  block-size: auto;
+  aspect-ratio: 9/16; 
+  border-radius:0;
 }
 
 .close-x-btn{

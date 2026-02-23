@@ -286,24 +286,26 @@ channelBlocksContainer.addEventListener('click', (event) => {
     dialogType.textContent = data.type ? data.type : 'Untitled';
 //Here we are swapping out the type (if there is no type the dialog will return 'Untitled').
 
-// --- NEW MEDIA LOGIC STARTS HERE ---
-    // First, hide everything and clear old players so they don't "stack"
+// ADDITIONAL LOGIC FOR HANDLING MUSIC + AUDIO PLAYERS, AND TEXT 
+    
+// First hiding everything and clearing old players so they don't "stack" (what was happening initially is both the image and the player of the audio and video files were appearing in the modal).
+
     dialogImg.classList.add('hidden');
     dialogEmbed.classList.add('hidden');
     dialogEmbed.innerHTML = ''; 
 
     if (data.embed) {
-        // This handles YouTube/Soundcloud links
+        // YouTube/Soundcloud links
         dialogEmbed.innerHTML = data.embed.html;
         dialogEmbed.classList.remove('hidden');
     } 
     else if (data.attachment && data.attachment.content_type.includes('video')) {
-        // This handles uploaded MP4s
+        // uploaded MP4s
         dialogEmbed.innerHTML = `<video controls src="${data.attachment.url}"></video>`;
         dialogEmbed.classList.remove('hidden');
     } 
     else if (data.attachment && data.attachment.content_type.includes('audio')) {
-        // This handles uploaded MP3s
+        // uploaded MP3s
         dialogEmbed.innerHTML = `<audio controls src="${data.attachment.url}"></audio>`;
         dialogEmbed.classList.remove('hidden');
     } 
@@ -314,7 +316,7 @@ channelBlocksContainer.addEventListener('click', (event) => {
         dialogImg.classList.remove('hidden');
     }
 
-    // NEW TEXT LOGIC: If it's a 'Text' type, show the actual scroll content (content_html)
+    // If it's a 'Text' type, show the actual inner content, not title
     if (data.type === 'Text') {
         dialogTitle.innerHTML = `<div>${data.content.plain}</div>`;
     } else if (data.title) {
@@ -322,7 +324,7 @@ channelBlocksContainer.addEventListener('click', (event) => {
     } else {
         dialogTitle.innerHTML = `<p class="empty-state">No description</p>`;
     }
-    // --- NEW MEDIA LOGIC ENDS HERE ---
+    // ADDITIONAL LOGIC FINISHED //
 
 
     dialogArenaLink.href = `https://www.are.na/block/${data.id}`;
