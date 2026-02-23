@@ -17,19 +17,11 @@
         <script defer src="assets/script.js"></script>
 
     </head>
+    
     <body>
+
         <svg id="connection-lines"></svg>
         <header>
-            <h1 id="title"></h1>
-
-                <ul>
-                    <li id="channel-description"></li>
-                    <li id="channel-count"></li>
-                    <li id="last-updated"></li>
-                    <li id="channel-users"></li>
-                </ul>
-        </header>
-
             <div id="controls">
                 <button id="show-all">All</button>
                 <button id="show-images">Image</button>
@@ -38,10 +30,22 @@
                 <button id="show-audio">Audio</button>
                 <button id="show-videos">Video</button>
             </div>
+        </header>
+            
+        <main>
+            <h1 id="title"></h1>
 
-            <section>
+                <ul>
+                    <li id="channel-description"></li>
+                    <li id="channel-count"></li>
+                    <li id="last-updated"></li>
+                    <li id="channel-users"></li>
+                </ul>
+        </main>
+
+        <section>
             <ul id="channel-blocks"></ul>
-            </section>
+        </section>
 
            <dialog id="channel-dialog">
                 <div class="dialog-content">
