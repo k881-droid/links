@@ -188,7 +188,7 @@ audio {
 
 button {
   block-size: var(--spacing); 
-  /* border: var(--border-width-desktop) solid var(--red-bright); */
+  border: var(--border-width-desktop) dashed var(--red-bright);
   color: var(--red-bright);
   background: transparent;
   cursor: pointer;
@@ -306,6 +306,7 @@ h1{
 
 /* CONNECTION LINES */
 
+/* SVG CONTAINER */
 #connection-lines {
   position: absolute;
   inset-block-start: 0;
@@ -317,11 +318,22 @@ h1{
   overflow: visible;
 }
 
-#connection-lines line {
+/* LINES  */
+.connection-line {
   stroke: var(--red-bright); 
   stroke-width: var(--border-width-desktop);
   opacity: var(--string-opacity); 
+  
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  transition: stroke-dashoffset 1.5s ease-in-out;
 }
+
+/* ANIMATION TRIGGER */
+.connection-line.is-visible {
+  stroke-dashoffset: 0;
+}
+
 
 /* AUDIO PLACEHOLDER */
 .audio-placeholder {

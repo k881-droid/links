@@ -14,7 +14,7 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
     
-// Below is the setTimeout function, which I learnt from Google Gemini. I have explained the reasoning in greater detail later on in the code. I have set it after every time a class is added because this is a function that is necessary for our 'connection lines' to be redrawn over and over again, so each time we change our classes, we must employ it again(Again, I will explain the reasoning in Michael's desired format later on in the code).
+// Below is the setTimeout function, which I learnt from Google Gemini. I have explained the 'why' and 'how' in greater detail later on in the code. I have set it after every time a class is added because this is a function that is necessary for our 'connection lines' to be redrawn over and over again, so each time we change our classes, we must employ it again(Again, I will explain the reasoning in Michael's desired format later on in the code).
 
     setTimeout(drawLines, 200);
 })
@@ -113,6 +113,25 @@ function drawLines() {
 
 // Previously, there was no svg.style.height = '0px'; line - by adding this, we are telling the svg to shrink first, forcing it to then recalculate the height of the page and then expand to that height.//
 
+// INTERSECTION OBSERVER FOR DRAWING ANIMATION //
+
+// Here I have applied what we learnt in class - an IntersectionObserver. 
+
+// If a line enters the screen (isIntersecting), it adds a CSS class ('is-visible') which triggers the drawing animation in our stylesheet.
+
+// If it leaves the screen, it removes the class, so it can draw again the next time we see it.
+    let lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, { 
+        threshold: 0.1 // Triggers when just 10% of the line is visible on screen
+    });
+
 // SELECTING BLOCKS //
 
     const blockTypes = ['.image-block', '.text-block', '.link-block', '.audio-block', '.pdf-block', '.video-block'];
@@ -200,6 +219,11 @@ function drawLines() {
             svg.appendChild(line);
 
 // 'appendChild' is another new JS tool I learnt through this code. What it means is to make something the child of something else. In this case, I think it is making our line style and attaching it to the SVG container on the page.
+
+// INTERSECTION OBSERVER: TELL THE OBSERVER TO WATCH THIS LINE //
+// Now that the line is successfully created and appended to the page, we tell the observer we created at the top of this function to start watching it.
+
+            lineObserver.observe(line);
 
         }
     });
@@ -338,5 +362,4 @@ modalDialog.addEventListener('click', (event) => {
   });
 });
 
-// Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again. 
-
+// Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again.
