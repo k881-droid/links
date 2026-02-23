@@ -135,7 +135,7 @@ let renderBlock = (blockData) => {
             <div class="block-media">
                 ${blockData.image 
                   ? `<img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">`
-                  : `<div class="square-img audio-placeholder">' '</div>`
+                  : `<div class="square-img audio-placeholder">Sound of Fate</div>`
                 }
             </div>
         </li>
