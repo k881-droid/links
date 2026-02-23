@@ -77,7 +77,7 @@ let renderBlock = (blockData) => {
       `
     <li class="text-block">
         <div class="text-block-content">
-            <p>${blockData.content.plain}</p>
+            <p>Unwind Thread</p>
         </div>
       </li>
     `

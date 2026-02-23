@@ -286,31 +286,43 @@ channelBlocksContainer.addEventListener('click', (event) => {
     dialogType.textContent = data.type ? data.type : 'Untitled';
 //Here we are swapping out the type (if there is no type the dialog will return 'Untitled').
 
-    if (data.image) {
-        dialogImg.src = data.image.large.src_2x;
-        dialogImg.alt = data.title || 'Are.na block image';
-        dialogImg.classList.remove('hidden'); // Ensure it's visible
-    } else {
-        dialogImg.src = '';
-        dialogImg.classList.add('hidden'); // Hide the broken image icon
-    }
-// Swapping out the Image (and hiding it if there is no image) using the classlist tool we learnt in class.
+// --- NEW MEDIA LOGIC STARTS HERE ---
+    // First, hide everything and clear old players so they don't "stack"
+    dialogImg.classList.add('hidden');
+    dialogEmbed.classList.add('hidden');
+    dialogEmbed.innerHTML = ''; 
 
     if (data.embed) {
+        // This handles YouTube/Soundcloud links
         dialogEmbed.innerHTML = data.embed.html;
         dialogEmbed.classList.remove('hidden');
-    } else {
-        dialogEmbed.innerHTML = '';
-        dialogEmbed.classList.add('hidden');
+    } 
+    else if (data.attachment && data.attachment.content_type.includes('video')) {
+        // This handles uploaded MP4s
+        dialogEmbed.innerHTML = `<video controls src="${data.attachment.url}"></video>`;
+        dialogEmbed.classList.remove('hidden');
+    } 
+    else if (data.attachment && data.attachment.content_type.includes('audio')) {
+        // This handles uploaded MP3s
+        dialogEmbed.innerHTML = `<audio controls src="${data.attachment.url}"></audio>`;
+        dialogEmbed.classList.remove('hidden');
+    } 
+    else if (data.image) {
+        // Only show the image if there isn't a video/audio player above
+        dialogImg.src = data.image.large.src_2x;
+        dialogImg.alt = data.title || 'Are.na block image';
+        dialogImg.classList.remove('hidden');
     }
-//Swapping out the Embed (video/audio players).
 
-    if (data.title) {
+    // NEW TEXT LOGIC: If it's a 'Text' type, show the actual scroll content (content_html)
+    if (data.type === 'Text') {
+        dialogTitle.innerHTML = `<div>${data.content.plain}</div>`;
+    } else if (data.title) {
         dialogTitle.innerHTML = `<div>${data.title}</div>`;
     } else {
         dialogTitle.innerHTML = `<p class="empty-state">No description</p>`;
     }
-//Swapping out the Title/Description.
+    // --- NEW MEDIA LOGIC ENDS HERE ---
 
 
     dialogArenaLink.href = `https://www.are.na/block/${data.id}`;
@@ -362,4 +374,4 @@ modalDialog.addEventListener('click', (event) => {
   });
 });
 
-// Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again.
+// Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again. 
