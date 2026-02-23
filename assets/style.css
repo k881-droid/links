@@ -207,10 +207,9 @@ button::before {
   
   /* inset-block is top/bottom gap, inset-inline is left/right gap */
   inset-block: 0; 
-  inset-inline: var(--text-pad); /* Replaces 15px with your variable (~16px) */
+  inset-inline: calc(var(--text-pad)/2); 
   
-  /* Logical property for top and bottom borders */
-  border-block: var(--border-width-desktop) solid var(--red-bright);
+  border-block: var(--border-width-mobile) solid var(--red-bright);
   
   pointer-events: none;
   transition: inset 0.3s ease-in-out;
@@ -221,12 +220,10 @@ button::after {
   content: "";
   position: absolute;
   
-  /* Replaces 8px with a calculation based on your spacing (~8px) */
-  inset-block: calc(var(--spacing) / 4); 
+  inset-block: calc(var(--text-pad)/2); 
   inset-inline: 0; 
   
-  /* Logical property for left and right borders */
-  border-inline: var(--border-width-desktop) solid var(--red-bright);
+  border-inline: var(--border-width-mobile) solid var(--red-bright);
   
   pointer-events: none;
   transition: inset 0.3s ease-in-out;
@@ -360,7 +357,7 @@ h1{
 /* LINES  */
 .connection-line {
   stroke: var(--red-bright); 
-  stroke-width: var(--border-width-desktop);
+  stroke-width: var(--border-width-mobile);
   opacity: var(--string-opacity); 
   
   stroke-dasharray: 3000;
@@ -440,13 +437,17 @@ dialog {
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 .empty-state {
     opacity: 0.5;
 }
 
+dialog::backdrop {
+  background-color: var(--red-bright);
+  opacity: var(--dimmer-opacity);
+}
 /* MODAL STYLES END*/
 
 html{
