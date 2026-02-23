@@ -184,13 +184,19 @@ let renderBlock = (blockData) => {
     if (embedType.includes('video')) {
       // …still up to you, but here’s an example `iframe` element:
       let linkedVideoItem =
+       `
+        <li class="video-block">
+          <div class="square">
+              <div class="block-media">
+                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+                  <div class="block-info">
+                      <span class="block-type">Video</span>
+                      <h2 class="block-title">${blockData.title}</h2>
+                  </div>
+              </div>
+          </div>
+        </li>
         `
-				<li class="video-block">
-					<p><em></em></p>
-					${blockData.embed.html}
-				</li>
-				`
-
       channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
 
       // More on `iframe`:
@@ -202,12 +208,19 @@ let renderBlock = (blockData) => {
       // …up to you!
       
       let linkedAudioItem =
+       `
+        <li class="audio-block">
+          <div class="square">
+              <div class="block-media">
+                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+                  <div class="block-info">
+                      <span class="block-type">Audio</span>
+                      <h2 class="block-title">${blockData.title}</h2>
+                  </div>
+              </div>
+          </div>
+        </li>
         `
-				<li class="audio-block">
-					<p><em></em></p>
-					${blockData.embed.html}
-				</li>
-				`
 
       channelBlocks.insertAdjacentHTML('beforeend', linkedAudioItem)
     }
