@@ -187,18 +187,18 @@ let renderBlock = (blockData) => {
 }
 
 // A function to display the owner/collaborator info:
-let renderUser = (userData) => {
-  let channelUsers = document.querySelector('#channel-users') // Container.
+// let renderUser = (userData) => {
+//   let channelUsers = document.querySelector('#channel-users') // Container.
 
-  let userAddress =
-    `
-    <li>
-      <p><a href="https://are.na/${userData.slug}">A product of collaboration between:${userData.name}</a></p>
-    </li>
-    `
+//   let userAddress =
+//     `
+//     <li>
+//       <p><a href="https://are.na/${userData.slug}">A product of collaboration between:${userData.name}</a></p>
+//     </li>
+//     `
 
-  channelUsers.insertAdjacentHTML('beforeend', userAddress)
-}
+//   channelUsers.insertAdjacentHTML('beforeend', userAddress)
+// }
 
 
 

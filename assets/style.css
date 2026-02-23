@@ -324,10 +324,6 @@ h1{
   opacity: var(--string-opacity); 
 }
 
-html{
-  padding: calc(var(--spacing)/4);
-}
-
 /* AUDIO PLACEHOLDER */
 .audio-placeholder {
   background-color: var(--red-bright);
@@ -338,6 +334,32 @@ html{
   justify-content: center;
   color: var(--red-bright); 
   font-size: calc(var(--spacing) * 4);
+}
+
+/* MODAL STYLES */
+
+dialog {
+  position: fixed; 
+  inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
+  margin: auto; 
+  background-color: yellow;
+}
+
+#dialog-img{
+  inline-size: 100%;
+  block-size: 50vh;
+  padding: auto;
+}
+.hidden {
+    display: none !important;
+}
+
+.empty-state {
+    opacity: 0.5;
+}
+
+html{
+  padding: calc(var(--spacing)/4);
 }
 
 @media (width > 800px) {
