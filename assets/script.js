@@ -222,62 +222,75 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 // --- MODAL JS START --- //
 
 let modalDialog = document.querySelector('#channel-dialog');
-let dialogInner = document.querySelector('#dialog-inner');
-let blocks = document.querySelectorAll('#channel-blocks li');
+let channelBlocksContainer = document.querySelector('#channel-blocks');
 
-blocks.forEach((block, index) => {
-    block.addEventListener('click', () => {
-        let data = allBlocks[index]; 
+// 1. Grab all the specific "empty buckets" inside our modal
+let dialogType = document.querySelector('#dialog-type');
+let dialogImg = document.querySelector('#dialog-img');
+let dialogEmbed = document.querySelector('#dialog-embed');
+let dialogTitle = document.querySelector('#dialog-title');
+let dialogArenaLink = document.querySelector('#dialog-arena-link');
+let dialogDownloadLink = document.querySelector('#dialog-download-link');
+let dialogCloseBtn = document.querySelector('#dialog-close-btn');
 
-        dialogInner.innerHTML = `
-        <ul class="dialog-grid">
-          
-          <li class="row-header">
-             <button class="close-x-btn">✕</button>
-             <h2 class="dialog-title-text">${data.type ? data.type : 'Untitled'}</h2>
-          </li>
+channelBlocksContainer.addEventListener('click', (event) => {
+    let clickedBlock = event.target.closest('li');
+    if (!clickedBlock) return;
 
-          <li class="row-media">
-            ${data.image 
-              ? `<img src="${data.image.large.src_2x}" alt="${data.title}">` 
-              : `` 
-            }
-            ${data.embed 
-              ? `<div>${data.embed.html}</div>` 
-              : `` 
-            }
-          </li>
+    let allDOMBlocks = Array.from(channelBlocksContainer.children);
+    let index = allDOMBlocks.indexOf(clickedBlock);
+    let data = allBlocks[index]; 
 
-          <li class="row-desc">
-            ${data.title 
-              ? `<div>${data.title}</div>` 
-              : `<p style="opacity:0.5">No description</p>` 
-            }
-          </li>
+    // 2. Swap out the Type
+    dialogType.textContent = data.type ? data.type : 'Untitled';
 
-          <li class="row-link">
-            <a href="https://www.are.na/block/${data.id}" target="_blank">
-                Untangle
-            </a>
-            ${data.attachment 
-              ? `<br><br><a href="${data.attachment.url}" target="_blank">Download File ↘</a>` 
-              : `` 
-            }
-          </li>
+    // 3. Swap out the Image (and hide it if there is no image)
+    if (data.image) {
+        dialogImg.src = data.image.large.src_2x;
+        dialogImg.alt = data.title || 'Are.na block image';
+        dialogImg.style.display = 'block'; // Ensure it's visible
+    } else {
+        dialogImg.src = '';
+        dialogImg.style.display = 'none'; // Hide the broken image icon
+    }
 
-        </ul>
-        `;
+    // 4. Swap out the Embed (video/audio players)
+    if (data.embed) {
+        dialogEmbed.innerHTML = data.embed.html;
+        dialogEmbed.style.display = 'block';
+    } else {
+        dialogEmbed.innerHTML = '';
+        dialogEmbed.style.display = 'none';
+    }
 
+    // 5. Swap out the Title/Description
+    if (data.title) {
+        dialogTitle.innerHTML = `<div>${data.title}</div>`;
+    } else {
+        dialogTitle.innerHTML = `<p style="opacity:0.5">No description</p>`;
+    }
 
-        let internalCloseBtn = dialogInner.querySelector('.close-x-btn');
-        internalCloseBtn.addEventListener('click', () => {
-            modalDialog.close();
-        });
+    // 6. Swap out the Links
+    dialogArenaLink.href = `https://www.are.na/block/${data.id}`;
+    
+    // Show the download link ONLY if there is an attachment
+    if (data.attachment) {
+        dialogDownloadLink.href = data.attachment.url;
+        dialogDownloadLink.style.display = 'inline';
+    } else {
+        dialogDownloadLink.style.display = 'none';
+    }
 
-        modalDialog.showModal();
-    });
+    // 7. Open the modal!
+    modalDialog.showModal();
 });
 
+// Close button logic
+dialogCloseBtn.addEventListener('click', () => {
+    modalDialog.close();
+});
+
+// Close when clicking the backdrop
 modalDialog.addEventListener('click', (event) => {
     if (event.target === modalDialog) {
         modalDialog.close();

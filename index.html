@@ -45,8 +45,30 @@
 
            <dialog id="channel-dialog">
                 <div class="dialog-content">
-                     <div id="dialog-inner">
-                    </div>
+                    <button id="dialog-close-btn" class="close-x-btn">✕</button>
+        
+                        <ul class="dialog-grid">
+
+                            <li class="row-header">
+                                <h2 id="dialog-type" class="dialog-title-text"></h2>
+                            </li>
+
+                            <li class="row-media" id="dialog-media-container">
+                                <img id="dialog-img" src="" alt="">
+                                <div id="dialog-embed"></div>
+                            </li>
+
+                            <li class="row-desc">
+                                <div id="dialog-title"></div>
+                            </li>
+
+                            <li class="row-link">
+                                <a id="dialog-arena-link" href="" target="_blank">Untangle</a>
+                                <br><br>
+                                <a id="dialog-download-link" href="" target="_blank" style="display:none;">Download File ↘</a>
+                            </li>
+                        
+                        </ul>
                 </div>
             </dialog>
     </body>
