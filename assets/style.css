@@ -187,22 +187,61 @@ audio {
 }
 
 button {
-  block-size: var(--spacing); 
-  border: var(--border-width-desktop) dashed var(--red-bright);
-  color: var(--red-bright);
-  background: transparent;
-  cursor: pointer;
-  
-  
+  all: unset; 
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  color: var(--red-bright);
+  block-size: var(--spacing);
+  inline-size: 100%;
+  box-sizing: border-box;
+  transition: color 0.3s ease;
 }
 
-button:hover {
-  background-color: var(--red-bright);
-  color: var(--offwhite);
+/* Horizontal Lines (Block-axis / Top & Bottom) */
+button::before {
+  content: "";
+  position: absolute;
+  
+  /* inset-block is top/bottom gap, inset-inline is left/right gap */
+  inset-block: 0; 
+  inset-inline: var(--text-pad); /* Replaces 15px with your variable (~16px) */
+  
+  /* Logical property for top and bottom borders */
+  border-block: var(--border-width-desktop) solid var(--red-bright);
+  
+  pointer-events: none;
+  transition: inset 0.3s ease-in-out;
 }
+
+/* Vertical Lines (Inline-axis / Left & Right) */
+button::after {
+  content: "";
+  position: absolute;
+  
+  /* Replaces 8px with a calculation based on your spacing (~8px) */
+  inset-block: calc(var(--spacing) / 4); 
+  inset-inline: 0; 
+  
+  /* Logical property for left and right borders */
+  border-inline: var(--border-width-desktop) solid var(--red-bright);
+  
+  pointer-events: none;
+  transition: inset 0.3s ease-in-out;
+}
+
+/* HOVER STATE */
+button:hover {
+  color: var(--red-bright);
+}
+
+button:hover::before,
+button:hover::after {
+  inset: 0;
+}
+
 
 /* FILTERS */
 
