@@ -52,7 +52,7 @@
 :root{
   --offwhite: #feffdc;
   --red-bright: #f10b0b;
-  --red-dull:#a90b0b;
+  --red-dull:#730707;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
@@ -409,7 +409,7 @@ dialog {
   padding: var(--text-pad);
   margin: 0;
   list-style: none;
-  background-color:blue;
+  background-color:var(--red-dull);
 }
 
 .row-header{
@@ -421,20 +421,22 @@ dialog {
 }
 
 .row-media{
-  background-color:pink;
+  
 }
 
 .row-desc{
-  background-color: black;
+  
 }
 
 .row-link{
-  background-color: green;
+  
 }
 
 .close-x-btn{
   padding: calc(var(--text-pad)/2);
   font-size: var(--text-pad);
+  inline-size: auto; 
+  block-size: auto;
 }
 
 .hidden {
