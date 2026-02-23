@@ -394,10 +394,14 @@ dialog {
 }
 
 #dialog-img{
-  inline-size: 100%;
+  inline-size: auto;
+  max-inline-size: 60vw;
   block-size: auto; 
   max-block-size: 40vh; 
   object-fit: contain;
+  border-block-start: var(--border-width-mobile) solid var(--red-bright);
+  border-block-end: var(--border-width-mobile) solid var(--red-bright);
+  padding-block: var(--text-pad);
 }
 
 .dialog-grid{
@@ -418,15 +422,23 @@ dialog {
 }
 
 .row-media{
-  
+  border-inline-start: var(--border-width-mobile) solid var(--red-bright);
+  border-inline-end: var(--border-width-mobile) solid var(--red-bright);
+  padding-inline: var(--text-pad);
+
 }
 
-.row-desc{
-  
+.row-desc #dialog-title{
+  color: var(--offwhite);
 }
+  
 
 .row-link{
   
+}
+
+#dialog-title{
+  color: var(--off-white);
 }
 
 .close-x-btn{
