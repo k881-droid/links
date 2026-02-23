@@ -93,7 +93,7 @@ body{
   inline-size: 100%;
 }
 
-.overlay {
+/* .overlay {
   position: absolute;
   inset-block-start: 0;
   inset-inline-start: 0;
@@ -103,75 +103,14 @@ body{
 
   display: none;
     
-  /* VISIBLE STATE */
+
   opacity: 0.3; 
   z-index: 2;
     
-  /* INTERACTION */
+
   pointer-events: none; 
-}
+} */
 
-.block-info {
-  position: absolute; 
-  inset-block-start: 0;  
-  inset-inline-start: 0; 
-  inline-size: 100%;     
-  block-size: 100%;      
-  
-  z-index: 10;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  align-items: center;     
-
-  padding: var(--text-pad); 
-  box-sizing: border-box; 
-
-  display:none;
-}
-
-.block-info span {
-  position: absolute;
-  inset-block-start: var(--text-pad); 
-  inset-inline-end: var(--text-pad);  
-
-  color: var(--red-bright);
-  box-sizing: border-box;
-  display: inline-block;   
-  inline-size: fit-content;      
-  
-  
-  padding-block: calc(var(--spacing)/4);  
-  padding-inline: calc(var(--spacing)/2); 
-
-  border: var(--border-width-mobile) solid var(--red-bright);
-}
-
-.block-info h2, 
-.block-info .block-title {
-  text-align: center;
-  color: var(--offwhite);
-  margin: 0;
-}
-
-.block-title {
-  opacity: 0; 
-}
-
-/* INTERACTION */
-
-.block-media:hover .overlay {
-    opacity: 0;
-}
-
-.block-media:hover .block-info span {
-    opacity: 0;
-}
-
-.block-media:hover .block-title {
-    opacity: 1;
-}
 
 /* IMAGES END*/
 
@@ -191,13 +130,6 @@ body{
 
 /*TEXT BLOCK END*/
 
-/*LINKS START*/
-
-figcaption {
-display: none;
-}
-
-/*LINKS END*/
 
 audio {
 	block-size: revert;

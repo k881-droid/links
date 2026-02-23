@@ -36,33 +36,16 @@ let renderBlock = (blockData) => {
     let linkItem =
       `
 			<li class="link-block">
-        <div class="block-info">
-          <span class="block-type">Link</span>
-        </div>
-				<figure>
-					<picture>
-						<source media="(width < 500px)" srcset="${blockData.image.small.src_2x}">
-						<source media="(width < 1000px)" srcset="${blockData.image.medium.src_2x}">
-						<img alt="${blockData.image.alt_text}" src="${blockData.image.large.src_2x}">
-					</picture>
-					<figcaption>
-						<h3>
-							${blockData.title
-        ? blockData.title // If `blockData.title` exists, do this.
-        : `Untitled` // Otherwise do this.
-
-      // This is a “ternary operator”: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-      }
-						</h3>
-						${blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
-        ? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
-        : `` // Our “otherwise” can also be blank!
-      }
-					</figcaption>
-				</figure>
-				<p><a href="${blockData.source.url}"></a></p>
-			</li>
-			`
+        <figure>
+          <picture>
+            <source media="(width < 500px)" srcset="${blockData.image.small.src_2x}">
+            <source media="(width < 1000px)" srcset="${blockData.image.medium.src_2x}">
+            <img alt="${blockData.image.alt_text}" src="${blockData.image.large.src_2x}">
+          </picture>
+        </figure>
+        <p><a href="${blockData.source.url}"></a></p>
+      </li>			
+      `
 
     // And puts it into the page!
     channelBlocks.insertAdjacentHTML('beforeend', linkItem)
@@ -76,15 +59,9 @@ let renderBlock = (blockData) => {
     // …up to you!
     let imageItem =
       `
-        <li class="image-block">
-            <div class="square">
-                <div class="block-media">
-                    <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
-                      <div class="block-info">
-                        <span class="block-type">Image</span>
-                        <h2 class="block-title">${blockData.title}</h2>
-                    </div>
-                </div>
+       <li class="image-block">
+            <div class="block-media">
+                <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
             </div>
         </li>
     `
@@ -98,14 +75,10 @@ let renderBlock = (blockData) => {
     // …up to you!
     let textItem =
       `
-     <li class="text-block">
-                <div class="text-block-content">
-                    <p>${blockData.content.plain}</p>
-                      <div class="block-info">
-                        <span class="block-type">Text</span>
-                        <h2 class="block-title">${blockData.title}</h2>
-                      </div>
-                </div>
+    <li class="text-block">
+        <div class="text-block-content">
+            <p>${blockData.content.plain}</p>
+        </div>
       </li>
     `
 
@@ -123,15 +96,9 @@ let renderBlock = (blockData) => {
       let videoItem =
         `
         <li class="video-block">
-          <div class="square">
-              <div class="block-media">
-                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
-                  <div class="block-info">
-                      <span class="block-type">Video File</span>
-                      <h2 class="block-title">${blockData.title}</h2>
-                  </div>
-              </div>
-          </div>
+            <div class="block-media">
+                <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+            </div>
         </li>
         `
       channelBlocks.insertAdjacentHTML('beforeend', videoItem)
@@ -147,16 +114,13 @@ let renderBlock = (blockData) => {
 
       let pdfItem =
         `
-        <li class="pdf-block"> 
-        <div class="block-media"> <a href="${blockData.attachment.url}" target="_blank">
+       <li class="pdf-block"> 
+            <div class="block-media"> 
+                <a href="${blockData.attachment.url}" target="_blank">
                     <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
                 </a>
-                <div class="overlay"></div>
-                <div class="block-info">
-                    <span class="block-type">PDF</span>
-                    <h2 class="block-title">${blockData.title}</h2>
-                </div>
             </div>
+        </li>
         </li>
     `
     
@@ -167,19 +131,13 @@ let renderBlock = (blockData) => {
     else if (contentType.includes('audio')) {
       let audioItem =
         `
-        <li class="audio-block">
-          <div class="square">
-              <div class="block-media">
-                  ${blockData.image 
-                    ? `<img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">`
-                    : `<div class="square-img audio-placeholder">' ' </div>`
-                  }
-                  <div class="block-info">
-                      <span class="block-type">Audio File</span>
-                      <h2 class="block-title">${blockData.title}</h2>
-                  </div>
-              </div>
-          </div>
+       <li class="audio-block">
+            <div class="block-media">
+                ${blockData.image 
+                  ? `<img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">`
+                  : `<div class="square-img audio-placeholder">' '</div>`
+                }
+            </div>
         </li>
         `
       channelBlocks.insertAdjacentHTML('beforeend', audioItem)
@@ -198,16 +156,10 @@ let renderBlock = (blockData) => {
       // …still up to you, but here’s an example `iframe` element:
       let linkedVideoItem =
        `
-        <li class="video-block">
-          <div class="square">
-              <div class="block-media">
-                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
-                  <div class="block-info">
-                      <span class="block-type">Video</span>
-                      <h2 class="block-title">${blockData.title}</h2>
-                  </div>
-              </div>
-          </div>
+       <li class="video-block">
+            <div class="block-media">
+                <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+            </div>
         </li>
         `
       channelBlocks.insertAdjacentHTML('beforeend', linkedVideoItem)
@@ -222,16 +174,10 @@ let renderBlock = (blockData) => {
       
       let linkedAudioItem =
        `
-        <li class="audio-block">
-          <div class="square">
-              <div class="block-media">
-                  <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
-                  <div class="block-info">
-                      <span class="block-type">Audio</span>
-                      <h2 class="block-title">${blockData.title}</h2>
-                  </div>
-              </div>
-          </div>
+       <li class="audio-block">
+            <div class="block-media">
+                <img src="${blockData.image.medium.src_2x}" alt="${blockData.title}" class="square-img">
+            </div>
         </li>
         `
 
@@ -298,3 +244,14 @@ fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
   renderUser(json) // Pass this to the same function, no nesting.
 })
 
+
+
+// Leaving this here for my learning of ternary operators:
+// 	<h3>
+// 							${blockData.title
+//         ? blockData.title  If `blockData.title` exists, do this.
+//         : `Untitled`  Otherwise do this.
+
+//        This is a “ternary operator”: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+//       }
+// 						</h3>
