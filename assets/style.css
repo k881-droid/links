@@ -211,6 +211,13 @@ button:hover::after, .action-btn:hover::after {
   font-style: italic;
 }
 
+.special-btn:active{
+  background-color: var(--red-bright);
+}
+
+.special-btn p:active{
+color: var(--off-white);
+}
 
 /* FILTERS */
 
