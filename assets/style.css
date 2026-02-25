@@ -683,3 +683,13 @@ html{
   }
   
 }
+
+@media (width < 700px) {
+.connection-line {
+        /* This forces the line to be fully drawn immediately */
+        stroke-dashoffset: 0 !important; 
+        /* This removes the drawing animation completely */
+        transition: none !important; 
+        animation: none !important;
+    }
+}
