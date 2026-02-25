@@ -358,6 +358,9 @@ audio {
   z-index: 10; 
   pointer-events: none; 
   overflow: visible;
+  /* THE MAGIC FIX: Shrink the container so iOS doesn't panic */
+  inline-size: 1px;
+  block-size: 1px;
 }
 
 /* LINES  */

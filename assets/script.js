@@ -99,13 +99,17 @@ function drawLines() {
 
 // Now coming to the part in the beginning of the code that I said I would explain later. In order to redraw the lines every time we add a class, we need to first clear the svg of any exisiting lines. So, to translate this - SVG is our svg element, and innerHTML is the contents of our HTML. '' is an empty string. So, in translation, we are saying, make the contents of my HTML empty. In other words, make it blank - and once it is blank, fresh lines / svgs can be redrawn.
 
-    svg.style.height = '0px'; 
+    // svg.style.height = '0px'; 
 
-    const fullHeight = Math.max(
-        document.body.scrollHeight, 
-        document.documentElement.scrollHeight
-    );
-    svg.style.height = fullHeight + 'px';
+    // const fullHeight = Math.max(
+    //     document.body.scrollHeight, 
+    //     document.documentElement.scrollHeight
+    // );
+    // svg.style.height = fullHeight + 'px';
+
+    // REPLACE the fullHeight calculation with this 1px hack:
+    svg.style.height = '1px';
+    svg.style.width = '1px';
 
 // This is actually an error that Michael pointed out that I corrected now. Initially my height of the svg was set to the entire height of the page, but that was causing a lot of empty space at the bottom. This is because the svg was taking up the entire height of the page, even the part that was not visible. So, to correct this, I set the height to 0 first, and then I used JS to calculate the full height of the page and set it to that.
 
@@ -129,8 +133,15 @@ function drawLines() {
             }
         });
     }, { 
-        threshold: 0.1 // Triggers when just 10% of the line is visible on screen
-    });
+    //     threshold: 0.1 // Triggers when just 10% of the line is visible on screen
+    // });
+
+    // 1. Trigger the instant 1 single pixel enters the screen
+  threshold: 0, 
+  
+  // 2. Use 'px' instead of '%' so mobile address bars don't confuse the math
+  rootMargin: "50px 0px -50px 0px" 
+});
 
 // SELECTING BLOCKS //
 
