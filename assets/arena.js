@@ -151,8 +151,24 @@ let renderBlock = (blockData) => {
     let embedType = blockData.embed.type
       console.log(blockData)
 
+    // Behance
+    if (blockData.source && blockData.source.url.includes('behance.net')) {
+      let behanceItem = `
+        <li class="link-block"> <figure>
+            <picture>
+              <source media="(width < 500px)" srcset="${blockData.image.small.src_2x}">
+              <source media="(width < 1000px)" srcset="${blockData.image.medium.src_2x}">
+              <img alt="${blockData.image.alt_text}" src="${blockData.image.large.src_2x}">
+            </picture>
+          </figure>
+          <p><a href="${blockData.source.url}"></a></p>
+        </li>     
+      `
+      channelBlocks.insertAdjacentHTML('beforeend', behanceItem)
+    }
+
     // Linked video!
-    if (embedType.includes('video')) {
+    else if (embedType.includes('video')) {
       // …still up to you, but here’s an example `iframe` element:
       let linkedVideoItem =
        `
@@ -187,18 +203,21 @@ let renderBlock = (blockData) => {
 }
 
 // A function to display the owner/collaborator info:
-// let renderUser = (userData) => {
-//   let channelUsers = document.querySelector('#channel-users') // Container.
+let renderUser = (userData) => {
+  let channelUsers = document.querySelector('#channel-users') // Container.
 
-//   let userAddress =
-//     `
-//     <li>
-//       <p><a href="https://are.na/${userData.slug}">A product of collaboration between:${userData.name}</a></p>
-//     </li>
-//     `
+  // if userData.name = kinza
 
-//   channelUsers.insertAdjacentHTML('beforeend', userAddress)
-// }
+  let userAddress =
+  
+    `
+    <li>
+      <p><a href="https://are.na/${userData.slug}">${userData.name}</a></p>
+    </li>
+    `
+
+  channelUsers.insertAdjacentHTML('beforeend', userAddress)
+}
 
 
 
