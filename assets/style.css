@@ -673,10 +673,7 @@ html{
    body {
     display: grid;
     grid-template-columns: min-content 1fr; 
-    
-    /* THE FIX: We define specific rows so the left side stacks tightly! */
     grid-template-rows: max-content max-content 1fr; 
-      
     align-items: start; 
     gap: var(--morespacing);
     padding: var(--spacing);
@@ -686,10 +683,8 @@ html{
   }
 
   main {
-    /* Place main in the top left */
     grid-column: 1;
     grid-row: 1;
-    
     position: relative; 
     display: flex;
     flex-direction: column;
@@ -706,28 +701,41 @@ html{
     position: relative; 
   }
 
-  /* 1. The Horizontal String to the Plus Sign */
+  /* 1. Horizontal String (Stops exactly at the plus sign) */
   h1#title::before {
     content: "";
     position: absolute;
     inset-block-start: 50%; 
     inset-inline-start: 100%; 
-    inline-size: 100vw; 
+    
+    /* THE MATH: 100vw minus title width minus padding/button space */
+    inline-size: calc(100vw - 100% - (var(--spacing) * 3.5)); 
+    
     block-size: var(--border-width-desktop); 
     background-color: var(--red-bright);
     z-index: 10;
     pointer-events: none; 
   }
 
-  /* 2. The Vertical String down to the Controls */
+  /* Hides the mobile vertical string so it doesn't overlap */
   h1#title::after {
-    /* Overrides your mobile settings to shoot a long string down the sidebar */
-    inset-block-start: 100%; 
-    inset-block-end: auto;
+    content: none; 
+  }
+
+  /* 2. Vertical String (Starts from title, stops exactly at controls) */
+  main::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--spacing) * 3); /* Starts just below the title text */
+    
+    /* THE MATH: Reaches exactly through the grid gap to touch the controls */
+    inset-block-end: calc(var(--morespacing) * -1); 
+    
     inset-inline-start: 50%;
     transform: translateX(-50%);
-    block-size: 100vh; /* Makes the string reach down to the controls */
-    z-index: -1; /* Puts it behind the metadata and buttons */
+    inline-size: var(--border-width-desktop); 
+    background-color: var(--red-bright);
+    z-index: -1;
   }
 
   main ul {
@@ -752,7 +760,6 @@ html{
 /* BUTTONS */
 
   #controls {
-    /* Place controls directly below main on the left */
     grid-column: 1;
     grid-row: 2;
     align-self: start;
@@ -763,6 +770,7 @@ html{
     
     display: flex;
     flex-direction: column; 
+    align-items: stretch; /* Forces children to stretch full width */
     gap: var(--text-pad);
     
     margin: 0;
@@ -770,25 +778,35 @@ html{
     inline-size: 100%;
   }
 
+  /* THE FIX: Resets mobile padding/widths so buttons stretch properly */
+  #controls button, 
+  #controls .action-btn {
+    inline-size: 100%;
+    padding-inline: 0; 
+  }
+  
 /* THE PLUS SIGN - RIGHT TOP CORNER */
   
-  #open-colophon-btn {
+  /* THE PLUS SIGN - RIGHT TOP CORNER */
+  button#open-colophon-btn.special-btn {
     position: fixed; 
     inset-block-start: var(--spacing); 
     inset-inline-end: var(--spacing);  
+    
+    /* Overriding the stubborn mobile styles! */
     inline-size: max-content; 
     block-size: max-content;
+    justify-self: end; 
+    margin: 0; 
+    
     z-index: 50; 
   }
 
 /* BLOCKS GRID */
   section {
-    /* Spans the entire right side, ignoring the row breaks on the left */
     grid-column: 2;
     grid-row: 1 / span 3;
     inline-size: 100%;
-    
-    /* Preserves the empty top right corner space */
     padding-block-start: calc(var(--morespacing) * 2.5); 
   }
 
@@ -796,7 +814,6 @@ html{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--morespacing);
-    
     inline-size: 100%;
     margin: 0;
     padding: 0;
@@ -806,9 +823,7 @@ html{
     padding: 0;
     inline-size: 100%;
     block-size: auto;
-    
     aspect-ratio: 1 / 1; 
-    
     display: flex;
     align-items: center;
     justify-content: center;
