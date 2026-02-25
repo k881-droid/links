@@ -53,6 +53,7 @@
   --offwhite: #feffdc;
   --red-bright: #f10b0b;
   --red-dull:#5e0606;
+  --off-white-low-opacity: #feffdcb8;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
@@ -170,22 +171,34 @@ audio {
 /* BUTTONS */
 
 #controls {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  display: flex;
+  flex-wrap: nowrap; 
+  overflow-x: auto; 
+  overscroll-behavior-x: contain; /* Prevents the user from accidentally swiping the whole web page "back" while scrolling the buttons */
   
-  gap: calc(var(--spacing) / 4);  
-  
+  gap: var(--spacing);  
   inline-size: 100%;
   box-sizing: border-box;
 
   position: sticky; 
-  inset-block-start: 0; 
+top: 0; 
   z-index: 30;
   
-  background-color: var(--offwhite); 
+  background-color: var(--off-white-low-opacity); 
   padding-block: var(--text-pad); 
-  
   margin-block-end: var(--spacing);
+
+  scrollbar-width: none; 
+}
+
+#controls::-webkit-scrollbar {
+  display: none;
+}
+
+#controls button, #controls .action-btn {
+  flex-shrink: 0; /* "Do not squish me!" */
+  inline-size: max-content; /* Sizes the button exactly to the text length */
+  padding-inline: calc(var(--text-pad)/2); /* Adds breathing room left and right of the text */
 }
 
 button, .action-btn{
