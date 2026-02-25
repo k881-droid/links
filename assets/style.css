@@ -320,9 +320,8 @@ ul{
   flex-direction: column; 
   align-items: center;    
   text-align: center;    
-
   gap: var(--spacing);    
-  padding-block-end: var(--spacing);
+
 }
 
 em{
@@ -394,8 +393,8 @@ dialog {
   position: fixed; 
   inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
   margin: auto; 
-  inline-size: 92vw; 
-  max-block-size: 60vh;
+  inline-size: auto; 
+  max-block-size: 70vh;
 }
 
 #dialog-img{
@@ -414,9 +413,10 @@ dialog {
   display: flex;
   flex-direction: column;
   padding: var(--text-pad);
-  margin: 0;
+  margin: auto;
   list-style: none;
   background-color:var(--red-dull);
+  max-inline-size: 80%;
 }
 
 .row-header{
@@ -455,7 +455,7 @@ iframe{
 
 dialog:has(#dialog-embed iframe[src*="tiktok"]) {
   max-block-size: 50%;
-  margin-block-start: var(--spacing);
+  margin-block-start: calc(var(--morespacing));
 }
 
 #dialog-embed iframe[src*="tiktok"] {
@@ -624,7 +624,12 @@ html{
   #dialog-embed audio{
   inline-size: calc(var(--morespacing)*6); /* For some reason, percentages wasn't working here */
   display: block;
-}
+  } 
+
+  .dialog-grid{
+  max-inline-size: 40%;
+ }
+
 }
 
 @media (width > 1200px) {
