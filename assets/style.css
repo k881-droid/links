@@ -577,30 +577,33 @@ dialog::backdrop {
 
 /* COLOPHON SPECIFIC STYLES */
 
+.head-grid{
+  gap:0;
+  padding-inline: var(--spacing);
+}
+
 .head-grid h2 {
-    color: var(--offwhite);
     margin: 0;
 }
 
 .head-grid > li {
     padding-block: calc(var(--text-pad) * 1.5);
-    border-block-end: var(--border-width-mobile) solid var(--red-bright);
     inline-size: 100%;
-    text-align: left;
+    text-align: center;
 }
 
-.head-grid > li:last-child {
-    border-block-end: none;
+.head-grid p{
+  color: var(--offwhite);
 }
 
 .head-grid a {
-    color: var(--offwhite);
+
     text-decoration: underline;
     text-decoration-thickness: var(--border-width-mobile);
 }
 
 .head-grid a:hover {
-    color: var(--red-bright);
+    color: var(--offwhite);
 }
 
 button#open-colophon-btn.special-btn{
@@ -625,6 +628,15 @@ button#open-colophon-btn.special-btn{
 
 h1#title{
   padding-block-start: 0;
+}
+
+#channel-users{
+  padding-block-end: 0;
+  color: var(--red-bright);
+}
+
+#channel-count, #last-updated{
+  color: var(--offwhite);
 }
 
 /* --- THE CONNECTING LINE --- */

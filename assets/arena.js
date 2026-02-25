@@ -206,19 +206,24 @@ let renderBlock = (blockData) => {
 let renderUser = (userData) => {
   let channelUsers = document.querySelector('#channel-users') // Container.
 
-  // if userData.name = kinza
-
-  let userAddress =
-  
+  // Building it with two empty spans for the names
+  if (!document.querySelector('#collab-name')) {
+    channelUsers.innerHTML = `
+      <li>
+        <p>From the string that connects <span id="collab-name"></span> and <span id="owner-name"></span>.</p>
+      </li>
     `
-    <li>
-      <p><a href="https://are.na/${userData.slug}">${userData.name}</a></p>
-    </li>
-    `
+  }
 
-  channelUsers.insertAdjacentHTML('beforeend', userAddress)
+  // Using if statement to figure out whose data I have
+  if (userData.slug === myUsername) {
+    document.querySelector('#collab-name').innerHTML = 
+    `<a href="https://are.na/${userData.slug}">${userData.name}</a>`
+  } else {
+    // It's the owner
+    document.querySelector('#owner-name').innerHTML = `<a href="https://are.na/${userData.slug}">${userData.name}</a>`
+  }
 }
-
 
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
