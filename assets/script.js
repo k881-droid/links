@@ -99,17 +99,13 @@ function drawLines() {
 
 // Now coming to the part in the beginning of the code that I said I would explain later. In order to redraw the lines every time we add a class, we need to first clear the svg of any exisiting lines. So, to translate this - SVG is our svg element, and innerHTML is the contents of our HTML. '' is an empty string. So, in translation, we are saying, make the contents of my HTML empty. In other words, make it blank - and once it is blank, fresh lines / svgs can be redrawn.
 
-    // svg.style.height = '0px'; 
+    svg.style.height = '0px'; 
 
-    // const fullHeight = Math.max(
-    //     document.body.scrollHeight, 
-    //     document.documentElement.scrollHeight
-    // );
-    // svg.style.height = fullHeight + 'px';
-
-    // REPLACE the fullHeight calculation with this 1px hack:
-    svg.style.height = '1px';
-    svg.style.width = '1px';
+    const fullHeight = Math.max(
+        document.body.scrollHeight, 
+        document.documentElement.scrollHeight
+    );
+    svg.style.height = fullHeight + 'px';
 
 // This is actually an error that Michael pointed out that I corrected now. Initially my height of the svg was set to the entire height of the page, but that was causing a lot of empty space at the bottom. This is because the svg was taking up the entire height of the page, even the part that was not visible. So, to correct this, I set the height to 0 first, and then I used JS to calculate the full height of the page and set it to that.
 
@@ -119,28 +115,24 @@ function drawLines() {
 
 // INTERSECTION OBSERVER FOR DRAWING ANIMATION //
 
-// Here I have applied what we learnt in class - an IntersectionObserver. 
+// First, check if an observer already exists from a previous time drawLines() ran.
+// If it does, disconnect it so we don't cause a massive memory leak on mobile!
+if (window.lineObserver) {
+    window.lineObserver.disconnect();
+}
 
-// If a line enters the screen (isIntersecting), it adds a CSS class ('is-visible') which triggers the drawing animation in our stylesheet.
-
-// If it leaves the screen, it removes the class, so it can draw again the next time we see it.
-    let lineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            } else {
-                entry.target.classList.remove('is-visible');
-            }
-        });
-    }, { 
-    //     threshold: 0.1 // Triggers when just 10% of the line is visible on screen
-    // });
-
-    // 1. Trigger the instant 1 single pixel enters the screen
-  threshold: 0, 
-  
-  // 2. Use 'px' instead of '%' so mobile address bars don't confuse the math
-  rootMargin: "50px 0px -50px 0px" 
+// Now create the new observer and attach it to the 'window' object so we can find it next time.
+window.lineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+        } else {
+            entry.target.classList.remove('is-visible');
+        }
+    });
+}, { 
+    threshold: 0, // Changed from 0.1! Now it triggers as soon as ANY single pixel of the line is on screen.
+    rootMargin: "50px 0px" // Gives a 50px vertical buffer, which helps iOS Safari recognize the SVG.
 });
 
 // SELECTING BLOCKS //
@@ -234,7 +226,8 @@ function drawLines() {
 // INTERSECTION OBSERVER: TELL THE OBSERVER TO WATCH THIS LINE //
 // Now that the line is successfully created and appended to the page, we tell the observer we created at the top of this function to start watching it.
 
-            lineObserver.observe(line);
+// INTERSECTION OBSERVER: TELL THE OBSERVER TO WATCH THIS LINE //
+window.lineObserver.observe(line);
 
         }
     });
