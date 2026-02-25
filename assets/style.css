@@ -1,36 +1,3 @@
-/* @font-face {
-    font-family: 'PicNic';
-    src: url('../fonts/PicNic/PicNic-Regular.woff2') format('woff2'),
-        url('../fonts/PicNic/PicNic-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-} */
-
-/* @font-face {
-    font-family: 'Velvelyne-Bold';
-    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Bold.woff') format('woff'),
-        url('../fonts/Velvelyne-main/woff2/Velvelyne-Bold.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Velvelyne-Light';
-    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Light.woff') format('woff'),
-        url('../fonts/Velvelyne-main/woff2/Velvelyne-Light.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Velvelyne-Regular';
-    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Regular.woff') format('woff'),
-        url('../fonts/Velvelyne-main/woff2/Velvelyne-Regular.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Velvelyne-Book';
-    src: url('../fonts/Velvelyne-main/woff/Velvelyne-Book.woff') format('woff'),
-        url('../fonts/Velvelyne-main/woff2/Velvelyne-Book.woff2') format('woff2');
-} */
-
 @font-face {
   font-family: 'JetBrainsMono-Regular';
   src: url('../fonts/JetBrainsMono/JetBrainsMono-Variable.woff2') format('woff2'),
@@ -65,10 +32,11 @@
   --string-opacity: 0.8;
   --dimmer-opacity:0.5;
   --mobile-gap: calc(var(--spacing)*1.2);
+  --button-spacing: calc(var(--morespacing)*0.75)
 }
 
 body{
-    position: relative; /* FIX: anchors the absolute-positioned SVG correctly on mobile */
+    /* position: relative;  */
     padding: calc(var(--spacing)/8);
     background-color: var(--offwhite);
     color: var(--red-bright);
@@ -96,25 +64,6 @@ body{
   inline-size: 100%;
 }
 
-/* .overlay {
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  inline-size: 100%;
-  block-size: 100%;
-  background-color: var(--red-bright);
-
-  display: none;
-    
-
-  opacity: 0.3; 
-  z-index: 2;
-    
-
-  pointer-events: none; 
-} */
-
-
 /* IMAGES END*/
 
 /*TEXT BLOCK START*/
@@ -132,12 +81,6 @@ body{
 }
 
 /*TEXT BLOCK END*/
-
-
-audio {
-	block-size: revert;
-	inline-size: 100%;
-}
 
 /* META DATA STYLES */
 
@@ -174,31 +117,29 @@ audio {
   display: flex;
   flex-wrap: nowrap; 
   overflow-x: auto; 
-  overscroll-behavior-x: contain; /* Prevents the user from accidentally swiping the whole web page "back" while scrolling the buttons */
+  overscroll-behavior-x: contain; /* Was searching how to create my nav for mobile, as Eric recommended I not wrap my buttons but make them scrollable instead. I found this on mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overscroll-behavior . Prevents the user from accidentally swiping the whole web page "back" while scrolling the buttons */
   
   gap: var(--spacing);  
   inline-size: 100%;
   box-sizing: border-box;
 
   position: sticky; 
-top: 0; 
+  inset-block-start: 0; 
   z-index: 30;
   
   background-color: var(--off-white-low-opacity); 
   padding-block: var(--text-pad); 
   margin-block-end: var(--spacing);
-
-  scrollbar-width: none; 
 }
 
 #controls::-webkit-scrollbar {
   display: none;
 }
+/* The horizontal scrollbar was looking ugly so I found out how to remove it: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-scrollbar  */
 
-#controls button, #controls .action-btn {
-  flex-shrink: 0; /* "Do not squish me!" */
-  inline-size: max-content; /* Sizes the button exactly to the text length */
-  padding-inline: calc(var(--text-pad)/2); /* Adds breathing room left and right of the text */
+#controls button{
+  inline-size: var(--morespacing);
+  padding-inline: var(--button-spacing)
 }
 
 button, .action-btn{
