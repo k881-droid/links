@@ -21,6 +21,7 @@
   --red-bright: #f10b0b;
   --red-dull:#5e0606;
   --off-white-low-opacity: #feffdcb8;
+  --red-brighter: #ff0000;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
@@ -156,12 +157,18 @@ button, .action-btn{
   transition: color 0.3s ease;
 }
 
+/* Because I recieved feedback that my boxed buttons seemed out of the design system, I needed to find a way to create them with broken lines - I felt that would connect well to the whole 'string' theme.  */
+
+/* Then I decided to create 2 sets of borders (so they would be broken up) using pseudo elements.  */
+
+/* Pseudo elements do confuse me, so when I got confused I asked Gemini for help. Gemini made it smoother by giving me the idea for the transition. */
+
 /* Horizontal Lines (Block-axis / Top & Bottom) */
 button::before, .action-btn::before{
   content: "";
   position: absolute;
   
-  /* inset-block is top/bottom gap, inset-inline is left/right gap */
+  /* inset-block is top/bottom gap, inset-inline is left/right gap - written for my own memory*/
   inset-block: 0; 
   inset-inline: calc(var(--text-pad)/2); 
   
@@ -193,6 +200,15 @@ button:hover, .action-btn:hover{
 button:hover::before, .action-btn:hover::before,
 button:hover::after, .action-btn:hover::after {
   inset: 0;
+}
+
+.action-btn:active, .close-x-btn:active{
+  background-color:var(--offwhite);
+}
+
+/* SPECIAL BUTTONS */
+.special-btn p{
+  font-style: italic;
 }
 
 
