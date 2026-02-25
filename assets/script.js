@@ -396,3 +396,28 @@ modalDialog.addEventListener('click', (event) => {
 });
 
 // Lastly, here we are asking it to watch for a reload of the page, and when that event happens, the drawLines function will run again. 
+
+// Creating a second dialog for my colophon.
+
+// --- COLOPHON MODAL TOGGLE JS --- //
+
+let headDialog = document.querySelector('#head-dialog');
+let openColophonBtn = document.querySelector('#open-colophon-btn'); 
+let headCloseBtn = document.querySelector('#head-close-btn');
+
+// Open the modal when the colophon button is clicked
+openColophonBtn.addEventListener('click', () => {
+    headDialog.showModal();
+});
+
+// Close the modal when the X button is clicked
+headCloseBtn.addEventListener('click', () => {
+    headDialog.close();
+});
+
+// Close the modal when clicking the dark backdrop outside of it
+headDialog.addEventListener('click', (event) => {
+    if (event.target === headDialog) {
+        headDialog.close();
+    }
+});

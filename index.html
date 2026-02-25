@@ -38,24 +38,18 @@
             
         <header>
             <h1 id="title"></h1>
-
-                <ul>
-                    <li id="channel-description"></li>
-                    <li id="channel-count"></li>
-                    <li id="last-updated"></li>
-                    <li id="channel-users"></li>
-                </ul>
-            </header>
+            <button id="open-colophon-btn" class="special-btn">
+                <p>Colophon</p>
+            </button>
+        </header>
 
         <section>
-            <ul id="channel-blocks"></ul>
+                <ul id="channel-blocks"></ul>
         </section>
 
            <dialog id="channel-dialog">
                 <div class="dialog-content">
-        
                         <ul class="dialog-grid">
-
                             <li class="row-header">
                                  <button id="dialog-close-btn" class="close-x-btn">✕</button>
                                 <h2 id="dialog-type" class="dialog-title-text"></h2>
@@ -82,27 +76,20 @@
 
             <dialog id="head-dialog">
                 <div class="head-content">
-        
-                        <ul class="head-grid">
+                    <ul class="head-grid">
+                        <li class="header-header">
+                            <button id="head-close-btn" class="close-x-btn">✕</button>
+                            <h2>Colophon</h2>
+                        </li>
 
-                            <li class="header-header">
-                                 <button id="dialog-close-btn" class="close-x-btn">✕</button>
-                                <h2 class="head-title-text"></h2>
-                            </li>
-
-                            <li class="head-desc">
-                            </li>
-
-                            <li class="head-count">
-                            </li>
-
-                            <li class="head-last-updated">
-                            </li>
-
-                            <li class="head-users">
-                            </li>
-                        
-                        </ul>
+                        <li id="channel-description"></li>
+                        <li id="channel-count"></li>
+                        <li id="last-updated"></li>
+            
+                        <li>
+                            <ul id="channel-users"></ul>
+                        </li>
+                    </ul>
                 </div>
             </dialog>
     </body>

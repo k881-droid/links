@@ -21,7 +21,6 @@
   --red-bright: #f10b0b;
   --red-dull:#5e0606;
   --off-white-low-opacity: #feffdcb8;
-  --red-brighter: #ff0000;
   --spacing: 2rem;
   --morespacing: 4rem;
   font-family: 'JetBrainsMono-Regular', monospace;
@@ -216,7 +215,7 @@ button:hover::after, .action-btn:hover::after {
 }
 
 .special-btn p:active{
-color: var(--off-white);
+color: var(--offwhite);
 }
 
 /* FILTERS */
@@ -462,7 +461,7 @@ dialog {
   max-block-size: 80vh;
 }
 
-.dialog-content, .dialog-grid {
+.dialog-content, .dialog-grid, .head-content, .head-grid {
   inline-size: 100%;
   max-inline-size: 100%;
   margin: auto;
@@ -476,7 +475,7 @@ dialog {
   
 }
 
-.dialog-grid{
+.dialog-grid, .head-grid{
   display: flex;
   flex-direction: column;
   padding: var(--text-pad);
@@ -487,7 +486,7 @@ dialog {
   box-sizing: border-box;
 }
 
-.row-header{
+.row-header, .header-header{
   display: flex;
   justify-content: space-between;
   inline-size: 100%; 
@@ -589,7 +588,7 @@ html{
   }
 
 /* BASE STYLES */
-  body {
+  /* body {
     
     display: grid;
     
@@ -620,7 +619,7 @@ html{
     max-block-size: 100vh;
     overflow-y: auto;  
     overflow-x: hidden;
-  }
+  } */
 
   h1 {
     inline-size: min-content;
