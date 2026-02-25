@@ -254,6 +254,7 @@ button:hover::after, .action-btn:hover::after {
     li.image-block {
       opacity: 1; 
       pointer-events: auto;
+      transition: transform 0.5s ease-in-out;
     }
   }
 }
@@ -312,6 +313,84 @@ button:hover::after, .action-btn:hover::after {
     }
   }
 }
+
+#channel-blocks {
+  &.show-tangled {
+    li {
+      display: block; 
+      pointer-events: auto;
+      opacity: 1;
+      transition: transform 0.5s ease-in-out;
+    }
+  }
+}
+
+
+/* FLOATING ANIMATION */
+@keyframes float {
+    0% {
+        transform: translateY(0rem);
+    }
+    50% {
+        transform: translateY(-1rem); 
+    }
+    100% {
+        transform: translateY(0rem); 
+    }
+}
+
+/* 2. Apply it to "random" blocks using prime numbers */
+
+/* Targets roughly 20% of the blocks */
+#channel-blocks li:nth-child(5n + 2) {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Targets roughly 14% of the blocks, different speed & delay */
+#channel-blocks li:nth-child(7n + 4) {
+    animation: float 5.5s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+/* Targets roughly 9% of the blocks, very slow */
+#channel-blocks li:nth-child(11n) {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
+#channel-blocks li:hover {
+    animation-play-state: paused;
+}
+
+/* TANGLED STATE: Scattering the blocks */
+
+/* Every 2nd block */
+#channel-blocks.show-tangled li:nth-child(2n +3) {
+  transform: translate(90%, -40%) rotate(30deg);
+  /* If you have an animation: animation: your-keyframe-name 3s infinite; */
+}
+
+/* Every 3rd block */
+#channel-blocks.show-tangled li:nth-child(3n +8 ) {
+  transform: translate(-65%, 80%) rotate(-60deg);
+}
+
+/* Every 5th block */
+#channel-blocks.show-tangled li:nth-child(5n + 2) {
+  transform: translate(42%, -54%) rotate(10deg);
+}
+
+/* Every 7th block */
+#channel-blocks.show-tangled li:nth-child(7n + 4) {
+  transform: translate(-25%, -60%) rotate(55deg);
+}
+
+#channel-blocks.show-tangled li:nth-child(2n + 6) {
+  transform: translateY(50) rotate(80deg);
+}
+
+
 
 
 /* GENERAL STYLES */
@@ -658,6 +737,44 @@ html{
   }
 }
 
+/* FLOATING ANIMATION */
+@keyframes float {
+    0% {
+        transform: translateY(0rem);
+    }
+    50% {
+        transform: translateY(-0.8rem); 
+    }
+    100% {
+        transform: translateY(0rem); 
+    }
+}
+
+/* 2. Apply it to "random" blocks using prime numbers */
+
+/* Targets roughly 20% of the blocks */
+#channel-blocks li:nth-child(5n + 2) {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Targets roughly 14% of the blocks, different speed & delay */
+#channel-blocks li:nth-child(7n + 4) {
+    animation: float 5.5s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+/* Targets roughly 9% of the blocks, very slow */
+#channel-blocks li:nth-child(11n) {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
+#channel-blocks li:hover {
+    animation-play-state: paused;
+}
+
+
 @media (width > 1000px) {
 
   :root{ 
@@ -691,42 +808,5 @@ html{
         transition: none !important; 
         animation: none !important;
     }
-
-  /* 1. Define the subtle floating animation globally */
-@keyframes float {
-    0% {
-        transform: translateY(0rem);
-    }
-    50% {
-        transform: translateY(-1rem); 
-    }
-    100% {
-        transform: translateY(0rem); 
-    }
-}
-
-/* 2. Apply it to "random" blocks using prime numbers */
-
-/* Targets roughly 20% of the blocks */
-#channel-blocks li:nth-child(5n + 2) {
-    animation: float 4s ease-in-out infinite;
-}
-
-/* Targets roughly 14% of the blocks, different speed & delay */
-#channel-blocks li:nth-child(7n + 4) {
-    animation: float 5.5s ease-in-out infinite;
-    animation-delay: 1.2s;
-}
-
-/* Targets roughly 9% of the blocks, very slow */
-#channel-blocks li:nth-child(11n) {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
-#channel-blocks li:hover {
-    animation-play-state: paused;
-}
 
 }

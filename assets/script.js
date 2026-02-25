@@ -4,6 +4,7 @@ let showTextButton = document.querySelector('#show-text')
 let showLinksButton = document.querySelector('#show-links')
 let showAudioButton = document.querySelector('#show-audio')
 let showVideoButton = document.querySelector('#show-videos')
+let showTangledButton = document.querySelector('#show-tangled')
 let channelBlocks = document.querySelector('#channel-blocks')
 
 
@@ -13,6 +14,7 @@ showAllButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.remove('show-tangled')
     
 // Below is the setTimeout function, which I learnt from Google Gemini. I have explained the 'why' and 'how' in greater detail later on in the code. I have set it after every time a class is added because this is a function that is necessary for our 'connection lines' to be redrawn over and over again, so each time we change our classes, we must employ it again(Again, I will explain the reasoning in Michael's desired format later on in the code).
 
@@ -25,6 +27,7 @@ showImagesButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.remove('show-tangled')
 
  
     setTimeout(drawLines, 200);
@@ -36,6 +39,7 @@ showTextButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.remove('show-tangled')
     
     
     setTimeout(drawLines, 200);
@@ -47,6 +51,7 @@ showLinksButton.addEventListener('click', () => {
     channelBlocks.classList.add('show-links')
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.remove('show-tangled')
     
 
     setTimeout(drawLines, 200);
@@ -58,6 +63,7 @@ showAudioButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.add('show-audio')
     channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.remove('show-tangled')
 
 
     setTimeout(drawLines, 200);
@@ -69,6 +75,19 @@ showVideoButton.addEventListener('click', () => {
     channelBlocks.classList.remove('show-links')
     channelBlocks.classList.remove('show-audio')
     channelBlocks.classList.add('show-videos')
+    channelBlocks.classList.remove('show-tangled')
+    
+    
+    setTimeout(drawLines, 200);
+})
+
+showTangledButton.addEventListener('click', () => {
+    channelBlocks.classList.remove('show-images')
+    channelBlocks.classList.remove('show-text')
+    channelBlocks.classList.remove('show-links')
+    channelBlocks.classList.remove('show-audio')
+    channelBlocks.classList.remove('show-videos')
+    channelBlocks.classList.add('show-tangled')
     
     
     setTimeout(drawLines, 200);
