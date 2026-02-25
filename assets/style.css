@@ -391,7 +391,7 @@ h1{
   color: var(--red-bright);
   text-align: center;
   line-height: 3rem;
-  padding-block-end: var(--morespacing);
+  padding-block-end: calc(var(--morespacing)*1.5);
   padding-block-start: var(--spacing);
 }
 
@@ -611,13 +611,11 @@ button#open-colophon-btn.special-btn{
 
 #open-colophon-btn.special-btn p{
   font-family: 'anthony-master-regular';
-  font-size: calc(var(--morespacing)*1.5);
-  stroke: var(--red-bright) solid ;
+  font-size: calc(var(--morespacing)*1.2);
   font-style: initial;  
 }
 
 #open-colophon-btn {
-  /* Apply your existing float animation */
   animation: float 4s ease-in-out infinite;
 }
 
@@ -627,6 +625,25 @@ button#open-colophon-btn.special-btn{
 
 h1#title{
   padding-block-start: 0;
+}
+
+/* --- THE CONNECTING LINE --- */
+
+h1#title {
+  position: relative; 
+}
+
+h1#title::after {
+  content: "";
+  position: absolute;
+  
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  
+  inset-block-end: calc(var(--text-pad)/4); 
+  inline-size: calc(var(--border-width-desktop)*2); 
+  block-size:var(--morespacing); 
+  background-color: var(--red-bright);
 }
 
 /* OVERALL */
