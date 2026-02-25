@@ -575,6 +575,34 @@ dialog::backdrop {
 }
 /* MODAL STYLES END*/
 
+/* --- PIERCING MODAL STRING --- */
+
+dialog {
+  /* Ensure the line can shoot out past the modal boundaries without getting cut off */
+  overflow: visible; 
+}
+
+dialog::before {
+  content: "";
+  position: absolute;
+  
+  /* Center it perfectly down the middle */
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  
+  /* Make it shoot way past the top and bottom of the screen */
+  inset-block-start: -100vh; 
+  block-size: 300vh; 
+  
+  /* Match the thickness and color of your other strings */
+  inline-size: var(--border-width-desktop);
+  background-color: var(--red-bright);
+  
+  /* Put it visually OVER the modal content, but prevent it from blocking clicks */
+  z-index: -1; 
+  pointer-events: none; 
+}
+
 /* COLOPHON SPECIFIC STYLES */
 
 .head-grid{
