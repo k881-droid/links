@@ -654,7 +654,6 @@ html{
     inline-size: 100%;       
     max-block-size: 62vh;         
   }
-
 }
 
 @media (width > 1000px) {
@@ -664,7 +663,7 @@ html{
   }
 
   dialog {
-    inline-size: 50vw; 
+    inline-size: 60vw; 
     block-size: 80vh;
   }
   
