@@ -62,7 +62,8 @@
   --border-width-desktop: 0.1rem;
   --body-font: calc(var(--spacing)/2.5);
   --string-opacity: 0.8;
-  --dimmer-opacity:0.5
+  --dimmer-opacity:0.5;
+  --mobile-gap: calc(var(--spacing)*1.2);
 }
 
 body{
@@ -76,8 +77,8 @@ body{
 
 #channel-blocks {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: calc(var(--spacing)); 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: var(--mobile-gap); 
   list-style: none;
   padding: 0;
   margin: var(--spacing) 0;
@@ -602,7 +603,7 @@ html{
     z-index: 40;
     
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--text-pad);
     
     margin: 0;
@@ -619,7 +620,7 @@ html{
 
   #channel-blocks {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--morespacing);
     
     inline-size: 100%;
@@ -665,6 +666,19 @@ html{
   dialog {
     inline-size: 60vw; 
     block-size: 80vh;
+  }
+    #channel-blocks {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+
+@media (width > 1400px) {
+
+  #channel-blocks {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
   }
   
 }
