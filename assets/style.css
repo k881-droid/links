@@ -389,6 +389,12 @@ audio {
 
 /* MODAL STYLES */
 
+#channel-dialog[open] {
+  display: grid;
+  place-items: center; 
+  place-content: center; 
+}
+
 dialog {
   position: fixed; 
   inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
@@ -398,11 +404,6 @@ dialog {
 }
 
 #dialog-img{
-  inline-size: auto;
-  max-inline-size: 60vw;
-  block-size: auto; 
-  max-block-size: 40vh; 
-  object-fit: contain;
   border-block-start: var(--border-width-mobile) solid var(--red-bright);
   border-block-end: var(--border-width-mobile) solid var(--red-bright);
   padding-block: var(--text-pad);
@@ -441,7 +442,6 @@ dialog {
 iframe{
   border-block-start: var(--border-width-mobile) solid var(--red-bright);
   border-block-end: var(--border-width-mobile) solid var(--red-bright);
-  padding-block: var(--text-pad);
 }
 
 #dialog-title{
@@ -455,7 +455,6 @@ iframe{
 
 dialog:has(#dialog-embed iframe[src*="tiktok"]) {
   max-block-size: 50%;
-  margin-block-start: calc(var(--morespacing));
 }
 
 #dialog-embed iframe[src*="tiktok"] {
@@ -468,8 +467,25 @@ dialog:has(#dialog-embed iframe[src*="tiktok"]) {
 #dialog-embed audio{
   inline-size: calc(var(--morespacing)*4); /* For some reason, percentages wasn't working here */
   display: block;
+  block-size: calc(var(--morespacing));
+  border-block-start: var(--border-width-mobile) solid var(--red-bright);
+  border-block-end: var(--border-width-mobile) solid var(--red-bright);
+  padding-block: var(--text-pad);
+
 }
 
+#dialog-title {
+  padding-inline: var(--spacing); 
+}
+
+li#dialog-media-container.row-media{
+  scale: 80%;
+  padding-inline: var(--text-pad);
+}
+
+iframe.embedly-embed{
+  padding-block: var(--text-pad);
+}
 .close-x-btn{
   padding: calc(var(--text-pad)/2);
   font-size: var(--text-pad);
@@ -626,10 +642,6 @@ html{
   display: block;
   } 
 
-  .dialog-grid{
-  max-inline-size: 40%;
- }
-
 }
 
 @media (width > 1200px) {
@@ -637,5 +649,4 @@ html{
   :root{ 
     font-size: 1.2rem;
   }
-
 }
