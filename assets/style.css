@@ -315,49 +315,44 @@ color: var(--offwhite);
     }
 }
 
-/* 2. Apply it to "random" blocks using prime numbers */
+/* I had an appointment with the code tutor to discuss how to do the random animations and transforms, he suggested using this new n child property I didn't know about called An + B. Basically it works the same way, but you can plug in your n-number into an equation this time for more advanced calculations. */
 
-/* Targets roughly 20% of the blocks */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:nth-child#Example_selectors */
+
+/* TARGETTING RANDOM BLOCKS  */
+
 #channel-blocks li:nth-child(5n + 2) {
     animation: float 4s ease-in-out infinite;
 }
 
-/* Targets roughly 14% of the blocks, different speed & delay */
 #channel-blocks li:nth-child(7n + 4) {
     animation: float 5.5s ease-in-out infinite;
     animation-delay: 1.2s;
 }
 
-/* Targets roughly 9% of the blocks, very slow */
 #channel-blocks li:nth-child(11n) {
     animation: float 6s ease-in-out infinite;
     animation-delay: 0.5s;
 }
 
-/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
 #channel-blocks li:hover {
     animation-play-state: paused;
 }
 
 /* TANGLED STATE: Scattering the blocks */
 
-/* Every 2nd block */
 #channel-blocks.show-tangled li:nth-child(2n +3) {
   transform: translate(90%, -40%) rotate(30deg);
-  /* If you have an animation: animation: your-keyframe-name 3s infinite; */
 }
 
-/* Every 3rd block */
 #channel-blocks.show-tangled li:nth-child(3n +8 ) {
   transform: translate(-65%, 80%) rotate(-60deg);
 }
 
-/* Every 5th block */
 #channel-blocks.show-tangled li:nth-child(5n + 2) {
   transform: translate(42%, -54%) rotate(10deg);
 }
 
-/* Every 7th block */
 #channel-blocks.show-tangled li:nth-child(7n + 4) {
   transform: translate(-25%, -60%) rotate(55deg);
 }
@@ -413,6 +408,9 @@ audio {
   pointer-events: none; 
   overflow: visible;
 }
+
+
+/* For my lines coming in animation, I found out how to do this using stroke dasharray: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/stroke-dasharray . I wanted to do this because I wanted the concept of the strings to feel more dynamic, chaotic and interactive. It is partnered with intersection observer in my JS. I found out how to do this from MDN. */
 
 /* LINES  */
 .connection-line {
@@ -575,7 +573,7 @@ dialog::backdrop {
 }
 /* MODAL STYLES END*/
 
-/* --- PIERCING MODAL STRING --- */
+/* MODAL STRING*/
 
 dialog {
   /* Ensure the line can shoot out past the modal boundaries without getting cut off */
@@ -586,19 +584,16 @@ dialog::before {
   content: "";
   position: absolute;
   
-  /* Center it perfectly down the middle */
   inset-inline-start: 50%;
   transform: translateX(-50%);
   
-  /* Make it shoot way past the top and bottom of the screen */
+  /* Large numbers not magic numbers, have to make it go across the screen */
   inset-block-start: -100vh; 
   block-size: 300vh; 
   
-  /* Match the thickness and color of your other strings */
   inline-size: var(--border-width-desktop);
   background-color: var(--red-bright);
   
-  /* Put it visually OVER the modal content, but prevent it from blocking clicks */
   z-index: -1; 
   pointer-events: none; 
 }
@@ -667,7 +662,7 @@ h1#title{
   color: var(--offwhite);
 }
 
-/* --- THE CONNECTING LINE --- */
+/* --- THE CONNECTING LINE IN HEADER --- */
 
 h1#title {
   position: relative; 
@@ -729,14 +724,15 @@ html{
     position: relative; 
   }
 
-  /* 1. Horizontal String (Stops exactly at the plus sign) */
+  /* 1. Horizontal String  */
   h1#title::before {
     content: "";
     position: absolute;
     inset-block-start: 50%; 
     inset-inline-start: 100%; 
     
-    /* THE MATH: 100vw minus title width minus padding/button space */
+    /* This calculation was given by Gemini. I just could not find the right inline size on my own, it kept breaking. I wish there was a simpler way to do it but was short on time.*/
+
     inline-size: calc(100vw - 100% - (var(--spacing) * 3.5)); 
     
     block-size: var(--border-width-desktop); 
@@ -745,18 +741,18 @@ html{
     pointer-events: none; 
   }
 
-  /* Hides the mobile vertical string so it doesn't overlap */
   h1#title::after {
     content: none; 
   }
 
   /* 2. Vertical String (Starts from title, stops exactly at controls) */
-  main::after {
+
+  /* I think I stopped using this */
+  /* main::after {
     content: "";
     position: absolute;
-    inset-block-start: calc(var(--spacing) * 3); /* Starts just below the title text */
+    inset-block-start: calc(var(--spacing) * 3); 
     
-    /* THE MATH: Reaches exactly through the grid gap to touch the controls */
     inset-block-end: calc(var(--morespacing) * -1); 
     
     inset-inline-start: 50%;
@@ -764,7 +760,7 @@ html{
     inline-size: var(--border-width-desktop); 
     background-color: var(--red-bright);
     z-index: -1;
-  }
+  } */
 
   main ul {
     display: flex;
@@ -798,7 +794,7 @@ html{
     
     display: flex;
     flex-direction: column; 
-    align-items: stretch; /* Forces children to stretch full width */
+    align-items: stretch; 
     gap: var(--text-pad);
     
     margin: 0;
@@ -806,14 +802,11 @@ html{
     inline-size: 100%;
   }
 
-  /* THE FIX: Resets mobile padding/widths so buttons stretch properly */
   #controls button, 
   #controls .action-btn {
     inline-size: 100%;
     padding-inline: 0; 
   }
-  
-/* THE PLUS SIGN - RIGHT TOP CORNER */
   
   /* THE PLUS SIGN - RIGHT TOP CORNER */
   button#open-colophon-btn.special-btn {
@@ -821,7 +814,6 @@ html{
     inset-block-start: var(--spacing); 
     inset-inline-end: var(--spacing);  
     
-    /* Overriding the stubborn mobile styles! */
     inline-size: max-content; 
     block-size: max-content;
     justify-self: end; 
@@ -909,3 +901,5 @@ html{
     }
 
 }
+
+/* I have all the extra media queries specifically to tackle the number of blocks per viewport, it wasnt responsive enough with just 3. */
