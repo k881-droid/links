@@ -115,25 +115,22 @@ function drawLines() {
 
 // INTERSECTION OBSERVER FOR DRAWING ANIMATION //
 
-// First, check if an observer already exists from a previous time drawLines() ran.
-// If it does, disconnect it so we don't cause a massive memory leak on mobile!
-if (window.lineObserver) {
-    window.lineObserver.disconnect();
-}
+// Here I have applied what we learnt in class - an IntersectionObserver. 
 
-// Now create the new observer and attach it to the 'window' object so we can find it next time.
-window.lineObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-        } else {
-            entry.target.classList.remove('is-visible');
-        }
+// If a line enters the screen (isIntersecting), it adds a CSS class ('is-visible') which triggers the drawing animation in our stylesheet.
+
+// If it leaves the screen, it removes the class, so it can draw again the next time we see it.
+    let lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, { 
+        threshold: 0.1 // Triggers when just 10% of the line is visible on screen
     });
-}, { 
-    threshold: 0, // Changed from 0.1! Now it triggers as soon as ANY single pixel of the line is on screen.
-    rootMargin: "50px 0px" // Gives a 50px vertical buffer, which helps iOS Safari recognize the SVG.
-});
 
 // SELECTING BLOCKS //
 
@@ -226,8 +223,7 @@ window.lineObserver = new IntersectionObserver((entries) => {
 // INTERSECTION OBSERVER: TELL THE OBSERVER TO WATCH THIS LINE //
 // Now that the line is successfully created and appended to the page, we tell the observer we created at the top of this function to start watching it.
 
-// INTERSECTION OBSERVER: TELL THE OBSERVER TO WATCH THIS LINE //
-window.lineObserver.observe(line);
+            lineObserver.observe(line);
 
         }
     });

@@ -67,10 +67,11 @@
 }
 
 body{
-  padding: calc(var(--spacing)/8);
-  background-color: var(--offwhite);
-  color: var(--red-bright);
-  font-size: var(--body-font);
+    position: relative; /* FIX: anchors the absolute-positioned SVG correctly on mobile */
+    padding: calc(var(--spacing)/8);
+    background-color: var(--offwhite);
+    color: var(--red-bright);
+    font-size: var(--body-font);
 }
 
 /* CHANNEL GRID */
