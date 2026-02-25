@@ -400,13 +400,21 @@ dialog {
   inset: 0; /*Instead of writing top, bottom, left, right = 0, inset is logical and shorter */
   margin: auto; 
   inline-size: auto; 
-  max-block-size: 70vh;
+  inline-size: 80vw; 
+  max-block-size: 80vh;
+}
+
+.dialog-content, .dialog-grid {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  margin: auto;
 }
 
 #dialog-img{
   border-block-start: var(--border-width-mobile) solid var(--red-bright);
   border-block-end: var(--border-width-mobile) solid var(--red-bright);
   padding-block: var(--text-pad);
+  max-inline-size: 100%
   
 }
 
@@ -418,6 +426,7 @@ dialog {
   list-style: none;
   background-color:var(--red-dull);
   max-inline-size: 80%;
+  box-sizing: border-box;
 }
 
 .row-header{
@@ -515,7 +524,7 @@ html{
   padding: calc(var(--spacing)/4);
 }
 
-@media (width > 800px) {
+@media (width > 700px) {
 
   :root{
     font-size: 1rem;
@@ -602,7 +611,7 @@ html{
     background: transparent; 
   }
 
-    /* BLOCKS GRID */
+/* BLOCKS GRID */
   section {
     grid-area: content;
     inline-size: 100%;
@@ -637,16 +646,26 @@ html{
 
 /* SPECIFIC */
 
-  #dialog-embed audio{
-  inline-size: calc(var(--morespacing)*6); /* For some reason, percentages wasn't working here */
-  display: block;
-  } 
+  dialog {
+    inline-size: 50vw; 
+  }
+
+  #dialog-img {
+    inline-size: 100%;       
+    max-block-size: 62vh;         
+  }
 
 }
 
-@media (width > 1200px) {
+@media (width > 1000px) {
 
   :root{ 
     font-size: 1.2rem;
   }
+
+  dialog {
+    inline-size: 50vw; 
+    block-size: 80vh;
+  }
+  
 }
