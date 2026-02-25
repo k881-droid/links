@@ -671,44 +671,63 @@ html{
 
 /* BASE STYLES */
    body {
-    
     display: grid;
+    grid-template-columns: min-content 1fr; 
     
-    grid-template-columns: min-content 1fr;
-    grid-template-rows: min-content 1fr; 
-    
-    grid-template-areas:
-      "sidebar controls"
-      "sidebar content";
+    /* THE FIX: We define specific rows so the left side stacks tightly! */
+    grid-template-rows: max-content max-content 1fr; 
       
     align-items: start; 
     gap: var(--morespacing);
     padding: var(--spacing);
     box-sizing: border-box;
     min-block-size: 100vh;
+    overflow-x: hidden; 
   }
 
   main {
-    grid-area: sidebar;
+    /* Place main in the top left */
+    grid-column: 1;
+    grid-row: 1;
     
-    position: sticky;
-    inset-block-start: var(--spacing);
-    
+    position: relative; 
     display: flex;
     flex-direction: column;
     gap: var(--morespacing);
-    
-    max-block-size: 100vh;
-    overflow-y: auto;  
-    overflow-x: hidden;
   } 
 
+/* TITLE STRINGS */
   h1 {
     inline-size: min-content;
     text-align: left;
     margin: 0;
     padding: 0;
     font-size: calc(var(--spacing) * 2.5); 
+    position: relative; 
+  }
+
+  /* 1. The Horizontal String to the Plus Sign */
+  h1#title::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%; 
+    inset-inline-start: 100%; 
+    inline-size: 100vw; 
+    block-size: var(--border-width-desktop); 
+    background-color: var(--red-bright);
+    z-index: 10;
+    pointer-events: none; 
+  }
+
+  /* 2. The Vertical String down to the Controls */
+  h1#title::after {
+    /* Overrides your mobile settings to shoot a long string down the sidebar */
+    inset-block-start: 100%; 
+    inset-block-end: auto;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+    block-size: 100vh; /* Makes the string reach down to the controls */
+    z-index: -1; /* Puts it behind the metadata and buttons */
   }
 
   main ul {
@@ -726,7 +745,6 @@ html{
     text-align: left;
     color: var(--red-bright);
     padding: var(--text-pad);
-    
     flex: unset;
     border-radius: 0;
   }
@@ -734,26 +752,44 @@ html{
 /* BUTTONS */
 
   #controls {
-    grid-area: controls;
+    /* Place controls directly below main on the left */
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
     
     position: sticky;
     top: var(--spacing);
     z-index: 40;
     
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column; 
     gap: var(--text-pad);
     
     margin: 0;
     padding: 0;
     inline-size: 100%;
-    background: transparent; 
+  }
+
+/* THE PLUS SIGN - RIGHT TOP CORNER */
+  
+  #open-colophon-btn {
+    position: fixed; 
+    inset-block-start: var(--spacing); 
+    inset-inline-end: var(--spacing);  
+    inline-size: max-content; 
+    block-size: max-content;
+    z-index: 50; 
   }
 
 /* BLOCKS GRID */
   section {
-    grid-area: content;
+    /* Spans the entire right side, ignoring the row breaks on the left */
+    grid-column: 2;
+    grid-row: 1 / span 3;
     inline-size: 100%;
+    
+    /* Preserves the empty top right corner space */
+    padding-block-start: calc(var(--morespacing) * 2.5); 
   }
 
   #channel-blocks {
@@ -794,44 +830,6 @@ html{
     max-block-size: 62vh;         
   }
 }
-
-/* FLOATING ANIMATION */
-@keyframes float {
-    0% {
-        transform: translateY(0rem);
-    }
-    50% {
-        transform: translateY(-0.8rem); 
-    }
-    100% {
-        transform: translateY(0rem); 
-    }
-}
-
-/* 2. Apply it to "random" blocks using prime numbers */
-
-/* Targets roughly 20% of the blocks */
-#channel-blocks li:nth-child(5n + 2) {
-    animation: float 4s ease-in-out infinite;
-}
-
-/* Targets roughly 14% of the blocks, different speed & delay */
-#channel-blocks li:nth-child(7n + 4) {
-    animation: float 5.5s ease-in-out infinite;
-    animation-delay: 1.2s;
-}
-
-/* Targets roughly 9% of the blocks, very slow */
-#channel-blocks li:nth-child(11n) {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 0.5s;
-}
-
-/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
-#channel-blocks li:hover {
-    animation-play-state: paused;
-}
-
 
 @media (width > 1000px) {
 
