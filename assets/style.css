@@ -684,12 +684,49 @@ html{
   
 }
 
+/* Removing animation for mobile because it doesnt seem to be working. */
 @media (width < 700px) {
 .connection-line {
-        /* This forces the line to be fully drawn immediately */
         stroke-dashoffset: 0 !important; 
-        /* This removes the drawing animation completely */
         transition: none !important; 
         animation: none !important;
     }
+
+  /* 1. Define the subtle floating animation globally */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px); 
+    }
+    100% {
+        transform: translateY(0px); 
+    }
+}
+
+/* 2. Apply it to "random" blocks using prime numbers */
+
+/* Targets roughly 20% of the blocks */
+#channel-blocks li:nth-child(5n + 2) {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Targets roughly 14% of the blocks, different speed & delay */
+#channel-blocks li:nth-child(7n + 4) {
+    animation: float 5.5s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+/* Targets roughly 9% of the blocks, very slow */
+#channel-blocks li:nth-child(11n) {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+/* 3. Accessibility/Usability: Pause on hover so they don't wiggle while you try to click! */
+#channel-blocks li:hover {
+    animation-play-state: paused;
+}
+
 }
